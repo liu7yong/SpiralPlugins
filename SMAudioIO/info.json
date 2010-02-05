@@ -1,0 +1,36 @@
+{
+	"Spiral Devices": {
+		"6e86a9417526779d302077af073d5111": {
+			"Author": "David Griffiths",
+			"Version": 1,
+			"API Version": 0.4,
+
+			"AudioDriver": true,
+			"HostPlugin": false,
+
+			"Label": "Audio",
+			"Info": "Audio Input/Output",
+			"Category": "Input/Output",
+
+			"Resources": {
+				"Icon": "AudioOutput.png"
+			}
+		},
+		"1f5efd4bb21f90cf99ed081a335d913a": { 
+			"Author": "David Griffiths",
+			"Version": 2,
+			"API Version": 0.4,
+
+			"AudioDriver": true,
+			"HostPlugin": false,
+
+			"Label": "Disk Writer",
+			"Info": "Disk Writer",
+			"Category": "Input/Output",
+
+			"Resources": {
+				"Icon": "DiskWriter.png"
+			}
+		}
+	}
+}

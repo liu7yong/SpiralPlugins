@@ -1,0 +1,5 @@
+SpiralPlugins represents the ongoing project of migrating the original SpiralSynthModular plugins to the also ongoing project SpiralCore.
+
+The longer term goals are to slowly merge the plugin structure with something closely compatible with lv2 or ladspa, to allow them to be used outside of SpiralCore, as well as allowing other plugins to be used natively.
+
+For now however, the plugins are closely tied to the SpiralCore stack.

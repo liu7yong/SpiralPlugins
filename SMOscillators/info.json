@@ -1,0 +1,68 @@
+{
+	"Spiral Devices": {
+		"09f642cbfdbb5022d229b3a44c343ce0": {
+			"Author": "Andy Preston",
+			"Version":1,
+			"API Version":0.4,
+
+			"AudioDriver": false,
+			"HostPlugin": false,
+
+			"Label": "LFO",
+			"Info": "LFO",
+			"Category":"Oscillators",
+
+			"Resources":{
+				"Icon": "LFO.png"
+			}
+		},
+		"7cac72b3687628ec373ef10ae8a2ab4a": { 
+			"Author": "David Griffiths",
+			"Version":1,
+			"API Version":0.4,
+
+			"AudioDriver": false,
+			"HostPlugin": false,
+
+			"Label": "Noise",
+			"Info": "Noise Generator",
+			"Category":"Oscillators",
+
+			"Resources":{
+				"Icon": "Noise.png"
+			}
+		},
+		"d7a6e545474f4fc1c5f6d2acedc28cd7": {
+			"Author": "David Griffiths",
+			"Version":1,
+			"API Version":0.4,
+
+			"AudioDriver": false,
+			"HostPlugin": false,
+
+			"Label": "Wave Table",
+			"Info": "Wave Table",
+			"Category":"Oscillators",
+
+			"Resources":{
+				"Icon": "WaveTable.png"
+			}
+		},
+		"d1d47c96e200908aedda145e912f6300": {
+			"Author":"Andrew Johnson; Jοhan Kiviniemi",
+			"Version":1,
+			"API Version":0.4,
+			
+			"AudioDriver": false,
+			"HostPlugin": false,
+			
+			"Label": "Extra Noise",
+			"Info": "Configurable Noise Generator",
+			"Category":"Oscillators",
+
+			"Resources":{
+				"Icon": "ExtraNoise.png"
+			}
+		}
+	}
+}

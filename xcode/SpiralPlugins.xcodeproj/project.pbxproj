@@ -1,0 +1,911 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		B4CB4C4C11175CDA00F772FC /* SMOscillators */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B4CB4C6311175D3200F772FC /* Build configuration list for PBXAggregateTarget "SMOscillators" */;
+			buildPhases = (
+				B4CB4C6211175D3200F772FC /* CopyFiles */,
+			);
+			dependencies = (
+				B4CB4C5011175CF500F772FC /* PBXTargetDependency */,
+			);
+			name = SMOscillators;
+			productName = SMOscillators;
+		};
+		B4EE2974111A551200EC7A4E /* SMAudioIO */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B4EE297A111A551200EC7A4E /* Build configuration list for PBXAggregateTarget "SMAudioIO" */;
+			buildPhases = (
+				B4EE2977111A551200EC7A4E /* CopyFiles */,
+			);
+			dependencies = (
+				B4EE2988111A553500EC7A4E /* PBXTargetDependency */,
+			);
+			name = SMAudioIO;
+			productName = SMAudioIO;
+		};
+		B4EE299F111A56E700EC7A4E /* SMFiltersFX */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B4EE29A5111A56E700EC7A4E /* Build configuration list for PBXAggregateTarget "SMFiltersFX" */;
+			buildPhases = (
+				B4EE29A2111A56E700EC7A4E /* CopyFiles */,
+			);
+			dependencies = (
+				B4EE2C3F111BB48800EC7A4E /* PBXTargetDependency */,
+			);
+			name = SMFiltersFX;
+			productName = SMFiltersFX;
+		};
+		B4EE29DE111A57ED00EC7A4E /* SpiralPlugins */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B4EE29ED111A580E00EC7A4E /* Build configuration list for PBXAggregateTarget "SpiralPlugins" */;
+			buildPhases = (
+			);
+			dependencies = (
+				B4EE29E6111A580100EC7A4E /* PBXTargetDependency */,
+				B4EE29E4111A57FE00EC7A4E /* PBXTargetDependency */,
+				B4EE29E2111A57FC00EC7A4E /* PBXTargetDependency */,
+			);
+			name = SpiralPlugins;
+			productName = SpiralPlugins;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		B4CB4C5F11175D2D00F772FC /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4610F7A08C0043327C /* Spicy.framework */; };
+		B4CB4C6011175D2D00F772FC /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4810F7A08C0043327C /* SpiralCore.framework */; };
+		B4EE2981111A551700EC7A4E /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4610F7A08C0043327C /* Spicy.framework */; };
+		B4EE2982111A551700EC7A4E /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4810F7A08C0043327C /* SpiralCore.framework */; };
+		B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2919111A542C00EC7A4E /* AudioIO.h */; };
+		B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291C111A542C00EC7A4E /* DiskWriter.h */; };
+		B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291E111A542C00EC7A4E /* ESDClient.h */; };
+		B4EE298C111A555F00EC7A4E /* esd.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2924111A542C00EC7A4E /* esd.h */; };
+		B4EE298D111A557500EC7A4E /* AudioIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2918111A542C00EC7A4E /* AudioIO.cpp */; };
+		B4EE298E111A557500EC7A4E /* DiskWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE291B111A542C00EC7A4E /* DiskWriter.cpp */; };
+		B4EE298F111A557500EC7A4E /* ESDClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE291D111A542C00EC7A4E /* ESDClient.cpp */; };
+		B4EE2990111A558D00EC7A4E /* libesd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EE2926111A542C00EC7A4E /* libesd.a */; };
+		B4EE2992111A564F00EC7A4E /* ExtraNoise.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2937111A542C00EC7A4E /* ExtraNoise.h */; };
+		B4EE2993111A564F00EC7A4E /* LFO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2939111A542C00EC7A4E /* LFO.h */; };
+		B4EE2994111A564F00EC7A4E /* Noise.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE293B111A542C00EC7A4E /* Noise.h */; };
+		B4EE2995111A564F00EC7A4E /* WaveTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE293D111A542C00EC7A4E /* WaveTable.h */; };
+		B4EE2996111A567400EC7A4E /* ExtraNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2936111A542C00EC7A4E /* ExtraNoise.cpp */; };
+		B4EE2997111A567400EC7A4E /* LFO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2938111A542C00EC7A4E /* LFO.cpp */; };
+		B4EE2998111A567400EC7A4E /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE293A111A542C00EC7A4E /* Noise.cpp */; };
+		B4EE2999111A567400EC7A4E /* WaveTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE293C111A542C00EC7A4E /* WaveTable.cpp */; };
+		B4EE299A111A569A00EC7A4E /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE293E111A542C00EC7A4E /* info.json */; };
+		B4EE299B111A56A100EC7A4E /* SMOscillators.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */; };
+		B4EE299C111A56A300EC7A4E /* SMAudioIO.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE2986111A551700EC7A4E /* SMAudioIO.dylib */; };
+		B4EE299D111A56AC00EC7A4E /* AudioOutput.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE291A111A542C00EC7A4E /* AudioOutput.png */; };
+		B4EE299E111A56AC00EC7A4E /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE2925111A542C00EC7A4E /* info.json */; };
+		B4EE29AB111A574D00EC7A4E /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE2934111A542C00EC7A4E /* info.json */; };
+		B4EE29B8111A575300EC7A4E /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4610F7A08C0043327C /* Spicy.framework */; };
+		B4EE29B9111A575300EC7A4E /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4810F7A08C0043327C /* SpiralCore.framework */; };
+		B4EE29D1111A57B600EC7A4E /* SMFiltersFX.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE29BD111A575300EC7A4E /* SMFiltersFX.dylib */; };
+		B4EE29D2111A57C300EC7A4E /* AnotherFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2929111A542C00EC7A4E /* AnotherFilter.h */; };
+		B4EE29D3111A57C300EC7A4E /* AnotherFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2928111A542C00EC7A4E /* AnotherFilter.cpp */; };
+		B4EE29D4111A57C300EC7A4E /* Filter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE292B111A542C00EC7A4E /* Filter.h */; };
+		B4EE29D5111A57C300EC7A4E /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE292A111A542C00EC7A4E /* Filter.cpp */; };
+		B4EE29D6111A57C300EC7A4E /* FormantFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE292D111A542C00EC7A4E /* FormantFilter.h */; };
+		B4EE29D7111A57C300EC7A4E /* FormantFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE292C111A542C00EC7A4E /* FormantFilter.cpp */; };
+		B4EE29D8111A57C300EC7A4E /* MoogFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE292F111A542C00EC7A4E /* MoogFilter.h */; };
+		B4EE29D9111A57C300EC7A4E /* MoogFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE292E111A542C00EC7A4E /* MoogFilter.cpp */; };
+		B4EE29DA111A57C300EC7A4E /* SVFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2931111A542C00EC7A4E /* SVFilter.h */; };
+		B4EE29DB111A57C300EC7A4E /* SVFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2930111A542C00EC7A4E /* SVFilter.cpp */; };
+		B4EE29DC111A57C300EC7A4E /* iir_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2933111A542C00EC7A4E /* iir_filter.h */; };
+		B4EE29DD111A57C300EC7A4E /* iir_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2932111A542C00EC7A4E /* iir_filter.cpp */; };
+		B4EE2C3B111BB46B00EC7A4E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EE2C38111BB45400EC7A4E /* CoreAudio.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4CB4C4F11175CF500F772FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4CB4C4811175C9F00F772FC;
+			remoteInfo = SMOscillators.dylib;
+		};
+		B4EE2987111A553500EC7A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EE297D111A551700EC7A4E;
+			remoteInfo = SMAudioIO.dylib;
+		};
+		B4EE29E1111A57FC00EC7A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EE2974111A551200EC7A4E;
+			remoteInfo = SMAudioIO;
+		};
+		B4EE29E3111A57FE00EC7A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4CB4C4C11175CDA00F772FC;
+			remoteInfo = SMOscillators;
+		};
+		B4EE29E5111A580100EC7A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EE299F111A56E700EC7A4E;
+			remoteInfo = SMFiltersFX;
+		};
+		B4EE2C3E111BB48800EC7A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EE29AC111A575300EC7A4E;
+			remoteInfo = SMFiltersFX.dylib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B4CB4C6211175D3200F772FC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = SMOscillators.plugin;
+			dstSubfolderSpec = 1;
+			files = (
+				B4EE299A111A569A00EC7A4E /* info.json in CopyFiles */,
+				B4EE299B111A56A100EC7A4E /* SMOscillators.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE2977111A551200EC7A4E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = SMAudioIO.plugin;
+			dstSubfolderSpec = 1;
+			files = (
+				B4EE299D111A56AC00EC7A4E /* AudioOutput.png in CopyFiles */,
+				B4EE299E111A56AC00EC7A4E /* info.json in CopyFiles */,
+				B4EE299C111A56A300EC7A4E /* SMAudioIO.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE29A2111A56E700EC7A4E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = SMFiltersFX.plugin;
+			dstSubfolderSpec = 1;
+			files = (
+				B4EE29AB111A574D00EC7A4E /* info.json in CopyFiles */,
+				B4EE29D1111A57B600EC7A4E /* SMFiltersFX.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMOscillators.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4DB3F4610F7A08C0043327C /* Spicy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spicy.framework; path = Library/Frameworks/Spicy.framework; sourceTree = SDKROOT; };
+		B4DB3F4810F7A08C0043327C /* SpiralCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpiralCore.framework; path = Library/Frameworks/SpiralCore.framework; sourceTree = SDKROOT; };
+		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; };
+		B4EE2919111A542C00EC7A4E /* AudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioIO.h; sourceTree = "<group>"; };
+		B4EE291A111A542C00EC7A4E /* AudioOutput.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioOutput.png; sourceTree = "<group>"; };
+		B4EE291B111A542C00EC7A4E /* DiskWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiskWriter.cpp; sourceTree = "<group>"; };
+		B4EE291C111A542C00EC7A4E /* DiskWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskWriter.h; sourceTree = "<group>"; };
+		B4EE291D111A542C00EC7A4E /* ESDClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ESDClient.cpp; sourceTree = "<group>"; };
+		B4EE291E111A542C00EC7A4E /* ESDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDClient.h; sourceTree = "<group>"; };
+		B4EE291F111A542C00EC7A4E /* JackIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JackIO.cpp; sourceTree = "<group>"; };
+		B4EE2920111A542C00EC7A4E /* JackIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JackIO.h; sourceTree = "<group>"; };
+		B4EE2924111A542C00EC7A4E /* esd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = esd.h; sourceTree = "<group>"; };
+		B4EE2925111A542C00EC7A4E /* info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = info.json; sourceTree = "<group>"; };
+		B4EE2926111A542C00EC7A4E /* libesd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libesd.a; sourceTree = "<group>"; };
+		B4EE2928111A542C00EC7A4E /* AnotherFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnotherFilter.cpp; sourceTree = "<group>"; };
+		B4EE2929111A542C00EC7A4E /* AnotherFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnotherFilter.h; sourceTree = "<group>"; };
+		B4EE292A111A542C00EC7A4E /* Filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Filter.cpp; sourceTree = "<group>"; };
+		B4EE292B111A542C00EC7A4E /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		B4EE292C111A542C00EC7A4E /* FormantFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FormantFilter.cpp; sourceTree = "<group>"; };
+		B4EE292D111A542C00EC7A4E /* FormantFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormantFilter.h; sourceTree = "<group>"; };
+		B4EE292E111A542C00EC7A4E /* MoogFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoogFilter.cpp; sourceTree = "<group>"; };
+		B4EE292F111A542C00EC7A4E /* MoogFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoogFilter.h; sourceTree = "<group>"; };
+		B4EE2930111A542C00EC7A4E /* SVFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SVFilter.cpp; sourceTree = "<group>"; };
+		B4EE2931111A542C00EC7A4E /* SVFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVFilter.h; sourceTree = "<group>"; };
+		B4EE2932111A542C00EC7A4E /* iir_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iir_filter.cpp; sourceTree = "<group>"; };
+		B4EE2933111A542C00EC7A4E /* iir_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iir_filter.h; sourceTree = "<group>"; };
+		B4EE2934111A542C00EC7A4E /* info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = info.json; sourceTree = "<group>"; };
+		B4EE2936111A542C00EC7A4E /* ExtraNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExtraNoise.cpp; sourceTree = "<group>"; };
+		B4EE2937111A542C00EC7A4E /* ExtraNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraNoise.h; sourceTree = "<group>"; };
+		B4EE2938111A542C00EC7A4E /* LFO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LFO.cpp; sourceTree = "<group>"; };
+		B4EE2939111A542C00EC7A4E /* LFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFO.h; sourceTree = "<group>"; };
+		B4EE293A111A542C00EC7A4E /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
+		B4EE293B111A542C00EC7A4E /* Noise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Noise.h; sourceTree = "<group>"; };
+		B4EE293C111A542C00EC7A4E /* WaveTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveTable.cpp; sourceTree = "<group>"; };
+		B4EE293D111A542C00EC7A4E /* WaveTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveTable.h; sourceTree = "<group>"; };
+		B4EE293E111A542C00EC7A4E /* info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = info.json; sourceTree = "<group>"; };
+		B4EE2986111A551700EC7A4E /* SMAudioIO.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMAudioIO.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EE29BD111A575300EC7A4E /* SMFiltersFX.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMFiltersFX.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EE2C38111BB45400EC7A4E /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		B4F58298110F8D660070E06E /* info.json */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; fileEncoding = 4; path = info.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4CB4C4711175C9F00F772FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4CB4C5F11175D2D00F772FC /* Spicy.framework in Frameworks */,
+				B4CB4C6011175D2D00F772FC /* SpiralCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE2980111A551700EC7A4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE2990111A558D00EC7A4E /* libesd.a in Frameworks */,
+				B4EE2981111A551700EC7A4E /* Spicy.framework in Frameworks */,
+				B4EE2982111A551700EC7A4E /* SpiralCore.framework in Frameworks */,
+				B4EE2C3B111BB46B00EC7A4E /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE29B7111A575300EC7A4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE29B8111A575300EC7A4E /* Spicy.framework in Frameworks */,
+				B4EE29B9111A575300EC7A4E /* SpiralCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* SpiralPlugins */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE2917111A542C00EC7A4E /* SMAudioIO */,
+				B4EE2935111A542C00EC7A4E /* SMOscillators */,
+				B4EE2927111A542C00EC7A4E /* SMFiltersFX */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = SpiralPlugins;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4F58298110F8D660070E06E /* info.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB3F4610F7A08C0043327C /* Spicy.framework */,
+				B4DB3F4810F7A08C0043327C /* SpiralCore.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */,
+				B4EE2986111A551700EC7A4E /* SMAudioIO.dylib */,
+				B4EE29BD111A575300EC7A4E /* SMFiltersFX.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4EE2917111A542C00EC7A4E /* SMAudioIO */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE2973111A54CE00EC7A4E /* Frameworks and Libraries */,
+				B4EE296A111A544D00EC7A4E /* Resources */,
+				B4EE2919111A542C00EC7A4E /* AudioIO.h */,
+				B4EE2918111A542C00EC7A4E /* AudioIO.cpp */,
+				B4EE291C111A542C00EC7A4E /* DiskWriter.h */,
+				B4EE291B111A542C00EC7A4E /* DiskWriter.cpp */,
+				B4EE2924111A542C00EC7A4E /* esd.h */,
+				B4EE291E111A542C00EC7A4E /* ESDClient.h */,
+				B4EE291D111A542C00EC7A4E /* ESDClient.cpp */,
+				B4EE2920111A542C00EC7A4E /* JackIO.h */,
+				B4EE291F111A542C00EC7A4E /* JackIO.cpp */,
+			);
+			name = SMAudioIO;
+			path = ../SMAudioIO;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4EE2927111A542C00EC7A4E /* SMFiltersFX */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE29AA111A573100EC7A4E /* Resources */,
+				B4EE2929111A542C00EC7A4E /* AnotherFilter.h */,
+				B4EE2928111A542C00EC7A4E /* AnotherFilter.cpp */,
+				B4EE292B111A542C00EC7A4E /* Filter.h */,
+				B4EE292A111A542C00EC7A4E /* Filter.cpp */,
+				B4EE292D111A542C00EC7A4E /* FormantFilter.h */,
+				B4EE292C111A542C00EC7A4E /* FormantFilter.cpp */,
+				B4EE292F111A542C00EC7A4E /* MoogFilter.h */,
+				B4EE292E111A542C00EC7A4E /* MoogFilter.cpp */,
+				B4EE2931111A542C00EC7A4E /* SVFilter.h */,
+				B4EE2930111A542C00EC7A4E /* SVFilter.cpp */,
+				B4EE2933111A542C00EC7A4E /* iir_filter.h */,
+				B4EE2932111A542C00EC7A4E /* iir_filter.cpp */,
+			);
+			name = SMFiltersFX;
+			path = ../SMFiltersFX;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4EE2935111A542C00EC7A4E /* SMOscillators */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE2991111A562000EC7A4E /* Resources */,
+				B4EE2937111A542C00EC7A4E /* ExtraNoise.h */,
+				B4EE2936111A542C00EC7A4E /* ExtraNoise.cpp */,
+				B4EE2939111A542C00EC7A4E /* LFO.h */,
+				B4EE2938111A542C00EC7A4E /* LFO.cpp */,
+				B4EE293B111A542C00EC7A4E /* Noise.h */,
+				B4EE293A111A542C00EC7A4E /* Noise.cpp */,
+				B4EE293D111A542C00EC7A4E /* WaveTable.h */,
+				B4EE293C111A542C00EC7A4E /* WaveTable.cpp */,
+			);
+			name = SMOscillators;
+			path = ../SMOscillators;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4EE296A111A544D00EC7A4E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE291A111A542C00EC7A4E /* AudioOutput.png */,
+				B4EE2925111A542C00EC7A4E /* info.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B4EE2973111A54CE00EC7A4E /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE2926111A542C00EC7A4E /* libesd.a */,
+				B4EE2C38111BB45400EC7A4E /* CoreAudio.framework */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		B4EE2991111A562000EC7A4E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE293E111A542C00EC7A4E /* info.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B4EE29AA111A573100EC7A4E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4EE2934111A542C00EC7A4E /* info.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B4CB4C4511175C9F00F772FC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE2992111A564F00EC7A4E /* ExtraNoise.h in Headers */,
+				B4EE2993111A564F00EC7A4E /* LFO.h in Headers */,
+				B4EE2994111A564F00EC7A4E /* Noise.h in Headers */,
+				B4EE2995111A564F00EC7A4E /* WaveTable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE297E111A551700EC7A4E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */,
+				B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */,
+				B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */,
+				B4EE298C111A555F00EC7A4E /* esd.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE29AD111A575300EC7A4E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE29D2111A57C300EC7A4E /* AnotherFilter.h in Headers */,
+				B4EE29D4111A57C300EC7A4E /* Filter.h in Headers */,
+				B4EE29D6111A57C300EC7A4E /* FormantFilter.h in Headers */,
+				B4EE29D8111A57C300EC7A4E /* MoogFilter.h in Headers */,
+				B4EE29DA111A57C300EC7A4E /* SVFilter.h in Headers */,
+				B4EE29DC111A57C300EC7A4E /* iir_filter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B4CB4C4811175C9F00F772FC /* SMOscillators.dylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4CB4C6111175D3200F772FC /* Build configuration list for PBXNativeTarget "SMOscillators.dylib" */;
+			buildPhases = (
+				B4CB4C4511175C9F00F772FC /* Headers */,
+				B4CB4C4611175C9F00F772FC /* Sources */,
+				B4CB4C4711175C9F00F772FC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMOscillators.dylib;
+			productName = SMOscillators;
+			productReference = B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		B4EE297D111A551700EC7A4E /* SMAudioIO.dylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4EE2983111A551700EC7A4E /* Build configuration list for PBXNativeTarget "SMAudioIO.dylib" */;
+			buildPhases = (
+				B4EE297E111A551700EC7A4E /* Headers */,
+				B4EE297F111A551700EC7A4E /* Sources */,
+				B4EE2980111A551700EC7A4E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMAudioIO.dylib;
+			productName = SMAudioIO;
+			productReference = B4EE2986111A551700EC7A4E /* SMAudioIO.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		B4EE29AC111A575300EC7A4E /* SMFiltersFX.dylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4EE29BA111A575300EC7A4E /* Build configuration list for PBXNativeTarget "SMFiltersFX.dylib" */;
+			buildPhases = (
+				B4EE29AD111A575300EC7A4E /* Headers */,
+				B4EE29B2111A575300EC7A4E /* Sources */,
+				B4EE29B7111A575300EC7A4E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMFiltersFX.dylib;
+			productName = SMFiltersFX;
+			productReference = B4EE29BD111A575300EC7A4E /* SMFiltersFX.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "SpiralPlugins" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* SpiralPlugins */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4EE29DE111A57ED00EC7A4E /* SpiralPlugins */,
+				B4EE2974111A551200EC7A4E /* SMAudioIO */,
+				B4CB4C4C11175CDA00F772FC /* SMOscillators */,
+				B4EE299F111A56E700EC7A4E /* SMFiltersFX */,
+				B4EE297D111A551700EC7A4E /* SMAudioIO.dylib */,
+				B4CB4C4811175C9F00F772FC /* SMOscillators.dylib */,
+				B4EE29AC111A575300EC7A4E /* SMFiltersFX.dylib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4CB4C4611175C9F00F772FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE2996111A567400EC7A4E /* ExtraNoise.cpp in Sources */,
+				B4EE2997111A567400EC7A4E /* LFO.cpp in Sources */,
+				B4EE2998111A567400EC7A4E /* Noise.cpp in Sources */,
+				B4EE2999111A567400EC7A4E /* WaveTable.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE297F111A551700EC7A4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE298D111A557500EC7A4E /* AudioIO.cpp in Sources */,
+				B4EE298E111A557500EC7A4E /* DiskWriter.cpp in Sources */,
+				B4EE298F111A557500EC7A4E /* ESDClient.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EE29B2111A575300EC7A4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EE29D3111A57C300EC7A4E /* AnotherFilter.cpp in Sources */,
+				B4EE29D5111A57C300EC7A4E /* Filter.cpp in Sources */,
+				B4EE29D7111A57C300EC7A4E /* FormantFilter.cpp in Sources */,
+				B4EE29D9111A57C300EC7A4E /* MoogFilter.cpp in Sources */,
+				B4EE29DB111A57C300EC7A4E /* SVFilter.cpp in Sources */,
+				B4EE29DD111A57C300EC7A4E /* iir_filter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4CB4C5011175CF500F772FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4CB4C4811175C9F00F772FC /* SMOscillators.dylib */;
+			targetProxy = B4CB4C4F11175CF500F772FC /* PBXContainerItemProxy */;
+		};
+		B4EE2988111A553500EC7A4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4EE297D111A551700EC7A4E /* SMAudioIO.dylib */;
+			targetProxy = B4EE2987111A553500EC7A4E /* PBXContainerItemProxy */;
+		};
+		B4EE29E2111A57FC00EC7A4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4EE2974111A551200EC7A4E /* SMAudioIO */;
+			targetProxy = B4EE29E1111A57FC00EC7A4E /* PBXContainerItemProxy */;
+		};
+		B4EE29E4111A57FE00EC7A4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4CB4C4C11175CDA00F772FC /* SMOscillators */;
+			targetProxy = B4EE29E3111A57FE00EC7A4E /* PBXContainerItemProxy */;
+		};
+		B4EE29E6111A580100EC7A4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4EE299F111A56E700EC7A4E /* SMFiltersFX */;
+			targetProxy = B4EE29E5111A580100EC7A4E /* PBXContainerItemProxy */;
+		};
+		B4EE2C3F111BB48800EC7A4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4EE29AC111A575300EC7A4E /* SMFiltersFX.dylib */;
+			targetProxy = B4EE2C3E111BB48800EC7A4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
+			};
+			name = Release;
+		};
+		B4CB4C4A11175CA000F772FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = SMOscillators;
+			};
+			name = Debug;
+		};
+		B4CB4C4B11175CA000F772FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = SMOscillators;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4CB4C4D11175CDA00F772FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = SMOscillators;
+			};
+			name = Debug;
+		};
+		B4CB4C4E11175CDA00F772FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = SMOscillators;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4EE297B111A551200EC7A4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = SMAudioIO;
+			};
+			name = Debug;
+		};
+		B4EE297C111A551200EC7A4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = SMAudioIO;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4EE2984111A551700EC7A4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SMAudioIO\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SMAudioIO;
+			};
+			name = Debug;
+		};
+		B4EE2985111A551700EC7A4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SMAudioIO\"",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SMAudioIO;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4EE29A6111A56E700EC7A4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = SMOscillators;
+			};
+			name = Debug;
+		};
+		B4EE29A7111A56E700EC7A4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = SMOscillators;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4EE29BB111A575300EC7A4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = SMFiltersFX;
+			};
+			name = Debug;
+		};
+		B4EE29BC111A575300EC7A4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = SMFiltersFX;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4EE29DF111A57EE00EC7A4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = SpiralPlugins;
+			};
+			name = Debug;
+		};
+		B4EE29E0111A57EE00EC7A4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = SpiralPlugins;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "SpiralPlugins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4CB4C6111175D3200F772FC /* Build configuration list for PBXNativeTarget "SMOscillators.dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4CB4C4A11175CA000F772FC /* Debug */,
+				B4CB4C4B11175CA000F772FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4CB4C6311175D3200F772FC /* Build configuration list for PBXAggregateTarget "SMOscillators" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4CB4C4D11175CDA00F772FC /* Debug */,
+				B4CB4C4E11175CDA00F772FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EE297A111A551200EC7A4E /* Build configuration list for PBXAggregateTarget "SMAudioIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EE297B111A551200EC7A4E /* Debug */,
+				B4EE297C111A551200EC7A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EE2983111A551700EC7A4E /* Build configuration list for PBXNativeTarget "SMAudioIO.dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EE2984111A551700EC7A4E /* Debug */,
+				B4EE2985111A551700EC7A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EE29A5111A56E700EC7A4E /* Build configuration list for PBXAggregateTarget "SMFiltersFX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EE29A6111A56E700EC7A4E /* Debug */,
+				B4EE29A7111A56E700EC7A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EE29BA111A575300EC7A4E /* Build configuration list for PBXNativeTarget "SMFiltersFX.dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EE29BB111A575300EC7A4E /* Debug */,
+				B4EE29BC111A575300EC7A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EE29ED111A580E00EC7A4E /* Build configuration list for PBXAggregateTarget "SpiralPlugins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EE29DF111A57EE00EC7A4E /* Debug */,
+				B4EE29E0111A57EE00EC7A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
