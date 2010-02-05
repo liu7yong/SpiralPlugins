@@ -30,9 +30,7 @@ for the full version with explanatory comments, and the maths!
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 
-#include <Spicy/SPTypes.h>
 #include <SpiralCore/Misc.h>
 
 using namespace Spicy;
