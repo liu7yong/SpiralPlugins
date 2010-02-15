@@ -45,8 +45,8 @@ private:
 	// Voice independant
 	FloatType    *coef; 
 
-  FloatProperty fc;     // cutoff frequency  
-	FloatProperty Q;      // Resonance > 1.0 < 1000  
+	FloatProperty *fc;     // cutoff frequency  
+	FloatProperty *Q;      // Resonance > 1.0 < 1000  
 
 	//FIXME IS THIS VOICE SAFE??
 	FloatType   m_LastFC;

@@ -34,14 +34,10 @@ private:
 
 	InputPort *input[2];
 	OutputPort *output;
-	FloatProperty m_Vowel;
+	FloatProperty *m_Vowel;
 		
 	//FIXME - NOT VOICE SAFE
 	double memory[5][10];
-	
-	// Shutup Stupid Compiler Warnings
- 	FormantFilter(FormantFilter &copy) : Device(copy), output(NULL), m_Vowel(copy.m_Vowel) {}
-  FormantFilter operator = (FormantFilter &copy){ FormantFilter dup(copy); return dup; }
 public:
  	FormantFilter(Patch *Host);
 

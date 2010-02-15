@@ -60,8 +60,8 @@ const FloatType six = 6.0;
 
 SVFilter::SVFilter(Patch *Host) :
 	Device(Host),
-	Cutoff(DefaultLinearFlags, zero, zero, one, 0.0001, 0.001),
-	Resonance(DefaultLinearFlags, zero, zero, one, 0.00001, 0.0001),
+	Cutoff(new FloatProperty(DefaultLinearFlags, zero, zero, one, 0.0001, 0.001)),
+	Resonance(new FloatProperty(DefaultLinearFlags, zero, zero, one, 0.00001, 0.0001)),
 
 	fc(1000.0f),
 	q(zero),
@@ -74,21 +74,21 @@ SVFilter::SVFilter(Patch *Host) :
 	m_p(zero),
 	m_n(zero)
 {
-	RegisterSharedProperty(Cutoff, "Cutoff", "Cutoff");
-	RegisterSharedProperty(Resonance, "Resonance", "Resonance");
+	RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
+	RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
 }
 
 bool SVFilter::CreatePorts()
 {
-	new InputPort(this, "Input");	
-	new InputPort(this, "Cutoff CV");	
-	new InputPort(this, "Emphasis CV");	
+	new InputPort(this/*, "Input"*/);	
+	new InputPort(this/*, "Cutoff CV"*/);	
+	new InputPort(this/*, "Emphasis CV"*/);	
 
-	new OutputPort(this,  "LowPass output");
-	new OutputPort(this,  "BandPass output");
-	new OutputPort(this,  "HighPass output");
-	new OutputPort(this,  "Notch output");
-	new OutputPort(this,  "Peaking output");
+	new OutputPort(this/*,  "LowPass output"*/);
+	new OutputPort(this/*,  "BandPass output"*/);
+	new OutputPort(this/*,  "HighPass output"*/);
+	new OutputPort(this/*,  "Notch output"*/);
+	new OutputPort(this/*,  "Peaking output"*/);
 
 	return true;
 }
@@ -107,8 +107,8 @@ void SVFilter::Process(UnsignedType SampleCount)
 {
 	FloatType in, cut, res;
 
-	cut = Cutoff.Value.AsFloat;
-	res = Resonance.Value.AsFloat;
+	cut = Cutoff->Value.AsFloat;
+	res = Resonance->Value.AsFloat;
 
     for (UnsignedType n=0; n<SampleCount; n++)
 	{

@@ -62,14 +62,14 @@ LFO::LFO(Patch *Host) :
 	m_TableLength(DEFAULT_TABLE_LEN),
 
 	/* Shared Properties */
-	m_Type(Property::WriteOnly, 0, PropertySet(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0]))),
-	m_Freq(DefaultLinearFlags,0.1, 0.0, 1.0, 0.001, 0.1),
+	m_Type(new SetProperty(Property::WriteOnly, 0, new PropertySet(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])))),
+	m_Freq(new FloatProperty(DefaultLinearFlags,0.1, 0.0, 1.0, 0.001, 0.1)),
 
 	/* Voice State Properties */
 	m_CyclePosInd(NewStateProperty(defCyclePos))
 {
-	RegisterSharedProperty(m_Type, "Wave Type", "Wave Type");
-	RegisterSharedProperty(m_Freq, "Frequency", "Frequency");
+	RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
+	RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
 }
 
 bool LFO::CreatePorts() 
@@ -81,9 +81,9 @@ bool LFO::CreatePorts()
 	
 	WriteWaves();
 		
-	output[0] = new OutputPort(this, "Output");
-	output[1] = new OutputPort(this, "'Cosine' Output");
-	output[2] = new OutputPort(this, "Inverted Output");
+	output[0] = new OutputPort(this/*, "Output"*/);
+	output[1] = new OutputPort(this/*, "'Cosine' Output"*/);
+	output[2] = new OutputPort(this/*, "Inverted Output"*/);
 
 	return true;
 }
@@ -153,8 +153,8 @@ void LFO::Reset()
 
 void LFO::Process(UnsignedType SampleCount) 
 {
-	UnsignedType type = m_Type.Value.AsUnsigned;
-	FloatType freq =m_Freq.Value.AsFloat;
+	UnsignedType type = m_Type->Value.AsUnsigned;
+	FloatType freq =m_Freq->Value.AsFloat;
 	FloatType Incr, CyclePos, Pos;
 
 	CyclePos = StateValue(m_CyclePosInd)->AsFloat;

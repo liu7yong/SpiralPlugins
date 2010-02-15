@@ -38,10 +38,10 @@ private:
 	UnsignedType m_CyclePosInd, m_NoteInd;
 
   // Common Shared Properties
-	SetProperty m_Type;
-	SignedProperty	m_Octave;
+	SetProperty *m_Type;
+	SignedProperty	*m_Octave;
 
-	FloatProperty m_FineFreq, m_ModAmount;
+	FloatProperty *m_FineFreq, *m_ModAmount;
 		
 	Sample m_Table[8];
 	UnsignedType    m_TableLength;

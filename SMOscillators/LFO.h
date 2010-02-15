@@ -39,8 +39,8 @@ class LFO : public Device
 		UnsignedType m_CyclePosInd;
 
 	  	// Common Shared Properties
-		SetProperty m_Type;
-		FloatProperty m_Freq;
+		SetProperty *m_Type;
+		FloatProperty *m_Freq;
 
 		Sample m_Table[6];
 		UnsignedType    m_TableLength;	

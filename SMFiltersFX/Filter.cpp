@@ -62,8 +62,8 @@ Device(Host),
 
 iir(),
 
-fc(DefaultLinearFlags, 100.0, zero, 100.0, 0.01,  one),
-Q(DefaultLinearFlags, one, zero, 10.0, 0.01, 0.1),
+fc(new FloatProperty(DefaultLinearFlags, 100.0, zero, 100.0, 0.01,  one)),
+Q(new FloatProperty(DefaultLinearFlags, one, zero, 10.0, 0.01, 0.1)),
 
 m_LastFC(zero),
 m_LastQ(one),
@@ -76,8 +76,8 @@ b1(zero),
 b2(zero), 
 k(one)              // Set overall filter gain
 {
-	RegisterSharedProperty(fc, "Cutoff", "Cutoff");
-	RegisterSharedProperty(Q, "Resonance", "Resonance");
+	RegisterSharedProperty(fc, StringHash("CUTOFF") /*"Cutoff", "Cutoff"*/);
+	RegisterSharedProperty(Q, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
 }
 
 bool Filter::Setup()
@@ -112,11 +112,11 @@ void Filter::Shutdown()
 
 bool Filter::CreatePorts()
 {	
-	input[0] = new InputPort(this, "Input");
-	input[1] = new InputPort(this, "Cutoff CV");
-	input[2] = new InputPort(this, "Emphasis CV");
+	input[0] = new InputPort(this/*, "Input"*/);
+	input[1] = new InputPort(this/*, "Cutoff CV"*/);
+	input[2] = new InputPort(this/*, "Emphasis CV"*/);
 
-	output = new OutputPort(this, "Output");
+	output = new OutputPort(this/*, "Output"*/);
 
 	return true;
 }
@@ -134,8 +134,8 @@ void Filter::Process(UnsignedType SampleCount)
 	FloatType Resonance;
 	FloatType in, cv1, cv2;
 
-	_fc=fc.Value.AsFloat;
-	_q=Q.Value.AsFloat;
+	_fc=fc->Value.AsFloat;
+	_q=Q->Value.AsFloat;
 
 	if (_fc<zero)	return;
 

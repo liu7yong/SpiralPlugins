@@ -56,35 +56,35 @@ const NumericPropertyValue BitRates[] =
 
 DiskWriter::DiskWriter(Patch *Host):
 AudioDriver(Host),
-m_FileName(Property::WriteOnly, ""),
-m_Open(Property::WriteOnly | Property::ForceUpdate, false),
-m_Recording(Property::WriteOnly | Property::ForceUpdate, false),
-m_BitsPerSample(Property::WriteOnly, 0, PropertySet(BitRates, sizeof(BitRates)/sizeof(BitRates[0]))),
-m_Stereo(Property::WriteOnly, true),
+m_FileName(new StringProperty(Property::WriteOnly, "")),
+m_Open(new ToggleProperty(Property::WriteOnly | Property::ForceUpdate, false)),
+m_Recording(new ToggleProperty(Property::WriteOnly | Property::ForceUpdate, false)),
+m_BitsPerSample(new SetProperty(Property::WriteOnly, 0, new PropertySet(BitRates, sizeof(BitRates)/sizeof(BitRates[0])))),
+m_Stereo(new ToggleProperty(Property::WriteOnly, true)),
 
 /* Just So The GUI Can Keep track of Current Time Recorded */
-m_TimeRecorded(Property::ReadOnly, 0, 0, 0, 0, 0)
+m_TimeRecorded(new FloatProperty(Property::ReadOnly, 0, 0, 0, 0, 0))
 {
-	RegisterSharedProperty(m_Open, "Open", "Open");
-	RegisterSharedProperty(m_Recording, "Recording", "Recording");
-	RegisterSharedProperty(m_FileName, "Filename", "Filename");
-	RegisterSharedProperty(m_BitsPerSample, "Bits Per Sample", "Bits Per Sample");
-	RegisterSharedProperty(m_Stereo, "Stereo", "Stereo");
-	RegisterSharedProperty(m_TimeRecorded, "Time Recorded", "Time Recorded");
+	RegisterSharedProperty(m_Open, StringHash("OPEN")/*"Open", "Open"*/);
+	RegisterSharedProperty(m_Recording, StringHash("RECORDING")/*"Recording", "Recording"*/);
+	RegisterSharedProperty(m_FileName, StringHash("FILENAME") /*"Filename", "Filename"*/);
+	RegisterSharedProperty(m_BitsPerSample, StringHash("BITS PER SAMPLE")/*"Bits Per Sample", "Bits Per Sample"*/);
+	RegisterSharedProperty(m_Stereo, StringHash("STEREO")/*"Stereo", "Stereo"*/);
+	RegisterSharedProperty(m_TimeRecorded, StringHash("TIME RECORDED")/*"Time Recorded", "Time Recorded"*/);
 }
 
 bool DiskWriter::CreatePorts()
 {
-	left = new InputPort(this, "Left Out", Port::IS_MONOPHONIC);
-	right = new InputPort(this, "Right Out", Port::IS_MONOPHONIC);
-	recordcv = new InputPort(this, "Record Controller", Port::IS_MONOPHONIC);
+	left = new InputPort(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
+	right = new InputPort(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
+	recordcv = new InputPort(this, /*"Record Controller",*/ Port::IS_MONOPHONIC);
 
 	return true;
 }
 
 void DiskWriter::Process(UnsignedType SampleCount)
 {
-	if(m_Recording.Value.AsBoolean && m_Wav.IsOpen())
+	if(m_Recording->Value.AsBoolean && m_Wav.IsOpen())
 	{
 		FloatType LeftBuffer[SampleCount], RightBuffer[SampleCount];
 
@@ -96,7 +96,7 @@ void DiskWriter::Process(UnsignedType SampleCount)
 		}
 
 		m_Wav.Save(LeftBuffer, RightBuffer, SampleCount);
-		m_TimeRecorded.Value.AsFloat = (m_Wav.GetSize()/m_Wav.GetSamplerate());
+		m_TimeRecorded->Value.AsFloat = (m_Wav.GetSize()/m_Wav.GetSamplerate());
 	}
 }
 
@@ -117,9 +117,9 @@ void DiskWriter::Process(UnsignedType SampleCount)
 						m_Wav.SetSamplerate(SampleRate());
 					}
 
-					if (m_Wav.GetBitsPerSample() != m_BitsPerSample.Value.AsSigned) 
+					if (m_Wav.GetBitsPerSample() != m_BitsPerSample->Value.AsSigned) 
 					{
-						m_Wav.SetBitsPerSample(m_BitsPerSample.Value.AsSigned);
+						m_Wav.SetBitsPerSample(m_BitsPerSample->Value.AsSigned);
 					}
 
 					m_Wav.Open(ValueAsString(m_FileName),WavFile::WRITE, (ValueAsBoolean(m_Stereo))?(WavFile::STEREO):(WavFile::MONO));
@@ -145,9 +145,9 @@ void DiskWriter::Process(UnsignedType SampleCount)
 						m_Wav.SetSamplerate(GetHostInfo()->SAMPLERATE);
 					}
 
-					if (m_Wav.GetBitsPerSample() != m_BitsPerSample.Value.AsSigned) 
+					if (m_Wav.GetBitsPerSample() != m_BitsPerSample->Value.AsSigned) 
 					{
-						m_Wav.SetBitsPerSample(m_BitsPerSample.Value.AsSigned);
+						m_Wav.SetBitsPerSample(m_BitsPerSample->Value.AsSigned);
 					}
 
 					m_Wav.Open(ValueAsString(m_FileName),WavFile::WRITE, (ValueAsBoolean(m_Stereo))?(WavFile::STEREO):(WavFile::MONO));

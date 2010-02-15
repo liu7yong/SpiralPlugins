@@ -80,7 +80,6 @@ void ESDClient::SendStereo(InputPort *ldata,InputPort *rdata)
 	r = rdata->GetSampleBuffer(0);
 	
 	count = (l)?l->GetLength():((r)?r->GetLength():0);
-
 	count = MIN(pcm.frames, count);
 
 	for (UnsignedType n=0; n<count; n++)
@@ -182,6 +181,7 @@ bool ESDClient::OpenReadWrite()
 
 	DeallocateBuffer();
 	AllocateBuffer();
+	printf("OPENING ESD STREAM\n");
 	pcm.control = esd_open_sound ("localhost");
 	pcm.handle = esd_play_stream (ESD_STREAM | ESD_PLAY | ESD_BITS16 | ESD_STEREO, 
 					pcm.rate, "localhost", "SpiralSynthModular");

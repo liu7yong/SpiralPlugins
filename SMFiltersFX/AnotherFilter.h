@@ -31,7 +31,7 @@ class AnotherFilter : public Device
 DeviceDescriptionTemplate(AnotherFilter)
 private:
 	// Shared Property Values
-	FloatProperty Cutoff, Resonance;
+	FloatProperty *Cutoff, *Resonance;
 
 	// Voice State Values (Index)
 	UnsignedType m_VibraPosInd,m_VibraSpeedInd, m_ResonanceInd, m_CutoffInd;

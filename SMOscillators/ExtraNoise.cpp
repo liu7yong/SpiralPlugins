@@ -44,19 +44,19 @@ Device(Host),
 /* Voice State Properties */
 mState(NewStateProperty(defZeroFloat)),
 
-mMagicA(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001, 0.001),
-mMagicB(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001, 0.001)
+mMagicA(new FloatProperty(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001, 0.001)),
+mMagicB(new FloatProperty(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001, 0.001))
 {
-	RegisterSharedProperty(mMagicA, "Magic A", "Magic A");
-	RegisterSharedProperty(mMagicB, "Magic B", "Magic B");
+	RegisterSharedProperty(mMagicA, StringHash("MAGIC A")/*"Magic A", "Magic A"*/);
+	RegisterSharedProperty(mMagicB, StringHash("MAGIC B")/*"Magic B", "Magic B"*/);
 }
 
 bool ExtraNoise::CreatePorts()
 {
-	input[0] = new InputPort(this,  "Magic A");
-	input[1] = new InputPort(this, "Magic B");
+	input[0] = new InputPort(this/*,  "Magic A"*/);
+	input[1] = new InputPort(this/*, "Magic B"*/);
 
-	output = new OutputPort(this, "Output");
+	output = new OutputPort(this/*, "Output"*/);
 	
 	return true;
 }
@@ -92,16 +92,16 @@ void ExtraNoise::Process(UnsignedType SampleCount)
 		FloatType white = 2.0f*randf() - 1.0f;
 
 		FloatType in0, in1;
-		in0 = mMagicA.Min.AsFloat + GetInput(input[0],n)*(mMagicA.Max.AsFloat - mMagicA.Min.AsFloat);
+		in0 = mMagicA->Min.AsFloat + GetInput(input[0],n)*(mMagicA->Max.AsFloat - mMagicA->Min.AsFloat);
 
 		if (NUMBER_IS_INSANE(in0))
 			in0 = 0.0f;
 
-		in1 = mMagicB.Min.AsFloat + GetInput(input[1],n)*(mMagicB.Max.AsFloat - mMagicB.Min.AsFloat);
+		in1 = mMagicB->Min.AsFloat + GetInput(input[1],n)*(mMagicB->Max.AsFloat - mMagicB->Min.AsFloat);
 		if (NUMBER_IS_INSANE(in1))
 			in1 = 0.0f;
 
-		FloatType leak = 1.0f-powf(fabsf(state), (mMagicA.Value.AsFloat)); 
+		FloatType leak = 1.0f-powf(fabsf(state), (mMagicA->Value.AsFloat)); 
 		
 		state = evil(leak*state, ((in1))*white); 
 

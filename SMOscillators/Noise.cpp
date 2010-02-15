@@ -57,7 +57,7 @@ Noise::Noise(Patch *Host) :
 	Device(Host),
 
 	/* Shared Properties */
-	m_Type(Property::WriteOnly, 0, PropertySet(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0]))),
+	m_Type(new SetProperty(Property::WriteOnly, 0, new PropertySet(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0])))),
 
 	/* Voice State Properties */
 	mB0(NewStateProperty(defZeroFloat)),
@@ -68,19 +68,19 @@ Noise::Noise(Patch *Host) :
 	mB5(NewStateProperty(defZeroFloat)),
 	mB6(NewStateProperty(defZeroFloat))
 {
-	RegisterSharedProperty(m_Type, "Noise Type", "Noise Type");
+	RegisterSharedProperty(m_Type, StringHash("NOISE TYPE")/*, "Noise Type", "Noise Type"*/);
 }
 
 bool Noise::CreatePorts()
 {
-	output = new OutputPort(this, "Output");
+	output = new OutputPort(this/*, "Output"*/);
 
 	return true;
 }
 
 void Noise::Process(UnsignedType SampleCount)
 {
-	switch (m_Type.Value.AsUnsigned)
+	switch (m_Type->Value.AsUnsigned)
 	{
 		case BROWN:
 		default:
@@ -91,7 +91,7 @@ void Noise::Process(UnsignedType SampleCount)
 			}
 		}
 		break;
-		/*	
+			
 		case PINK:
 		{
 			for (UnsignedType n=0; n<SampleCount; n++)
@@ -102,12 +102,11 @@ void Noise::Process(UnsignedType SampleCount)
 		break;
 
 		case WHITE:
-		default:
 		{
 			for (UnsignedType n=0; n<SampleCount; n++)
 			{
 				SetOutput(output,n, GenerateWhite());
 			}
-		}*/
+		}
 	}
 }

@@ -36,7 +36,7 @@ private:
 	InputPort *input[3];
 	OutputPort *output[3];
 
-	FloatProperty Cutoff, Resonance;
+	FloatProperty *Cutoff, *Resonance;
 	
 	FloatType fc;
 	FloatType f,p,q;

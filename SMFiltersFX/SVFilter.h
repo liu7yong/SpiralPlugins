@@ -33,7 +33,7 @@ class SVFilter : public Device
 DeviceDescriptionTemplate(SVFilter)
 private:
   /* Instance State */
-	FloatProperty Cutoff, Resonance;
+	FloatProperty *Cutoff, *Resonance;
 	
 	FloatType fc; // Cutoff
 	FloatType q;  // Resonance

@@ -69,19 +69,19 @@ WaveTable::WaveTable(Patch *Host) :
   m_TableLength(DEFAULT_TABLE_LEN),
 
 	/* Shared Properties */
-	m_Type(Property::WriteOnly, 0, PropertySet(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0]))),
-	m_Octave(DefaultLinearFlags,0,-3,3,1,1),
-	m_FineFreq(DefaultLinearFlags,1, 0, 1.414, 0.000001, 0.0001),
-	m_ModAmount(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001, 0.01),
+	m_Type(new SetProperty(Property::WriteOnly, 0, new PropertySet(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])))),
+	m_Octave(new SignedProperty(DefaultLinearFlags,0,-3,3,1,1)),
+	m_FineFreq(new FloatProperty(DefaultLinearFlags,1, 0, 1.414, 0.000001, 0.0001)),
+	m_ModAmount(new FloatProperty(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001, 0.01)),
 
 	/* Voice State Properties */
 	m_CyclePosInd(NewStateProperty(defCyclePos)),
 	m_NoteInd(NewStateProperty(defNoteInd))
 {
-	RegisterSharedProperty(m_Type, "Wave Type", "Wave Type");
-	RegisterSharedProperty(m_Octave, "Octave", "Octave");
-	RegisterSharedProperty(m_FineFreq, "FineFreq", "FineFreq");
-	RegisterSharedProperty(m_ModAmount, "ModAmount", "ModAmount");
+	RegisterSharedProperty(m_Type, StringHash("WAVE TYPE")/*"Wave Type", "Wave Type"*/);
+	RegisterSharedProperty(m_Octave, StringHash("OCTAVE")/*"Octave", "Octave"*/);
+	RegisterSharedProperty(m_FineFreq, StringHash("FINEFREQ")/*"FineFreq", "FineFreq"*/);
+	RegisterSharedProperty(m_ModAmount, StringHash("MODAMOUNT")/*"ModAmount", "ModAmount"*/);
 }
 
 bool WaveTable::CreatePorts()
@@ -93,8 +93,8 @@ bool WaveTable::CreatePorts()
 	
 	WriteWaves();
 		
-	frequency = new InputPort(this, "Frequency CV");
-	output = new OutputPort(this, "Output");
+	frequency = new InputPort(this/*, "Frequency CV"*/);
+	output = new OutputPort(this/*, "Output"*/);
 	
 	return true;
 }
@@ -167,10 +167,10 @@ void WaveTable::Process(UnsignedType SampleCount)
  	FloatType Freq=0, fine, mod;
 	FloatType Incr, CyclePos;
 	
-	type = m_Type.Value.AsUnsigned;
-	octave = m_Octave.Value.AsSigned;
-	fine = m_FineFreq.Value.AsFloat;
-	mod = m_ModAmount.Value.AsFloat;
+	type = m_Type->Value.AsUnsigned;
+	octave = m_Octave->Value.AsSigned;
+	fine = m_FineFreq->Value.AsFloat;
+	mod = m_ModAmount->Value.AsFloat;
 
 	CyclePos = StateValue(m_CyclePosInd)->AsFloat;
 	Note = StateValue(m_NoteInd)->AsSigned;

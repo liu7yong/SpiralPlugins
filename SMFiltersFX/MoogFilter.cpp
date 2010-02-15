@@ -61,8 +61,8 @@ const FloatType six = 6.0;
 
 MoogFilter::MoogFilter(Patch *Host) :
 	Device(Host),
-	Cutoff(DefaultLinearFlags,0.5f, zero, one, 0.0001, 0.001),
-	Resonance(DefaultLinearFlags,0.0f, zero, one, 0.00001, 0.0001),
+	Cutoff(new FloatProperty(DefaultLinearFlags,0.5f, zero, one, 0.0001, 0.001)),
+	Resonance(new FloatProperty(DefaultLinearFlags,0.0f, zero, one, 0.00001, 0.0001)),
 
 	fc(1000.0f),
 	f(zero),
@@ -76,19 +76,19 @@ MoogFilter::MoogFilter(Patch *Host) :
 	t1(zero),
 	t2(zero)
 {
-	RegisterSharedProperty(Cutoff, "Cutoff", "Cutoff");
-	RegisterSharedProperty(Resonance, "Resonance", "Resonance");
+	RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
+	RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
 }
 
 bool MoogFilter::CreatePorts()
 {	
-	input[0] = new InputPort(this, "Input");	
-	input[1] = new InputPort(this, "Cutoff CV");	
-	input[2] = new InputPort(this, "Emphasis CV");	
+	input[0] = new InputPort(this/*, "Input"*/);	
+	input[1] = new InputPort(this/*, "Cutoff CV"*/);	
+	input[2] = new InputPort(this/*, "Emphasis CV"*/);	
 
-	output[0] = new OutputPort(this, "LowPass output");
-	output[1] = new OutputPort(this, "BandPass output");
-	output[2] = new OutputPort(this, "HighPass output");
+	output[0] = new OutputPort(this/*, "LowPass output"*/);
+	output[1] = new OutputPort(this/*, "BandPass output"*/);
+	output[2] = new OutputPort(this/*, "HighPass output"*/);
 
 	return true;
 }
@@ -106,7 +106,7 @@ void MoogFilter::Process(UnsignedType SampleCount)
 	
 	// Early out?	
 	// We don't want to early out if the resonance is set to
-	// self oscillation, as this turns into an generator
+	// self oscillation, as this turns into a generator
 	// in it's own right...
 	/*if (Resonance<0.5 && !GetInput(2))
 	{
@@ -121,8 +121,8 @@ void MoogFilter::Process(UnsignedType SampleCount)
 		}
 	}*/
 	
-	res=Resonance.Value.AsFloat;
-	cut=Cutoff.Value.AsFloat;
+	res=Resonance->Value.AsFloat;
+	cut=Cutoff->Value.AsFloat;
 
 	for (UnsignedType n=0; n<SampleCount; n++)
 	{
@@ -159,12 +159,12 @@ void MoogFilter::Process(UnsignedType SampleCount)
 		{
 			WipeState();
 			SetOutput(output[0],n,zero);	 
-	  	SetOutput(output[1],n,zero);
+			SetOutput(output[1],n,zero);
 			SetOutput(output[2],n,zero);	
 		} else {				
 			in -= q * b4;
 			
-      in = CLAMP(in, -one, one);
+			in = CLAMP(in, -one, one);
 									
 			t1 = b1; b1 = (in + b0) * p - b1 * f;
 			t2 = b2; b2 = (b1 + t1) * p - b2 * f;

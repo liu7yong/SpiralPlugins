@@ -37,7 +37,7 @@ private:
 	UnsignedType mB0,mB1,mB2,mB3,mB4,mB5,mB6;
 
     // Common Shared Properties
-	SetProperty m_Type;
+	SetProperty *m_Type;
 
 	#define b(n) StateValue(concat(mB, n))->AsFloat
 	

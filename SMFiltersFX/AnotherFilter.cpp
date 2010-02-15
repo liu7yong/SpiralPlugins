@@ -52,8 +52,8 @@ const NumericPropertyValue zeroFloat = DefaultFloat(0.0f);
 AnotherFilter::AnotherFilter(Patch *Host) :
 	Device(Host),
 
-	Cutoff(DefaultLinearFlags,0.0, 0.0, 1.0, 0.0001, 0.0001),
-	Resonance(DefaultLinearFlags,0.0, 0.0, 1.0, 0.00001, 0.00001),
+	Cutoff(new FloatProperty(DefaultLinearFlags,0.0, 0.0, 1.0, 0.0001, 0.0001)),
+	Resonance(new FloatProperty(DefaultLinearFlags,0.0, 0.0, 1.0, 0.00001, 0.00001)),
 
 	/* Voice State Properties */
 	m_VibraPosInd(NewStateProperty(zeroFloat)),
@@ -61,18 +61,18 @@ AnotherFilter::AnotherFilter(Patch *Host) :
 	m_ResonanceInd(NewStateProperty(zeroFloat)),
 	m_CutoffInd(NewStateProperty(zeroFloat))
 {
-	RegisterSharedProperty(Cutoff, "Cutoff", "Cutoff");
-	RegisterSharedProperty(Resonance, "Resonance", "Resonance");
+	RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
+	RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
 }
 
 bool AnotherFilter::CreatePorts()
 {
-	input[0] = new InputPort(this, "Input");
-	output[0] = new OutputPort(this, "LowPass Output");
+	input[0] = new InputPort(this/*, "Input"*/);
+	output[0] = new OutputPort(this/*, "LowPass Output"*/);
 
 	/* These should be Control Ports, i.e., autocreated by the properties they are for */
-	input[1] = new InputPort(this, "Cutoff CV");
-	input[2] = new InputPort(this, "Emphasis CV");
+	input[1] = new InputPort(this/*, "Cutoff CV"*/);
+	input[2] = new InputPort(this/*, "Emphasis CV"*/);
 
 	return true;
 }
@@ -81,8 +81,8 @@ void AnotherFilter::Process(UnsignedType SampleCount)
 {
 	FloatType cut, res, vibrapos, vibraspeed, resonance, cutoff;
 			
-	cut = Cutoff.Value.AsFloat;		
-	res = Resonance.Value.AsFloat;		
+	cut = Cutoff->Value.AsFloat;		
+	res = Resonance->Value.AsFloat;		
 
 	vibrapos = StateValue(m_VibraPosInd)->AsFloat;
 	vibraspeed = StateValue(m_VibraSpeedInd)->AsFloat;

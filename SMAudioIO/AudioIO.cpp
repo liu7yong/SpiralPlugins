@@ -61,11 +61,6 @@ DevicePluginHook(AudioIO, device_id, device_version)
 AudioIO::AudioIO(Patch *Host) :
 AudioDriver(Host)
 {
-	in[0] = NULL;
-	in[1] = NULL;
-	out[0] = NULL;
-	out[1] = NULL;
-
 	/*m_Volume = FloatProperty(, 0.5, 0, 1.0, 0.1, 0.01);
 	m_Volume->command = true;
  "Volume"
@@ -92,11 +87,11 @@ AudioIO::~AudioIO()
 
 bool AudioIO::CreatePorts()
 {
-	in[0] = new InputPort(this, "Left In", Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-	in[1] = new InputPort(this, "Right In", Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+	in[0] = new InputPort(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+	in[1] = new InputPort(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
 
-	out[0] = new OutputPort(this, "Left Out", Port::IS_MONOPHONIC);
-	out[1] = new OutputPort(this, "Right Out", Port::IS_MONOPHONIC);
+	out[0] = new OutputPort(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
+	out[1] = new OutputPort(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
 
 	return true;
 }

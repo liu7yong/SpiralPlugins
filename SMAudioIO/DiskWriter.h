@@ -31,10 +31,10 @@ DeviceDescriptionTemplate(DiskWriter)
 private:
 	InputPort *left, *right, *recordcv;
 
-	StringProperty m_FileName;
-	SetProperty m_BitsPerSample;
-	FloatProperty m_TimeRecorded;
-	ToggleProperty m_Stereo, m_Recording, m_Open;
+	StringProperty *m_FileName;
+	SetProperty *m_BitsPerSample;
+	FloatProperty *m_TimeRecorded;
+	ToggleProperty *m_Stereo, *m_Recording, *m_Open;
 
 	int m_Version;
 	WavFile m_Wav;

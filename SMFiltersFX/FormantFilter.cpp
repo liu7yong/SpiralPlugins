@@ -88,16 +88,16 @@ const FloatType six = 6.0;
 FormantFilter::FormantFilter(Patch *Host) :
 Device(Host),
 output(NULL),
-m_Vowel(DefaultLinearFlags,zero, zero, four, 0.0001, 0.001)
+m_Vowel(new FloatProperty(DefaultLinearFlags,zero, zero, four, 0.0001, 0.001))
 {
-	RegisterSharedProperty(m_Vowel, "Vowel", "Vowel");
+	RegisterSharedProperty(m_Vowel, StringHash("VOWEL")/*"Vowel", "Vowel"*/);
 }
 
 bool FormantFilter::CreatePorts()
 {
-	input[0] = new InputPort(this,  "Input");
-	input[1] = new InputPort(this, "Vowel CV");
-	output = new OutputPort(this, "Output");
+	input[0] = new InputPort(this/*,  "Input"*/);
+	input[1] = new InputPort(this/*, "Vowel CV"*/);
+	output = new OutputPort(this/*, "Output"*/);
 
 	return true;
 }
@@ -110,7 +110,7 @@ void FormantFilter::Reset()
 
 void FormantFilter::Process(UnsignedType SampleCount)
 {
-	FloatType res,o[5], in=zero, vow=m_Vowel.Value.AsFloat;
+	FloatType res,o[5], in=zero, vow=m_Vowel->Value.AsFloat;
 	
 	//reset memory if disconnected, and skip out (prevents CPU spike)
 	if (! InputExists(input[0])) 
