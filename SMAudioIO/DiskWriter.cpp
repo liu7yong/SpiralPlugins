@@ -24,26 +24,7 @@
 #include "DiskWriter.h"
 //#include "SpiralIcon.xpm"
 
-//Disk Writer was initially commited by Dave, Nov 11 23:27:35 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1037078855::DiskWriter"
-#define device_id 1f5efd4bb21f90cf99ed081a335d913a// legacy == "29"
-#define device_version 2
-
-DevicePluginHook(DiskWriter, device_id, device_version)
-
-/*const DeviceDescription DiskWriter::mDescription = 
-{
-	UniqueID       : DiskWriter::mUniqueID,
-	AudioDriver    : true,
-	HostPlugin     : false,
-
-	Author         : "Dave Griffiths",
-	Version        : 2,
-	Label          : "DiskWriter",
-	Info           : "Disk Writer",
-	Category       : "Input/Output",
-	PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(DiskWriter, DiskWriterID)
 
 ///////////////////////////////////////////////////////
 
@@ -54,37 +35,49 @@ const NumericPropertyValue BitRates[] =
 	DefaultUnsigned(32)
 };
 
-DiskWriter::DiskWriter(Patch *Host):
-AudioDriver(Host),
-m_FileName(new StringProperty(Property::WriteOnly, "")),
-m_Open(new ToggleProperty(Property::WriteOnly | Property::ForceUpdate, false)),
-m_Recording(new ToggleProperty(Property::WriteOnly | Property::ForceUpdate, false)),
-m_BitsPerSample(new SetProperty(Property::WriteOnly, 0, new PropertySet(BitRates, sizeof(BitRates)/sizeof(BitRates[0])))),
-m_Stereo(new ToggleProperty(Property::WriteOnly, true)),
+void DiskWriter::Finalize()
+{
+  UnReference(m_Wav);
+  Super::Finalize();
+}
+
+DiskWriter *DiskWriter::Initialize(Patch *Host)
+{
+  Super::Initialize(Host);
+  
+  m_Wav = WavFile::New();
+  
+  m_FileName = StringProperty::New(Property::WriteOnly, "");
+  m_Open = ToggleProperty::New(Property::WriteOnly | Property::ForceUpdate, false);
+  m_Recording = ToggleProperty::New(Property::WriteOnly | Property::ForceUpdate, false);
+  m_BitsPerSample = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(BitRates, sizeof(BitRates)/sizeof(BitRates[0])));
+  m_Stereo = ToggleProperty::New(Property::WriteOnly, true);
 
 /* Just So The GUI Can Keep track of Current Time Recorded */
-m_TimeRecorded(new FloatProperty(Property::ReadOnly, 0, 0, 0, 0, 0))
-{
-	RegisterSharedProperty(m_Open, StringHash("OPEN")/*"Open", "Open"*/);
-	RegisterSharedProperty(m_Recording, StringHash("RECORDING")/*"Recording", "Recording"*/);
-	RegisterSharedProperty(m_FileName, StringHash("FILENAME") /*"Filename", "Filename"*/);
-	RegisterSharedProperty(m_BitsPerSample, StringHash("BITS PER SAMPLE")/*"Bits Per Sample", "Bits Per Sample"*/);
-	RegisterSharedProperty(m_Stereo, StringHash("STEREO")/*"Stereo", "Stereo"*/);
-	RegisterSharedProperty(m_TimeRecorded, StringHash("TIME RECORDED")/*"Time Recorded", "Time Recorded"*/);
+  m_TimeRecorded = FloatProperty::New(Property::ReadOnly, 0, 0, 0, 0, 0);
+
+  RegisterSharedProperty(m_Open, StringHash("OPEN")/*"Open", "Open"*/);
+  RegisterSharedProperty(m_Recording, StringHash("RECORDING")/*"Recording", "Recording"*/);
+  RegisterSharedProperty(m_FileName, StringHash("FILENAME") /*"Filename", "Filename"*/);
+  RegisterSharedProperty(m_BitsPerSample, StringHash("BITS PER SAMPLE")/*"Bits Per Sample", "Bits Per Sample"*/);
+  RegisterSharedProperty(m_Stereo, StringHash("STEREO")/*"Stereo", "Stereo"*/);
+  RegisterSharedProperty(m_TimeRecorded, StringHash("TIME RECORDED")/*"Time Recorded", "Time Recorded"*/);
+
+  return this;
 }
 
 bool DiskWriter::CreatePorts()
 {
-	left = new InputPort(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
-	right = new InputPort(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
-	recordcv = new InputPort(this, /*"Record Controller",*/ Port::IS_MONOPHONIC);
+  left = InputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
+  right = InputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
+  recordcv = InputPort::New(this, /*"Record Controller",*/ Port::IS_MONOPHONIC);
 
-	return true;
+  return true;
 }
 
 void DiskWriter::Process(UnsignedType SampleCount)
 {
-	if(m_Recording->Value.AsBoolean && m_Wav.IsOpen())
+	if(m_Recording->Value.AsBoolean && m_Wav->IsOpen())
 	{
 		FloatType LeftBuffer[SampleCount], RightBuffer[SampleCount];
 
@@ -95,8 +88,8 @@ void DiskWriter::Process(UnsignedType SampleCount)
 			RightBuffer[n]=GetInput(right,n);;
 		}
 
-		m_Wav.Save(LeftBuffer, RightBuffer, SampleCount);
-		m_TimeRecorded->Value.AsFloat = (m_Wav.GetSize()/m_Wav.GetSamplerate());
+		m_Wav->Save(LeftBuffer, RightBuffer, SampleCount);
+		m_TimeRecorded->Value.AsFloat = (m_Wav->GetSize()/m_Wav->GetSamplerate());
 	}
 }
 
@@ -110,19 +103,19 @@ void DiskWriter::Process(UnsignedType SampleCount)
 		{
 			if (ValueAsBoolean(m_Recording))
 			{
-				if (!m_Wav.IsOpen())
+				if (!m_Wav->IsOpen())
 				{
-					if (m_Wav.GetSamplerate() != SampleRate()) 
+					if (m_Wav->GetSamplerate() != SampleRate()) 
 					{
-						m_Wav.SetSamplerate(SampleRate());
+						m_Wav->SetSamplerate(SampleRate());
 					}
 
-					if (m_Wav.GetBitsPerSample() != m_BitsPerSample->Value.AsSigned) 
+					if (m_Wav->GetBitsPerSample() != m_BitsPerSample->Value.AsSigned) 
 					{
-						m_Wav.SetBitsPerSample(m_BitsPerSample->Value.AsSigned);
+						m_Wav->SetBitsPerSample(m_BitsPerSample->Value.AsSigned);
 					}
 
-					m_Wav.Open(ValueAsString(m_FileName),WavFile::WRITE, (ValueAsBoolean(m_Stereo))?(WavFile::STEREO):(WavFile::MONO));
+					m_Wav->Open(ValueAsString(m_FileName),WavFile::WRITE, (ValueAsBoolean(m_Stereo))?(WavFile::STEREO):(WavFile::MONO));
 
 					ValueSetBoolean(m_Open, true);
 
@@ -138,27 +131,27 @@ void DiskWriter::Process(UnsignedType SampleCount)
 		{
 			if (ValueAsBoolean(m_Open))
 			{
-				if (!m_Wav.IsOpen())
+				if (!m_Wav->IsOpen())
 				{
-					if (m_Wav.GetSamplerate() != GetHostInfo()->SAMPLERATE) 
+					if (m_Wav->GetSamplerate() != GetHostInfo()->SAMPLERATE) 
 					{
-						m_Wav.SetSamplerate(GetHostInfo()->SAMPLERATE);
+						m_Wav->SetSamplerate(GetHostInfo()->SAMPLERATE);
 					}
 
-					if (m_Wav.GetBitsPerSample() != m_BitsPerSample->Value.AsSigned) 
+					if (m_Wav->GetBitsPerSample() != m_BitsPerSample->Value.AsSigned) 
 					{
-						m_Wav.SetBitsPerSample(m_BitsPerSample->Value.AsSigned);
+						m_Wav->SetBitsPerSample(m_BitsPerSample->Value.AsSigned);
 					}
 
-					m_Wav.Open(ValueAsString(m_FileName),WavFile::WRITE, (ValueAsBoolean(m_Stereo))?(WavFile::STEREO):(WavFile::MONO));
+					m_Wav->Open(ValueAsString(m_FileName),WavFile::WRITE, (ValueAsBoolean(m_Stereo))?(WavFile::STEREO):(WavFile::MONO));
 				}
 
 				return;
 			}
 
-			if (m_Wav.IsOpen())
+			if (m_Wav->IsOpen())
 			{
-				m_Wav.Close();
+				m_Wav->Close();
 			}
 		}
 	}

@@ -24,9 +24,21 @@ using namespace Spiral;
 #ifndef __AudioIO_H__
 #define __AudioIO_H__
 
-class AudioIO : public AudioDriver
+//SSM Was initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Output"
+//  =>  6e86a9417526779d302077af073d5111 (legacy == 0)
+#define AudioIOID 6e86a9417526779d302077af073d5111
+
+class AudioIO : Gumbo(AudioDriver)
 {
-DeviceDescriptionTemplate(AudioIO)
+  GumboClassDefinition(AudioIO, AudioDriver,
+    {
+      mUniqueID = String::New(XSTRINGIFY(AudioIOID));
+      mVersion = 1;
+    },
+    {
+    },
+  );
 private:
   /* Instance State */
 	InputPort *in[2];
@@ -44,9 +56,12 @@ private:
 
 	bool m_CheckedAlready;
 
+protected:
+	virtual void Finalize();
 public:
- 	AudioIO(Patch *Host);
-	virtual ~AudioIO();
+ 	virtual AudioIO *Initialize(Patch *Host);
+
+	static inline AudioIO *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
 	bool Setup();
 

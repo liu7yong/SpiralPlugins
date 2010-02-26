@@ -19,119 +19,101 @@
 #include <math.h>
 #include "LFO.h"
 
-using namespace std;
+DevicePluginHook(LFO, LFOID)
 
 static const int NUM_TABLES = 6;
 static const int DEFAULT_TABLE_LEN = 1024;
 
-//LFO Was initially commited by Dave, Sun Jul 28 23:18:18 2002 UTC
-//md5 -s "Andy Preston::andy@clubunix.co.uk::1027916298::LFO"
-#define device_id 09f642cbfdbb5022d229b3a44c343ce0// legacy == 7C
-#define device_version 1
-
-DevicePluginHook(LFO, device_id, device_version)
-
-/*const DeviceDescription LFO::mDescription = 
+void LFO::Class::WriteWaves()
 {
-  UniqueID       : LFO::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "Andy Preston",
-  Version        : 1,
-  Label          : "LFO",
-  Info           : "LFO",
-  Category       : "Oscillators",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+  /* Food for thought - 
+   How could this be pre-generated,
+   even by template magic */
+  
+  for (UnsignedType n=0; n<NUM_TABLES; n++)
+    mTable->Append(Sample::New(DEFAULT_TABLE_LEN));
+  
+  FloatType RadCycle = (M_PI/180)*360;
+  FloatType Pos = 0;
+  FloatType v = 0;
+  UnsignedType HalfTab = Math::Divide<DEFAULT_TABLE_LEN, 2>::Result;
+  int QuatTab = Math::Divide<DEFAULT_TABLE_LEN, 4>::Result;
+  int ThreeQuatTab = Math::Subtract<DEFAULT_TABLE_LEN, Math::Divide<DEFAULT_TABLE_LEN, 4>::Result>::Result;
+  int Shift;
+  
+  for (int n=0; n<DEFAULT_TABLE_LEN; n++) 
+  {
+    if (n==0) 
+      Pos = 0; 
+    else 
+      Pos = (n/(FloatType)DEFAULT_TABLE_LEN) * RadCycle;
+    
+    (*mTable)[SineWave]->Set (n, sin (Pos));
+    
+    if (n < QuatTab) 
+      Shift=n+ThreeQuatTab; 
+    else 
+      Shift=n-QuatTab;
+    
+    if (n<QuatTab || n>ThreeQuatTab) 
+      v = (((Shift-HalfTab) / HalfTab) * 2) - 1;
+    else 
+      v = 1 - (Shift/HalfTab * 2);
+    
+    (*mTable)[TriangleWave]->Set (n, v);
+    
+    if (n<DEFAULT_TABLE_LEN/2) 
+      (*mTable)[SquareWave]->Set (n, 1.0f);
+    else 
+      (*mTable)[SquareWave]->Set (n, -1);
+    
+    (*mTable)[SawWave]->Set (n, 1.0f - (n / (FloatType)DEFAULT_TABLE_LEN) * 2.0f);
+  }
+}
 
 ///////////////////////////////////////////////////////
-enum Type {SINE=0, TRIANGLE, SQUARE, SAW};
 const NumericPropertyValue WaveTypes[] = 
 {
-	/*{"Sine", */ DefaultUnsigned(SINE)/*}*/,
-	/*{"Triangle", */ DefaultUnsigned(TRIANGLE)/*}*/,
-	/*{"Square", */ DefaultUnsigned(SQUARE)/*}*/,
-	/*{"Saw", */ DefaultUnsigned(SAW)/*}*/
+	/*{"Sine", */ DefaultUnsigned(LFO::Class::SineWave)/*}*/,
+	/*{"Triangle", */ DefaultUnsigned(LFO::Class::TriangleWave)/*}*/,
+	/*{"Square", */ DefaultUnsigned(LFO::Class::SquareWave)/*}*/,
+	/*{"Saw", */ DefaultUnsigned(LFO::Class::SawWave)/*}*/
 };
 
 const NumericPropertyValue defCyclePos= DefaultFloat(0.0f);
 
-LFO::LFO(Patch *Host) :
-	Device(Host),
-	m_TableLength(DEFAULT_TABLE_LEN),
-
-	/* Shared Properties */
-	m_Type(new SetProperty(Property::WriteOnly, 0, new PropertySet(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])))),
-	m_Freq(new FloatProperty(DefaultLinearFlags,0.1, 0.0, 1.0, 0.001, 0.1)),
-
-	/* Voice State Properties */
-	m_CyclePosInd(NewStateProperty(defCyclePos))
+LFO *LFO::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
-	RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
+  Super::Initialize(Host);
+
+  m_TableLength = DEFAULT_TABLE_LEN;
+
+  /* Shared Properties */
+  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
+  m_Freq = FloatProperty::New(DefaultLinearFlags,0.1, 0.0, 1.0, 0.001, 0.1);
+
+  /* Voice State Properties */
+  m_CyclePosInd = NewStateProperty(defCyclePos);
+
+  RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
+  RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
+  
+  return this;
 }
 
 bool LFO::CreatePorts() 
 {
-	for (UnsignedType n=0; n<NUM_TABLES; n++)
-	{
-		m_Table[n].Allocate(m_TableLength);
-	}
-	
-	WriteWaves();
-		
-	output[0] = new OutputPort(this/*, "Output"*/);
-	output[1] = new OutputPort(this/*, "'Cosine' Output"*/);
-	output[2] = new OutputPort(this/*, "Inverted Output"*/);
+  output[0] = OutputPort::New(this/*, "Output"*/);
+  output[1] = OutputPort::New(this/*, "'Cosine' Output"*/);
+  output[2] = OutputPort::New(this/*, "Inverted Output"*/);
 
-	return true;
-}
-
-void LFO::WriteWaves() 
-{
-	FloatType RadCycle = (M_PI/180)*360;
-	FloatType Pos = 0;
-	FloatType v = 0;
-	FloatType HalfTab = m_TableLength / 2;
-	int QuatTab = m_TableLength / 4;
-	int ThreeQuatTab = m_TableLength - QuatTab;
-	int Shift;
-
-	for (int n=0; n<m_TableLength; n++) 
-	{
-	    if (n==0) 
-			Pos = 0; 
-		else 
-			Pos = (n/(FloatType)m_TableLength) * RadCycle;
-			
-	    m_Table[SINE].Set (n, sin (Pos));
-
-	    if (n < QuatTab) 
-			Shift=n+ThreeQuatTab; 
-		else 
-			Shift=n-QuatTab;
-			
-	    if (n<QuatTab || n>ThreeQuatTab) 
-			v = (((Shift-HalfTab) / HalfTab) * 2) - 1;
-	    else 
-			v = 1 - (Shift/HalfTab * 2);
-			
-		m_Table[TRIANGLE].Set (n, v);
-
-	    if (n<m_TableLength/2) 
-			m_Table[SQUARE].Set (n, 1.0f);
-	    else 
-			m_Table[SQUARE].Set (n, -1);
-
-	    m_Table[SAW].Set (n, 1.0f - (n / (FloatType)m_TableLength) * 2.0f);
-	}
+  return true;
 }
 
 FloatType LFO::AdjustPos (FloatType pos) 
 {
-	if (pos > m_TableLength)
-		pos = ((UnsignedType)floor(pos) % m_TableLength) + (pos - floor(pos));
+	if (pos > DEFAULT_TABLE_LEN)
+		pos = ((UnsignedType)floor(pos) % DEFAULT_TABLE_LEN) + (pos - floor(pos));
 
 	pos = MAX(pos, 0);
     
@@ -141,14 +123,6 @@ FloatType LFO::AdjustPos (FloatType pos)
 void LFO::Reset()
 {
 	Device::Reset();
-
-	for (UnsignedType n=0; n<NUM_TABLES; n++)
-	{
-		m_Table[n].Clear();
-		m_Table[n].Allocate(m_TableLength);
-	}
-	
-	WriteWaves();
 }
 
 void LFO::Process(UnsignedType SampleCount) 
@@ -161,19 +135,19 @@ void LFO::Process(UnsignedType SampleCount)
 
 	for (UnsignedType n=0; n<SampleCount; n++) 
 	{
-		Incr = freq * (m_TableLength / (FloatType)SampleRate());
+		Incr = freq * (DEFAULT_TABLE_LEN / (FloatType)SampleRate());
 
 		// Raw Output
 		CyclePos = AdjustPos (CyclePos + Incr);
-		SetOutput (output[0], n, m_Table[type][CyclePos]);
+		SetOutput (output[0], n, (*ClassObject()->Table(type))[CyclePos]);
 
 		// 'Cosine' Output
 		Pos = AdjustPos (CyclePos + (m_TableLength * 0.25));
-		SetOutput (output[1], n, m_Table[type][Pos]);
+		SetOutput (output[1], n, (*ClassObject()->Table(type))[Pos]);
 
 		// Inverted Output
 		Pos = AdjustPos (m_TableLength - CyclePos);
-		SetOutput (output[2], n, m_Table[type][Pos]);
+		SetOutput (output[2], n, (*ClassObject()->Table(type))[Pos]);
 	}
 }
 

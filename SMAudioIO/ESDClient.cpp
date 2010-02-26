@@ -78,7 +78,7 @@ void ESDClient::SendStereo(InputPort *ldata,InputPort *rdata)
 	
 	l = ldata->GetSampleBuffer(0);
 	r = rdata->GetSampleBuffer(0);
-	
+
 	count = (l)?l->GetLength():((r)?r->GetLength():0);
 	count = MIN(pcm.frames, count);
 
@@ -111,7 +111,7 @@ void ESDClient::Play()
 	
 	if (pcm.connected)
 	{
-		write (pcm.handle, m_Buffer[BufferToSend], pcm.frames*sizeof(short)*2);
+      write (pcm.handle, m_Buffer[BufferToSend], pcm.frames*sizeof(short)*2);
 	}
 
 	memset(m_Buffer[BufferToSend],0,pcm.frames*sizeof(short)*2);

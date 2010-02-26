@@ -16,49 +16,34 @@
 #include <math.h>
 #include "ExtraNoise.h"
 
-//md5 -s "Andrew Johnson; Jοhan Kiviniemi::ajgenius@ajgenius.us::1264696200::ExtraNoise"
-#define device_id d1d47c96e200908aedda145e912f6300
-#define device_version 1
-
-DevicePluginHook(ExtraNoise, device_id, device_version)
-
-/*const DeviceDescription ExtraNoise::mDescription = 
-{
-	UniqueID       : ExtraNoise::mUniqueID,
-	AudioDriver    : false,
-	HostPlugin     : false,
-	
-	Author         : "Andrew Johnson; Jοhan Kiviniemi",
-	Version        : 1,
-	Label          : "Extra Noise",
-	Info           : "Configurable Noise Generator",
-	Category       : "Oscillators",
-	PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(ExtraNoise, ExtraNoiseID)
 
 const NumericPropertyValue defZeroFloat = DefaultFloat(0.0f);
 
-ExtraNoise::ExtraNoise(Patch *Host) :
-Device(Host),
-
-/* Voice State Properties */
-mState(NewStateProperty(defZeroFloat)),
-
-mMagicA(new FloatProperty(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001, 0.001)),
-mMagicB(new FloatProperty(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001, 0.001))
+ExtraNoise *ExtraNoise::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(mMagicA, StringHash("MAGIC A")/*"Magic A", "Magic A"*/);
-	RegisterSharedProperty(mMagicB, StringHash("MAGIC B")/*"Magic B", "Magic B"*/);
+  Super::Initialize(Host),
+
+  /* Voice State Properties */
+  mState = NewStateProperty(defZeroFloat);
+
+  mMagicA = FloatProperty::New(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001, 0.001);
+  mMagicB = FloatProperty::New(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001, 0.001);
+
+  RegisterSharedProperty(mMagicA, StringHash("MAGIC A")/*"Magic A", "Magic A"*/);
+  RegisterSharedProperty(mMagicB, StringHash("MAGIC B")/*"Magic B", "Magic B"*/);
+  
+  return this;
 }
 
 bool ExtraNoise::CreatePorts()
 {
-	input[0] = new InputPort(this/*,  "Magic A"*/);
-	input[1] = new InputPort(this/*, "Magic B"*/);
+  input[0] = InputPort::New(this/*,  "Magic A"*/);
+  input[1] = InputPort::New(this/*, "Magic B"*/);
 
-	output = new OutputPort(this/*, "Output"*/);
+  output = OutputPort::New(this/*, "Output"*/);
 	
-	return true;
+  return true;
 }
 
 static inline FloatType randf (void) { return (FloatType)rand() / (FloatType)RAND_MAX; }

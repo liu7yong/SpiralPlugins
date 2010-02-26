@@ -14,6 +14,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifndef __ESDClient_H__
+#define __ESDClient_H__
+
 #include "esd.h"
 
 #include <SpiralCore/Port.h>
@@ -23,8 +26,6 @@
 #include <SpiralCore/RiffWav.h>
 
 using namespace Spiral;
-#ifndef __ESDClient_H__
-#define __ESDClient_H__
 
 class ESDClient
 {

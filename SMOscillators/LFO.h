@@ -26,34 +26,76 @@
 
 using namespace Spiral;
 
-class LFO : public Device 
+//LFO Was initially commited by Dave, Sun Jul 28 23:18:18 2002 UTC
+
+//md5 -s "Andy Preston::andy@clubunix.co.uk::1027916298::LFO"
+//  =>  09f642cbfdbb5022d229b3a44c343ce0 (legacy == 7C)
+#define LFOID 09f642cbfdbb5022d229b3a44c343ce0
+
+class LFO : Gumbo(Device) 
 {
-	DeviceDescriptionTemplate(LFO)
-	private:
-	  	/* Instance State */
-		OutputPort *output[3];
+  GumboClassDefinition(
+    LFO, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(LFOID));
+      mVersion = 1;
 
-		FloatType AdjustPos (FloatType pos);
+      mTable = Array<Sample*>::New();
+      WriteWaves();
+    },
 
-		// Voice Specific Properties (index)
-		UnsignedType m_CyclePosInd;
+    {
+      for (UnsignedType i=0; i < mTable->Count(); i++)
+        UnReference((*mTable)[i]);
+      
+      UnReference(mTable);
+    },
 
-	  	// Common Shared Properties
-		SetProperty *m_Type;
-		FloatProperty *m_Freq;
+  private:
+    Array<Sample *> *mTable;
 
-		Sample m_Table[6];
-		UnsignedType    m_TableLength;	
-	public:
-		LFO(Patch *Host);
+    void WriteWaves();
+                       
+  public:
+    enum WaveType
+    {
+      SineWave=0, 
+      TriangleWave, 
+      SquareWave, 
+      SawWave
+    };
 
-		bool CreatePorts();
+    inline const Sample *Table(UnsignedType aType) const
+    {
+      return (*mTable)[aType];
+    }
+  ); 
 
-		virtual void Process(UnsignedType SampleCount);
-		virtual void Reset();
-	
-		void WriteWaves();
-		void NoteTrigger(int V,int s,int v);
+private:
+  /* Instance State */
+  OutputPort *output[3];
+
+  FloatType AdjustPos (FloatType pos);
+
+  // Voice Specific Properties (index)
+  UnsignedType m_CyclePosInd;
+
+  // Common Shared Properties
+  SetProperty *m_Type;
+  FloatProperty *m_Freq;
+
+  UnsignedType    m_TableLength;	
+
+public:
+  virtual LFO *Initialize(Patch *Host);
+  static inline LFO *New(Patch *Host) { return Alloc()->Initialize(Host); }
+  bool CreatePorts();
+
+  virtual void Process(UnsignedType SampleCount);
+  virtual void Reset();
+
+  void WriteWaves();
+  void NoteTrigger(int V,int s,int v);
 };
 
 #endif

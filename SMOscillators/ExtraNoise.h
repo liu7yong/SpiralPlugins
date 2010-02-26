@@ -23,25 +23,35 @@
 
 using namespace Spiral;
 
-class ExtraNoise : public Device
+//md5 -s "Andrew Johnson; Jοhan Kiviniemi::ajgenius@ajgenius.us::1264696200::ExtraNoise"
+//  => d1d47c96e200908aedda145e912f6300
+#define ExtraNoiseID d1d47c96e200908aedda145e912f6300
+class ExtraNoise : Gumbo(Device)
 {
-	DeviceDescriptionTemplate(ExtraNoise)
+  GumboClassDefinition(ExtraNoise, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(ExtraNoiseID));
+      mVersion = 1;
+    },
+    {
+    },
+  );
 private:
-	/* Instance State */
-	InputPort *input[2];
-	OutputPort *output;
-	
-	// Voice Specific Properties (index)
-	UnsignedType mState;
-	
-	FloatProperty *mMagicA, *mMagicB;
-	
+  /* Instance State */
+  InputPort *input[2];
+  OutputPort *output;
+  
+  // Voice Specific Properties (index)
+  UnsignedType mState;
+  
+  FloatProperty *mMagicA, *mMagicB;
+  
 public:
- 	ExtraNoise(Patch *Host);
-	
-	bool CreatePorts();
-	
-	virtual void 		Process(UnsignedType SampleCount);
+  virtual ExtraNoise *Initialize(Patch *Host);
+  static inline ExtraNoise *New(Patch *Host) { return Alloc()->Initialize(Host); }
+  bool CreatePorts();
+  
+  virtual void 		Process(UnsignedType SampleCount);
 };
 
 #endif

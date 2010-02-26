@@ -36,62 +36,49 @@ int AudioIO::m_RefCount=0;
 int AudioIO::m_NoExecuted=0;
 int AudioIO::m_RealMode=3;
 
-//SSM Was initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Output"
-#define device_id 6e86a9417526779d302077af073d5111// legacy == 0
-#define device_version 1
-DevicePluginHook(AudioIO, device_id, device_version)
-
-/*const DeviceDescription AudioIO::mDescription = 
-{
-  UniqueID       : AudioIO::mUniqueID,
-  AudioDriver    : true,
-  HostPlugin     : false,
-
-  Author         : "Dave Griffiths",
-  Version        : device_version,
-  Label          : "Audio",
-  Info           : "Audio Input/Output",
-  Category       : "Input/Output",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(AudioIO, AudioIOID)
 
 ///////////////////////////////////////////////////////
 
-AudioIO::AudioIO(Patch *Host) :
-AudioDriver(Host)
+void AudioIO::Finalize()
 {
-	/*m_Volume = FloatProperty(, 0.5, 0, 1.0, 0.1, 0.01);
-	m_Volume->command = true;
- "Volume"
-	m_Mode = SignedProperty(DefaultLinearFlags, 0, 0, 4, 1, 1);
-	RegisterSharedProperty(m_Mode, "Mode", "Mode");
-	m_Mode->command = true;*/
-
-	m_Volume = 0.5;
-	m_Mode = 0;
+  if (IsLive())
+    Shutdown();
+  
+  if (m_RefCount==0)
+  {
+    cb_Blocking(m_Parent,false);
+    OUTPUTCLIENT::PackUpAndGoHome();
+    m_RealMode=0;
+  }
+  
+  Super::Finalize();
 }
 
-AudioIO::~AudioIO()
+AudioIO *AudioIO::Initialize(Patch *Host)
 {
-	if (IsLive())
-		Shutdown();
+  Super::Initialize(Host);
 
-	if (m_RefCount==0)
-	{
-		cb_Blocking(m_Parent,false);
-		OUTPUTCLIENT::PackUpAndGoHome();
-		m_RealMode=0;
-	}
+  /*m_Volume = FloatProperty(, 0.5, 0, 1.0, 0.1, 0.01);
+  m_Volume->command = true;
+"Volume"
+  m_Mode = SignedProperty(DefaultLinearFlags, 0, 0, 4, 1, 1);
+  RegisterSharedProperty(m_Mode, "Mode", "Mode");
+  m_Mode->command = true;*/
+
+  m_Volume = 0.5;
+  m_Mode = 0;
+
+  return this;
 }
 
 bool AudioIO::CreatePorts()
 {
-	in[0] = new InputPort(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-	in[1] = new InputPort(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+	in[0] = InputPort::New(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+	in[1] = InputPort::New(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
 
-	out[0] = new OutputPort(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
-	out[1] = new OutputPort(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
+	out[0] = OutputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
+	out[1] = OutputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
 
 	return true;
 }
@@ -162,7 +149,7 @@ void AudioIO::Process(UnsignedType SampleCount)
 
 	if (m_RealMode==2 || m_RealMode==3)
 	{
-			OUTPUTCLIENT::Get()->SendStereo(in[0],in[1]);
+      OUTPUTCLIENT::Get()->SendStereo(in[0],in[1]);
 	}
 
 	if (m_RealMode==1 || m_RealMode==3)
@@ -232,7 +219,7 @@ void AudioIO::ProcessAudio()
         if (m_RealMode == 0)
         {
                 m_RealMode=2;
-		Reset();
+				Reset();
         }
 
 	if ((SampleCount() != OUTPUTCLIENT::Get()->SampleCount())

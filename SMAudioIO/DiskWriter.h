@@ -25,29 +25,44 @@
 
 using namespace Spiral;
 
-class DiskWriter : public AudioDriver
+//Disk Writer was initially commited by Dave, Nov 11 23:27:35 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1037078855::DiskWriter"
+//  => 1f5efd4bb21f90cf99ed081a335d913a (legacy == 29)
+#define DiskWriterID1f5efd4bb21f90cf99ed081a335d913a
+
+class DiskWriter : Gumbo(AudioDriver)
 {
-DeviceDescriptionTemplate(DiskWriter)
+  GumboClassDefinition(DiskWriter, AudioDriver,
+    {
+      mUniqueID = String::New(XSTRINGIFY(DiskWriterID));
+      mVersion = 2;
+    },
+    {
+    },
+  );
 private:
-	InputPort *left, *right, *recordcv;
+  InputPort *left, *right, *recordcv;
 
-	StringProperty *m_FileName;
-	SetProperty *m_BitsPerSample;
-	FloatProperty *m_TimeRecorded;
-	ToggleProperty *m_Stereo, *m_Recording, *m_Open;
+  StringProperty *m_FileName;
+  SetProperty *m_BitsPerSample;
+  FloatProperty *m_TimeRecorded;
+  ToggleProperty *m_Stereo, *m_Recording, *m_Open;
 
-	int m_Version;
-	WavFile m_Wav;
+  int m_Version;
+  WavFile *m_Wav;
+  
+  virtual void Finalize();
 public:
- 	DiskWriter(Patch *Host);
-	
-	bool CreatePorts();
-	
-	virtual void Process(UnsignedType SampleCount);
+  virtual DiskWriter *Initialize(Patch *Host);
+  static inline DiskWriter *New(Patch *Host) { return Alloc()->Initialize(Host); }
+  
+  bool CreatePorts();
+  
+  virtual void Process(UnsignedType SampleCount);
 
-	/* Audio Driver Specific Functions */
-	virtual AudioProcessType	ProcessType() { return AudioDriver::MANUAL; }		
-	virtual void			ProcessAudio() {}
+  /* Audio Driver Specific Functions */
+  virtual AudioProcessType	ProcessType() { return AudioDriver::MANUAL; }		
+  virtual void			ProcessAudio() {}
 };
 
 #endif

@@ -25,37 +25,81 @@
 #include <SpiralCore/Patch.h>
 
 using namespace Spiral;
+using namespace Spiral;
 
-class WaveTable : public Device
+//WaveTable Was initially commited by Dave, Sun Jul 28 23:18:17 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916297::WaveTable"
+//  => d7a6e545474f4fc1c5f6d2acedc28cd7 (legacy == 17)
+#define WaveTableID d7a6e545474f4fc1c5f6d2acedc28cd7
+  
+class WaveTable : Gumbo(Device)
 {
-DeviceDescriptionTemplate(WaveTable)
+  GumboClassDefinition
+  (
+    WaveTable, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(WaveTableID));
+      mVersion = 1;
+
+      mTable = Array<Sample*>::New();
+      WriteWaves();
+    },
+    
+    {
+      for (UnsignedType i=0; i < mTable->Count(); i++)
+        UnReference((*mTable)[i]);
+        
+      UnReference(mTable);
+    },
+    
+  private:
+    Array<Sample *> *mTable;
+    
+    void WriteWaves();
+    
+  public:
+    enum WaveType
+    {
+      SineWave=0, 
+      SquareWave, 
+      SawWave,
+      ReverseSawWave,
+      TriangleWave,
+      Pulse1Wave,
+      Pulse2Wave,
+      InverseSineWave
+    };
+    
+    inline const Sample *Table(UnsignedType aType) const
+    {
+      return (*mTable)[aType];
+    }
+  ); 
+
 private:
   /* Instance State */
-	InputPort *frequency;
-	OutputPort *output;
+  InputPort *frequency;
+  OutputPort *output;
 
-	// Voice Specific Properties (index)
-	UnsignedType m_CyclePosInd, m_NoteInd;
+  // Voice Specific Properties (index)
+  UnsignedType m_CyclePosInd, m_NoteInd;
 
   // Common Shared Properties
-	SetProperty *m_Type;
-	SignedProperty	*m_Octave;
+  SetProperty *m_Type;
+  SignedProperty	*m_Octave;
 
-	FloatProperty *m_FineFreq, *m_ModAmount;
-		
-	Sample m_Table[8];
-	UnsignedType    m_TableLength;
+  FloatProperty *m_FineFreq, *m_ModAmount;
 
 public:
- 	WaveTable(Patch *Host);
+  virtual WaveTable *Initialize(Patch *Host);
+  static inline WaveTable *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-	bool CreatePorts();
+  bool CreatePorts();
 
-	virtual void 		Process(UnsignedType SampleCount);
-	virtual void		Reset();
-	
-	void WriteWaves();
-	void NoteTrigger(int V,int s,int v);
+  virtual void 		Process(UnsignedType SampleCount);
+  virtual void		Reset();
+  
+  void NoteTrigger(int V,int s,int v);
 };
 
 #endif

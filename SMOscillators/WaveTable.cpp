@@ -27,138 +27,112 @@ static const int IN_FREQ  = 0;
 static const int IN_PW    = 1;
 static const int IN_SHLEN = 2;
 
-//WaveTable Was initially commited by Dave, Sun Jul 28 23:18:17 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916297::WaveTable"
-#define device_id d7a6e545474f4fc1c5f6d2acedc28cd7// legacy == 17
-#define device_version 1
+DevicePluginHook(WaveTable, WaveTableID)
 
-DevicePluginHook(WaveTable, device_id, device_version)
-
-/*const DeviceDescription WaveTable::mDescription = 
+void WaveTable::Class::WriteWaves()
 {
-  UniqueID       : WaveTable::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
+  /* Food for thought - 
+   How could this be pre-generated,
+   even by template magic */
+  
+  for (UnsignedType n=0; n<NUM_TABLES; n++)
+    mTable->Append(Sample::New(DEFAULT_TABLE_LEN));
 
-  Author         : "David Griffiths",
-  Version        : 1,
-  Label          : "WaveTable",
-  Info           : "Wave Table",
-  Category       : "Oscillators",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+  FloatType RadCycle = (M_PI/180)*360;
+  FloatType Pos=0, v=0;
+  FloatType HalfTab=DEFAULT_TABLE_LEN/2;
+  
+  for (UnsignedType n=0; n<DEFAULT_TABLE_LEN; n++)
+  {
+    if (n==0) Pos=0;
+    else Pos=(n/(FloatType)DEFAULT_TABLE_LEN)*RadCycle;
+    (*mTable)[SineWave]->Set(n,sin(Pos));		
+    
+    if (n<HalfTab) 
+    {
+      (*mTable)[SquareWave]->Set(n,1.0f);
+      v=1-(n/HalfTab)*2.0f;
+    }
+    else 
+    {
+      (*mTable)[SquareWave]->Set(n,-1);				
+      v=(((n-HalfTab)/HalfTab)*2.0f)-1.0f;
+    }
+    
+    (*mTable)[ReverseSawWave]->Set(n,((n/(FloatType)DEFAULT_TABLE_LEN)*2.0f)-1.0f);
+    
+    (*mTable)[SawWave]->Set(n,1-(n/(FloatType)DEFAULT_TABLE_LEN)*2.0f);
+    
+    (*mTable)[TriangleWave]->Set(n,v*0.99);		
+    if (n<DEFAULT_TABLE_LEN/1.2) 
+      (*mTable)[Pulse1Wave]->Set(n,1);
+    else 
+      (*mTable)[Pulse1Wave]->Set(n,-1);				
+    
+    if (n<DEFAULT_TABLE_LEN/1.5) 
+      (*mTable)[Pulse2Wave]->Set(n,1);
+    else 
+      (*mTable)[Pulse2Wave]->Set(n,-1);				
+  }
+  
+  Pos=0;
+  for (UnsignedType n=0; n<DEFAULT_TABLE_LEN; n++)
+  {
+    if (n==0) Pos=0;
+    else Pos=(n/(FloatType)DEFAULT_TABLE_LEN)*RadCycle;
+    if (sin(Pos)==0) (*mTable)[InverseSineWave]->Set(n,0);
+    else (*mTable)[InverseSineWave]->Set(n,(1.0f/sin(Pos))/10.0f);				
+  }
+}
 
-enum {SINE=0,SQUARE,SAW,REVSAW,TRIANGLE,PULSE1,PULSE2,INVSINE};
 const NumericPropertyValue WaveTypes[] = 
 {
-	/*{"Sine", */DefaultUnsigned(SINE)/*}*/,
-	/*{"Square", */DefaultUnsigned(SQUARE)/*}*/,
-	/*{"Saw", */DefaultUnsigned(SAW)/*}*/,
-	/*{"Reverse Saw", */DefaultUnsigned(REVSAW)/*}*/,
-	/*{"Triangle", */DefaultUnsigned(TRIANGLE)/*}*/,
-	/*{"Pulse 1", */DefaultUnsigned(PULSE1)/*}*/,
-	/*{"Pulse 2", */DefaultUnsigned(PULSE2)/*}*/,
-	/*{"Inverse Sine", */DefaultUnsigned(INVSINE)/*}*/
+  /*{"Sine", */DefaultUnsigned(WaveTable::Class::SineWave)/*}*/,
+	/*{"Square", */DefaultUnsigned(WaveTable::Class::SquareWave)/*}*/,
+	/*{"Saw", */DefaultUnsigned(WaveTable::Class::SawWave)/*}*/,
+	/*{"Reverse Saw", */DefaultUnsigned(WaveTable::Class::ReverseSawWave)/*}*/,
+	/*{"Triangle", */DefaultUnsigned(WaveTable::Class::TriangleWave)/*}*/,
+	/*{"Pulse 1", */DefaultUnsigned(WaveTable::Class::Pulse1Wave)/*}*/,
+	/*{"Pulse 2", */DefaultUnsigned(WaveTable::Class::Pulse2Wave)/*}*/,
+	/*{"Inverse Sine", */DefaultUnsigned(WaveTable::Class::InverseSineWave)/*}*/
 };
 
 const NumericPropertyValue defCyclePos = DefaultFloat(0.0f);
 const NumericPropertyValue defNoteInd = DefaultSigned(0);
 
-WaveTable::WaveTable(Patch *Host) :
-  Device(Host),
-  m_TableLength(DEFAULT_TABLE_LEN),
-
-	/* Shared Properties */
-	m_Type(new SetProperty(Property::WriteOnly, 0, new PropertySet(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])))),
-	m_Octave(new SignedProperty(DefaultLinearFlags,0,-3,3,1,1)),
-	m_FineFreq(new FloatProperty(DefaultLinearFlags,1, 0, 1.414, 0.000001, 0.0001)),
-	m_ModAmount(new FloatProperty(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001, 0.01)),
-
-	/* Voice State Properties */
-	m_CyclePosInd(NewStateProperty(defCyclePos)),
-	m_NoteInd(NewStateProperty(defNoteInd))
+WaveTable *WaveTable::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(m_Type, StringHash("WAVE TYPE")/*"Wave Type", "Wave Type"*/);
-	RegisterSharedProperty(m_Octave, StringHash("OCTAVE")/*"Octave", "Octave"*/);
-	RegisterSharedProperty(m_FineFreq, StringHash("FINEFREQ")/*"FineFreq", "FineFreq"*/);
-	RegisterSharedProperty(m_ModAmount, StringHash("MODAMOUNT")/*"ModAmount", "ModAmount"*/);
+  Super::Initialize(Host);
+
+  /* Shared Properties */
+  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
+  m_Octave = SignedProperty::New(DefaultLinearFlags,0,-3,3,1,1);
+  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414, 0.000001, 0.0001);
+  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001, 0.01);
+
+  /* Voice State Properties */
+  m_CyclePosInd = NewStateProperty(defCyclePos);
+  m_NoteInd = NewStateProperty(defNoteInd);
+
+  RegisterSharedProperty(m_Type, StringHash("WAVE TYPE")/*"Wave Type", "Wave Type"*/);
+  RegisterSharedProperty(m_Octave, StringHash("OCTAVE")/*"Octave", "Octave"*/);
+  RegisterSharedProperty(m_FineFreq, StringHash("FINEFREQ")/*"FineFreq", "FineFreq"*/);
+  RegisterSharedProperty(m_ModAmount, StringHash("MODAMOUNT")/*"ModAmount", "ModAmount"*/);
+  
+  return this;
 }
 
 bool WaveTable::CreatePorts()
 {	
-	for (UnsignedType n=0; n<NUM_TABLES; n++)
-	{
-		m_Table[n].Allocate(m_TableLength);
-	}
+  frequency = InputPort::New(this/*, "Frequency CV"*/);
+  output = OutputPort::New(this/*, "Output"*/);
 	
-	WriteWaves();
-		
-	frequency = new InputPort(this/*, "Frequency CV"*/);
-	output = new OutputPort(this/*, "Output"*/);
-	
-	return true;
-}
-
-void WaveTable::WriteWaves()
-{
-	FloatType RadCycle = (M_PI/180)*360;
-	FloatType Pos=0, v=0;
-	FloatType HalfTab=m_TableLength/2;
-
-	for (UnsignedType n=0; n<m_TableLength; n++)
-	{
-		if (n==0) Pos=0;
-		else Pos=(n/(FloatType)m_TableLength)*RadCycle;
-		m_Table[SINE].Set(n,sin(Pos));		
-
-		if (n<HalfTab) 
-		{
-			m_Table[SQUARE].Set(n,1.0f);
-			v=1-(n/HalfTab)*2.0f;
-		}
-		else 
-		{
-			m_Table[SQUARE].Set(n,-1);				
-			v=(((n-HalfTab)/HalfTab)*2.0f)-1.0f;
-		}
-		
-		m_Table[REVSAW].Set(n,((n/(FloatType)m_TableLength)*2.0f)-1.0f);
-
-		m_Table[SAW].Set(n,1-(n/(FloatType)m_TableLength)*2.0f);
-		
-		m_Table[TRIANGLE].Set(n,v*0.99);		
-		if (n<m_TableLength/1.2) 
-			m_Table[PULSE1].Set(n,1);
-		else 
-			m_Table[PULSE1].Set(n,-1);				
-
-		if (n<m_TableLength/1.5) 
-			m_Table[PULSE2].Set(n,1);
-		else 
-			m_Table[PULSE2].Set(n,-1);				
-	}
-
-	Pos=0;
-	for (UnsignedType n=0; n<m_TableLength; n++)
-	{
-		if (n==0) Pos=0;
-		else Pos=(n/(FloatType)m_TableLength)*RadCycle;
-		if (sin(Pos)==0) m_Table[INVSINE].Set(n,0);
-		else m_Table[INVSINE].Set(n,(1.0f/sin(Pos))/10.0f);				
-	}
+  return true;
 }
 
 void WaveTable::Reset()
 {
 	Device::Reset();
-
-	for (UnsignedType n=0; n<NUM_TABLES; n++)
-	{
-		m_Table[n].Clear();
-		m_Table[n].Allocate(m_TableLength);
-	}
-	
-	WriteWaves();
 }
 
 void WaveTable::Process(UnsignedType SampleCount)
@@ -197,15 +171,15 @@ void WaveTable::Process(UnsignedType SampleCount)
 		if (octave>0) Freq*=1<<(octave);
 		if (octave<0) Freq/=1<<(-octave);
 		
-		Incr = Freq*(m_TableLength/(FloatType)SampleRate());
+		Incr = Freq*(DEFAULT_TABLE_LEN/(FloatType)SampleRate());
 		CyclePos+=Incr;
 		
-		if (CyclePos > m_TableLength)
-			CyclePos = ((UnsignedType)floor(CyclePos) % m_TableLength) + (CyclePos - floor(CyclePos));
+		if (CyclePos > DEFAULT_TABLE_LEN)
+			CyclePos = ((UnsignedType)floor(CyclePos) % DEFAULT_TABLE_LEN) + (CyclePos - floor(CyclePos));
 
 		CyclePos = MAX(CyclePos, 0);
 		
-		SetOutput(output, n, m_Table[type][CyclePos]);
+		SetOutput(output, n, (*ClassObject()->Table(type))[CyclePos]);
 	}
 
 	StateValue(m_CyclePosInd)->AsFloat = CyclePos;

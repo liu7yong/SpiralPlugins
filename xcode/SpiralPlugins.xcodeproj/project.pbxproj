@@ -59,10 +59,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B4CB4C5F11175D2D00F772FC /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4610F7A08C0043327C /* Spicy.framework */; };
-		B4CB4C6011175D2D00F772FC /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4810F7A08C0043327C /* SpiralCore.framework */; };
-		B4EE2981111A551700EC7A4E /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4610F7A08C0043327C /* Spicy.framework */; };
-		B4EE2982111A551700EC7A4E /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4810F7A08C0043327C /* SpiralCore.framework */; };
+		B49E17401137679F00DDF954 /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172B1137678800DDF954 /* Spicy.framework */; };
+		B49E17411137679F00DDF954 /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172C1137678800DDF954 /* SpiralCore.framework */; };
+		B49E1742113767A800DDF954 /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172B1137678800DDF954 /* Spicy.framework */; };
+		B49E1743113767A800DDF954 /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172C1137678800DDF954 /* SpiralCore.framework */; };
+		B49E1744113767B200DDF954 /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172B1137678800DDF954 /* Spicy.framework */; };
+		B49E1745113767B200DDF954 /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172C1137678800DDF954 /* SpiralCore.framework */; };
 		B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2919111A542C00EC7A4E /* AudioIO.h */; };
 		B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291C111A542C00EC7A4E /* DiskWriter.h */; };
 		B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291E111A542C00EC7A4E /* ESDClient.h */; };
@@ -85,8 +87,6 @@
 		B4EE299D111A56AC00EC7A4E /* AudioOutput.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE291A111A542C00EC7A4E /* AudioOutput.png */; };
 		B4EE299E111A56AC00EC7A4E /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE2925111A542C00EC7A4E /* info.json */; };
 		B4EE29AB111A574D00EC7A4E /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE2934111A542C00EC7A4E /* info.json */; };
-		B4EE29B8111A575300EC7A4E /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4610F7A08C0043327C /* Spicy.framework */; };
-		B4EE29B9111A575300EC7A4E /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DB3F4810F7A08C0043327C /* SpiralCore.framework */; };
 		B4EE29D1111A57B600EC7A4E /* SMFiltersFX.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EE29BD111A575300EC7A4E /* SMFiltersFX.dylib */; };
 		B4EE29D2111A57C300EC7A4E /* AnotherFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2929111A542C00EC7A4E /* AnotherFilter.h */; };
 		B4EE29D3111A57C300EC7A4E /* AnotherFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2928111A542C00EC7A4E /* AnotherFilter.cpp */; };
@@ -186,14 +186,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B49E172B1137678800DDF954 /* Spicy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spicy.framework; path = Library/Frameworks/Spicy.framework; sourceTree = SDKROOT; };
+		B49E172C1137678800DDF954 /* SpiralCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpiralCore.framework; path = Library/Frameworks/SpiralCore.framework; sourceTree = SDKROOT; };
 		B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMOscillators.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4DB3F4610F7A08C0043327C /* Spicy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spicy.framework; path = Library/Frameworks/Spicy.framework; sourceTree = SDKROOT; };
-		B4DB3F4810F7A08C0043327C /* SpiralCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpiralCore.framework; path = Library/Frameworks/SpiralCore.framework; sourceTree = SDKROOT; };
-		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; };
+		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE2919111A542C00EC7A4E /* AudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioIO.h; sourceTree = "<group>"; };
 		B4EE291A111A542C00EC7A4E /* AudioOutput.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioOutput.png; sourceTree = "<group>"; };
-		B4EE291B111A542C00EC7A4E /* DiskWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiskWriter.cpp; sourceTree = "<group>"; };
-		B4EE291C111A542C00EC7A4E /* DiskWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskWriter.h; sourceTree = "<group>"; };
+		B4EE291B111A542C00EC7A4E /* DiskWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = DiskWriter.cpp; sourceTree = "<group>"; usesTabs = 0; };
+		B4EE291C111A542C00EC7A4E /* DiskWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = DiskWriter.h; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE291D111A542C00EC7A4E /* ESDClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ESDClient.cpp; sourceTree = "<group>"; };
 		B4EE291E111A542C00EC7A4E /* ESDClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDClient.h; sourceTree = "<group>"; };
 		B4EE291F111A542C00EC7A4E /* JackIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JackIO.cpp; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		B4EE2933111A542C00EC7A4E /* iir_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iir_filter.h; sourceTree = "<group>"; };
 		B4EE2934111A542C00EC7A4E /* info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = info.json; sourceTree = "<group>"; };
 		B4EE2936111A542C00EC7A4E /* ExtraNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExtraNoise.cpp; sourceTree = "<group>"; };
-		B4EE2937111A542C00EC7A4E /* ExtraNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraNoise.h; sourceTree = "<group>"; };
+		B4EE2937111A542C00EC7A4E /* ExtraNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = ExtraNoise.h; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE2938111A542C00EC7A4E /* LFO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LFO.cpp; sourceTree = "<group>"; };
 		B4EE2939111A542C00EC7A4E /* LFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFO.h; sourceTree = "<group>"; };
 		B4EE293A111A542C00EC7A4E /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
@@ -234,8 +234,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4CB4C5F11175D2D00F772FC /* Spicy.framework in Frameworks */,
-				B4CB4C6011175D2D00F772FC /* SpiralCore.framework in Frameworks */,
+				B49E1742113767A800DDF954 /* Spicy.framework in Frameworks */,
+				B49E1743113767A800DDF954 /* SpiralCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +243,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B49E17401137679F00DDF954 /* Spicy.framework in Frameworks */,
+				B49E17411137679F00DDF954 /* SpiralCore.framework in Frameworks */,
 				B4EE2990111A558D00EC7A4E /* libesd.a in Frameworks */,
-				B4EE2981111A551700EC7A4E /* Spicy.framework in Frameworks */,
-				B4EE2982111A551700EC7A4E /* SpiralCore.framework in Frameworks */,
 				B4EE2C3B111BB46B00EC7A4E /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,8 +254,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4EE29B8111A575300EC7A4E /* Spicy.framework in Frameworks */,
-				B4EE29B9111A575300EC7A4E /* SpiralCore.framework in Frameworks */,
+				B49E1744113767B200DDF954 /* Spicy.framework in Frameworks */,
+				B49E1745113767B200DDF954 /* SpiralCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +278,8 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				B49E172B1137678800DDF954 /* Spicy.framework */,
+				B49E172C1137678800DDF954 /* SpiralCore.framework */,
 			);
 			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -289,15 +290,6 @@
 				B4F58298110F8D660070E06E /* info.json */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B4DB3F4610F7A08C0043327C /* Spicy.framework */,
-				B4DB3F4810F7A08C0043327C /* SpiralCore.framework */,
-			);
-			name = "Linked Frameworks";
 			sourceTree = "<group>";
 		};
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
@@ -325,9 +317,11 @@
 				B4EE2920111A542C00EC7A4E /* JackIO.h */,
 				B4EE291F111A542C00EC7A4E /* JackIO.cpp */,
 			);
+			indentWidth = 2;
 			name = SMAudioIO;
 			path = ../SMAudioIO;
 			sourceTree = SOURCE_ROOT;
+			usesTabs = 0;
 		};
 		B4EE2927111A542C00EC7A4E /* SMFiltersFX */ = {
 			isa = PBXGroup;
@@ -346,9 +340,11 @@
 				B4EE2933111A542C00EC7A4E /* iir_filter.h */,
 				B4EE2932111A542C00EC7A4E /* iir_filter.cpp */,
 			);
+			indentWidth = 2;
 			name = SMFiltersFX;
 			path = ../SMFiltersFX;
 			sourceTree = SOURCE_ROOT;
+			usesTabs = 0;
 		};
 		B4EE2935111A542C00EC7A4E /* SMOscillators */ = {
 			isa = PBXGroup;
@@ -363,9 +359,11 @@
 				B4EE293D111A542C00EC7A4E /* WaveTable.h */,
 				B4EE293C111A542C00EC7A4E /* WaveTable.cpp */,
 			);
+			indentWidth = 2;
 			name = SMOscillators;
 			path = ../SMOscillators;
 			sourceTree = SOURCE_ROOT;
+			usesTabs = 0;
 		};
 		B4EE296A111A544D00EC7A4E /* Resources */ = {
 			isa = PBXGroup;

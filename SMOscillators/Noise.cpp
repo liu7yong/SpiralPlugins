@@ -19,28 +19,9 @@
 #include <math.h>
 #include "Noise.h"
 
-using namespace std;
+using namespace Spiral;
 
-//Noise Was initially commited by Dave, Sun Jan 19 01:25:52 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042961152::Noise"
-#define device_id 7cac72b3687628ec373ef10ae8a2ab4a// legacy == 32
-#define device_version 1
-
-DevicePluginHook(Noise, device_id, device_version)
-
-/*const DeviceDescription Noise::mDescription = 
-{
-  UniqueID       : Noise::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "David Griffiths",
-  Version        : 1,
-  Label          : "Noise",
-  Info           : "Noise Generator",
-  Category       : "Oscillators",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(Noise, NoiseID)
 
 ///////////////////////////////////////////////////////
 enum Type {WHITE=0, PINK, BROWN};
@@ -53,34 +34,37 @@ const NumericPropertyValue NoiseTypes[] =
 
 const NumericPropertyValue defZeroFloat = DefaultFloat(0.0f);
 
-Noise::Noise(Patch *Host) :
-	Device(Host),
-
-	/* Shared Properties */
-	m_Type(new SetProperty(Property::WriteOnly, 0, new PropertySet(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0])))),
-
-	/* Voice State Properties */
-	mB0(NewStateProperty(defZeroFloat)),
-	mB1(NewStateProperty(defZeroFloat)),
-	mB2(NewStateProperty(defZeroFloat)),
-	mB3(NewStateProperty(defZeroFloat)),
-	mB4(NewStateProperty(defZeroFloat)),
-	mB5(NewStateProperty(defZeroFloat)),
-	mB6(NewStateProperty(defZeroFloat))
+Noise *Noise::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(m_Type, StringHash("NOISE TYPE")/*, "Noise Type", "Noise Type"*/);
+  Super::Initialize(Host);
+
+  /* Shared Properties */
+  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0])));
+
+  /* Voice State Properties */
+  mB0 = NewStateProperty(defZeroFloat);
+  mB1 = NewStateProperty(defZeroFloat);
+  mB2 = NewStateProperty(defZeroFloat);
+  mB3 = NewStateProperty(defZeroFloat);
+  mB4 = NewStateProperty(defZeroFloat);
+  mB5 = NewStateProperty(defZeroFloat);
+  mB6 = NewStateProperty(defZeroFloat);
+
+  RegisterSharedProperty(m_Type, StringHash("NOISE TYPE")/*, "Noise Type", "Noise Type"*/);
+  
+  return this;
 }
 
 bool Noise::CreatePorts()
 {
-	output = new OutputPort(this/*, "Output"*/);
+  output = OutputPort::New(this/*, "Output"*/);
 
-	return true;
+  return true;
 }
 
 void Noise::Process(UnsignedType SampleCount)
 {
-	switch (m_Type->Value.AsUnsigned)
+	switch (BROWN)//(m_Type->Value.AsUnsigned)
 	{
 		case BROWN:
 		default:
@@ -108,5 +92,6 @@ void Noise::Process(UnsignedType SampleCount)
 				SetOutput(output,n, GenerateWhite());
 			}
 		}
+        break;
 	}
 }
