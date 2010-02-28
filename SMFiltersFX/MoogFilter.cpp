@@ -28,26 +28,7 @@ using namespace Spiral;
 
 static const int GRANULARITY = 10;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::MoogFilter"
-#define device_id d668f07998c4e09b149ae1570d2143cc// legacy == D
-#define device_version 1
-
-DevicePluginHook(MoogFilter, device_id, device_version)
-
-/*const DeviceDescription MoogFilter::mDescription = 
-{
-  UniqueID       : MoogFilter::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "David Griffiths",
-  Version        : 1,
-  Label          : "Moog Filter",
-  Info           : "Moog Filter",
-  Category       : "Filters/FX",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(MoogFilter, MoogFilterID)
 
 ///////////////////////////////////////////////////////
 
@@ -59,38 +40,44 @@ const FloatType four = 4.0;
 const FloatType five = 5.0; 
 const FloatType six = 6.0; 
 
-MoogFilter::MoogFilter(Patch *Host) :
-	Device(Host),
-	Cutoff(new FloatProperty(DefaultLinearFlags,0.5f, zero, one, 0.0001, 0.001)),
-	Resonance(new FloatProperty(DefaultLinearFlags,0.0f, zero, one, 0.00001, 0.0001)),
-
-	fc(1000.0f),
-	f(zero),
-	p(zero),
-	q(zero),
-	b0(0.1f),
-	b1(zero),
-	b2(zero),
-	b3(zero),
-	b4(zero),
-	t1(zero),
-	t2(zero)
+MoogFilter *MoogFilter::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
-	RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  Super::Initialize(Host),
+  
+  Cutoff = FloatProperty::New(DefaultLinearFlags,0.5f, zero, one, 0.0001, 0.001);
+  Resonance = FloatProperty::New(DefaultLinearFlags,0.0f, zero, one, 0.00001, 0.0001);
+  RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+
+  /* These should be internal state properties */
+  fc = 1000.0f;
+  f = zero;
+  p = zero;
+  q = zero;
+  b0 = 0.1f;
+  b1 = zero;
+  b2 = zero;
+  b3 = zero;
+  b4 = zero;
+  t1 = zero;
+  t2 = zero;
+
+  return this;
 }
 
 bool MoogFilter::CreatePorts()
 {	
-	input[0] = new InputPort(this/*, "Input"*/);	
-	input[1] = new InputPort(this/*, "Cutoff CV"*/);	
-	input[2] = new InputPort(this/*, "Emphasis CV"*/);	
+  input[0] = InputPort::New(this/*, "Input"*/);	
 
-	output[0] = new OutputPort(this/*, "LowPass output"*/);
-	output[1] = new OutputPort(this/*, "BandPass output"*/);
-	output[2] = new OutputPort(this/*, "HighPass output"*/);
+  output[0] = OutputPort::New(this/*, "LowPass output"*/);
+  output[1] = OutputPort::New(this/*, "BandPass output"*/);
+  output[2] = OutputPort::New(this/*, "HighPass output"*/);
 
-	return true;
+  /* These should be Control Ports, i.e., autocreated by the properties they are for */
+  input[1] = InputPort::New(this/*, "Cutoff CV"*/);	
+  input[2] = InputPort::New(this/*, "Emphasis CV"*/);	
+
+  return true;
 }
 
 void MoogFilter::Reset()

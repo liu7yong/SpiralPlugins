@@ -137,51 +137,55 @@ void WaveTable::Reset()
 
 void WaveTable::Process(UnsignedType SampleCount)
 {
-	int octave, type, Note;
- 	FloatType Freq=0, fine, mod;
-	FloatType Incr, CyclePos;
-	
-	type = m_Type->Value.AsUnsigned;
-	octave = m_Octave->Value.AsSigned;
-	fine = m_FineFreq->Value.AsFloat;
-	mod = m_ModAmount->Value.AsFloat;
+  const Sample *table;
+  
+  int octave, type, Note;
+  FloatType Freq=0, fine, mod;
+  FloatType Incr, CyclePos;
 
-	CyclePos = StateValue(m_CyclePosInd)->AsFloat;
-	Note = StateValue(m_NoteInd)->AsSigned;
+  type = m_Type->Value.AsUnsigned;
+  octave = m_Octave->Value.AsSigned;
+  fine = m_FineFreq->Value.AsFloat;
+  mod = m_ModAmount->Value.AsFloat;
 
-	for (UnsignedType n=0; n<SampleCount; n++)
-	{	
-		output->SetSampleValue(n, 0, GetVoice());
-	
-		if (frequency->IsConnected()) 
-		{
-			Freq=0;
+  table = ClassObject()->Table(type);
 
-			if (!NUMBER_IS_HUGE(GetInput(frequency, n)))
-				Freq=frequency->GetSamplePitch(n, GetVoice());
+  CyclePos = StateValue(m_CyclePosInd)->AsFloat;
+  Note = StateValue(m_NoteInd)->AsSigned;
 
-			Freq*=mod;
-		}
-		else 
-		{	
-			Freq=110;
-		}
+  for (UnsignedType n=0; n<SampleCount; n++)
+  {	
+    output->SetSampleValue(n, 0, GetVoice());
 
-		Freq*=fine;
-		if (octave>0) Freq*=1<<(octave);
-		if (octave<0) Freq/=1<<(-octave);
-		
-		Incr = Freq*(DEFAULT_TABLE_LEN/(FloatType)SampleRate());
-		CyclePos+=Incr;
-		
-		if (CyclePos > DEFAULT_TABLE_LEN)
-			CyclePos = ((UnsignedType)floor(CyclePos) % DEFAULT_TABLE_LEN) + (CyclePos - floor(CyclePos));
+    if (frequency->IsConnected()) 
+    {
+      Freq=0;
 
-		CyclePos = MAX(CyclePos, 0);
-		
-		SetOutput(output, n, (*ClassObject()->Table(type))[CyclePos]);
-	}
+      if (!NUMBER_IS_HUGE(GetInput(frequency, n)))
+        Freq=frequency->GetSamplePitch(n, GetVoice());
 
-	StateValue(m_CyclePosInd)->AsFloat = CyclePos;
-	StateValue(m_NoteInd)->AsSigned = Note;
+      Freq*=mod;
+    }
+    else 
+    {	
+        Freq=110;
+    }
+
+    Freq*=fine;
+    if (octave>0) Freq*=1<<(octave);
+    if (octave<0) Freq/=1<<(-octave);
+
+    Incr = Freq*(DEFAULT_TABLE_LEN/(FloatType)SampleRate());
+    CyclePos+=Incr;
+
+    if (CyclePos > DEFAULT_TABLE_LEN)
+        CyclePos = ((UnsignedType)floor(CyclePos) % DEFAULT_TABLE_LEN) + (CyclePos - floor(CyclePos));
+
+    CyclePos = MAX(CyclePos, 0);
+
+    SetOutput(output, n, (*table)[CyclePos]);
+  }
+
+  StateValue(m_CyclePosInd)->AsFloat = CyclePos;
+  StateValue(m_NoteInd)->AsSigned = Note;
 }

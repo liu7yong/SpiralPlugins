@@ -26,26 +26,7 @@ static const FloatType MAX_CUTOFF = 3000.0;
 static const FloatType MIN_CUTOFF = 500.0;
 static const SignedType FILTERGRAN = 50;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Filter"
-#define device_id 90ad6dd029d6e71cb86008c489933f5c// legacy == B
-#define device_version 1
-
-DevicePluginHook(Filter, device_id, device_version)
-
-/*const DeviceDescription Filter::mDescription = 
-{
-  UniqueID       : Filter::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "David Griffiths",
-  Version        : 1,
-  Label          : "Filter",
-  Info           : "Filter",
-  Category       : "Filters/FX",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(Filter, FilterID)
 
 ///////////////////////////////////////////////////////
 
@@ -57,68 +38,62 @@ const FloatType four = 4.0;
 const FloatType five = 5.0; 
 const FloatType six = 6.0; 
 
-Filter::Filter(Patch *Host) :
-Device(Host),
-
-iir(),
-
-fc(new FloatProperty(DefaultLinearFlags, 100.0, zero, 100.0, 0.01,  one)),
-Q(new FloatProperty(DefaultLinearFlags, one, zero, 10.0, 0.01, 0.1)),
-
-m_LastFC(zero),
-m_LastQ(one),
-
-a0(zero), 
-a1(zero), 
-a2(zero), 
-b0(zero), 
-b1(zero), 
-b2(zero), 
-k(one)              // Set overall filter gain
-{
-	RegisterSharedProperty(fc, StringHash("CUTOFF") /*"Cutoff", "Cutoff"*/);
-	RegisterSharedProperty(Q, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
-}
-
-bool Filter::Setup()
-{
-	bool result = Device::Setup();
-
-	if (result)
-	{
-		SetupCoeffs();
-
-		iir.length = FILTER_SECTIONS;         	
-		iir.coef = new FloatType[4 * iir.length + 1]; 
-	}
-
-	return result;
-}
-
-void Filter::Shutdown()
+void Filter::Finalize()
 {	
-	Device::Shutdown();
+  if (iir.coef)
+    delete [] iir.coef;
+  
+  iir.coef = NULL;
+  
+  if (iir.history)
+    delete[] iir.history;
+  
+  iir.history = NULL;
+  
+  Super::Finalize();  
+}
 
-	if (iir.coef)
-		delete [] iir.coef;
+Filter *Filter::Initialize(Patch *Host)
+{
+  Super::Initialize(Host);
 
-	iir.coef = NULL;
+  iir = FILTER();
 
-	if (iir.history)
-        	delete[] iir.history;
+  fc = FloatProperty::New(DefaultLinearFlags, 100.0, zero, 100.0, 0.01,  one);
+  Q = FloatProperty::New(DefaultLinearFlags, one, zero, 10.0, 0.01, 0.1);
+  RegisterSharedProperty(fc, StringHash("CUTOFF") /*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(Q, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
 
-	iir.history = NULL;
+  /* These should be internal state properties */
+  m_LastFC = zero;
+  m_LastQ = one;
+
+  a0 = zero; 
+  a1 = zero; 
+  a2 = zero; 
+  b0 = zero; 
+  b1 = zero; 
+  b2 = zero; 
+  k = one;              // Set overall filter gain
+
+  SetupCoeffs();
+  
+  iir.length = FILTER_SECTIONS;         	
+  iir.coef = new FloatType[4 * iir.length + 1]; 
+  
+  return this;
 }
 
 bool Filter::CreatePorts()
 {	
-	input[0] = new InputPort(this/*, "Input"*/);
-	input[1] = new InputPort(this/*, "Cutoff CV"*/);
-	input[2] = new InputPort(this/*, "Emphasis CV"*/);
+  input[0] = InputPort::New(this/*, "Input"*/);
+  output = OutputPort::New(this/*, "Output"*/);
 
-	output = new OutputPort(this/*, "Output"*/);
-
-	return true;
+  /* These should be Control Ports, i.e., autocreated by the properties they are for */
+  input[1] = InputPort::New(this/*, "Cutoff CV"*/);
+  input[2] = InputPort::New(this/*, "Emphasis CV"*/);
+  
+  return true;
 }
 
 void Filter::Reset()

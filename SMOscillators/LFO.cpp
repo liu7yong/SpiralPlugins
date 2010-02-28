@@ -92,11 +92,11 @@ LFO *LFO::Initialize(Patch *Host)
   m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
   m_Freq = FloatProperty::New(DefaultLinearFlags,0.1, 0.0, 1.0, 0.001, 0.1);
 
-  /* Voice State Properties */
-  m_CyclePosInd = NewStateProperty(defCyclePos);
-
   RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
   RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
+
+  /* Voice State Properties */
+  m_CyclePosInd = NewStateProperty(defCyclePos);
   
   return this;
 }

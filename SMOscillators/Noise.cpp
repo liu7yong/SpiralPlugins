@@ -34,6 +34,13 @@ const NumericPropertyValue NoiseTypes[] =
 
 const NumericPropertyValue defZeroFloat = DefaultFloat(0.0f);
 
+void Noise::Finalize()
+{
+  UnReference(m_Type);
+  
+  Super::Finalize();
+}
+
 Noise *Noise::Initialize(Patch *Host)
 {
   Super::Initialize(Host);

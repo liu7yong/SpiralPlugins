@@ -42,8 +42,7 @@ DevicePluginHook(AudioIO, AudioIOID)
 
 void AudioIO::Finalize()
 {
-  if (IsLive())
-    Shutdown();
+  m_RefCount--;
   
   if (m_RefCount==0)
   {
@@ -68,83 +67,70 @@ AudioIO *AudioIO::Initialize(Patch *Host)
 
   m_Volume = 0.5;
   m_Mode = 0;
+  m_Mode = m_RealMode;
 
+  /* FIXME - this is a horrible way to do things */
+  /* and doesn't allow for multiple hosts to share an audio */
+  if ((++m_RefCount) == 1)
+  {
+    OUTPUTCLIENT::host=Host;
+    
+    OUTPUTCLIENT::RunCallback = cb_Update;
+    OUTPUTCLIENT::RunContext = m_Parent;
+    
+   // Reset();
+  }
+  
   return this;
 }
 
 bool AudioIO::CreatePorts()
 {
-	in[0] = InputPort::New(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-	in[1] = InputPort::New(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  in[0] = InputPort::New(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  in[1] = InputPort::New(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
 
-	out[0] = OutputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
-	out[1] = OutputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
+  out[0] = OutputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
+  out[1] = OutputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
 
-	return true;
-}
-
-bool AudioIO::Setup()
-{
-	/* This has to be done BEFORE passing up the stack */
-	if (++m_RefCount == 1)
-	{
-		OUTPUTCLIENT::host=Host();
-
-		OUTPUTCLIENT::RunCallback = cb_Update;
-		OUTPUTCLIENT::RunContext = m_Parent;
-	}
-
-	m_Mode = m_RealMode;
-
-	bool result = AudioDriver::Setup();
-	
-	return result;
-}
-
-void AudioIO::Shutdown()
-{
-	AudioDriver::Shutdown();
-
-	m_RefCount--;
-	if (m_RefCount==0)
-	{
-		OUTPUTCLIENT::Get()->Kill();
-		m_RealMode=0;
-		cb_Blocking(m_Parent,false);
-	}
+  return true;
 }
 
 void AudioIO::Reset()
 {
-	if (!IsLive())	return;
+  if (!m_RefCount)
+    return;
 
-	OUTPUTCLIENT::Get()->Kill();
-	cb_Blocking(m_Parent,false);
+  OUTPUTCLIENT::Get()->Kill();
+  cb_Blocking(m_Parent,false);
 
-	OUTPUTCLIENT::Get()->AllocateBuffer();
+  OUTPUTCLIENT::Get()->AllocateBuffer();
 
-	switch (m_RealMode)
-	{
-		case 1 :
- 			OUTPUTCLIENT::Get()->OpenRead();
-			cb_Blocking(m_Parent,false);
-		break;
- 		case 2 :
-    			OUTPUTCLIENT::Get()->OpenWrite();
-			cb_Blocking(m_Parent,true);
-		break;
-		case 3 :
-			OUTPUTCLIENT::Get()->OpenReadWrite();
-			cb_Blocking(m_Parent,true);
-		break;
-		
-		default:{}
-	}
+  switch (m_RealMode)
+  {
+    case 1 :
+      OUTPUTCLIENT::Get()->OpenRead();
+      cb_Blocking(m_Parent,false);
+    break;
+
+    case 2 :
+      OUTPUTCLIENT::Get()->OpenWrite();
+      cb_Blocking(m_Parent,true);
+    break;
+
+    case 3 :
+      OUTPUTCLIENT::Get()->OpenReadWrite();
+      cb_Blocking(m_Parent,true);
+    break;
+
+    default:{}
+  }
 }
 
 void AudioIO::Process(UnsignedType SampleCount)
 {
-	if (!IsLive() || (m_RealMode == 4)) 
+  if (!m_RefCount)
+    return;
+	if (m_RealMode == 4) 
 		return;
 
 	if (m_RealMode==2 || m_RealMode==3)
@@ -213,14 +199,14 @@ void AudioIO::Process(UnsignedType SampleCount)
 
 void AudioIO::ProcessAudio()
 {
-	if (!IsLive()) 
-		return;
-
-        if (m_RealMode == 0)
-        {
-                m_RealMode=2;
-				Reset();
-        }
+  if (!m_RefCount)
+    return;
+  
+      if (m_RealMode == 0)
+      {
+              m_RealMode=2;
+              Reset();
+      }
 
 	if ((SampleCount() != OUTPUTCLIENT::Get()->SampleCount())
 		|| (SampleRate() != OUTPUTCLIENT::Get()->SampleRate()))

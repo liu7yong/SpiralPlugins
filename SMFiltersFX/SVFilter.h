@@ -28,30 +28,46 @@ using namespace Spiral;
 static const int NUM_CHANNELS = 4;
 
 // A State Variable Filter
-class SVFilter : public Device
+
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::SVFilter"
+//  => ba7dbd3d0088109861334e1787616b2e (legacy == C)
+#define SVFilterID ba7dbd3d0088109861334e1787616b2e
+
+class SVFilter : Gumbo(Device)
 {
-DeviceDescriptionTemplate(SVFilter)
+  GumboClassDefinition(SVFilter, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(SVFilterID));
+      mVersion = 2;
+    },
+    {
+    },
+  );
 private:
   /* Instance State */
-	FloatProperty *Cutoff, *Resonance;
-	
-	FloatType fc; // Cutoff
-	FloatType q;  // Resonance
-	
-	// Calculation
-	FloatType m_f, m_q, m_qnrm;
-	 
-	// Outputs
-	FloatType m_h, m_b, m_l, m_p, m_n;
+  FloatProperty *Cutoff, *Resonance;
 
-	void WipeMemory();
+  //FIXME - NOT VOICE SAFE
+  FloatType fc; // Cutoff
+  FloatType q;  // Resonance
+
+  // Calculation
+  FloatType m_f, m_q, m_qnrm;
+
+  // Outputs
+  FloatType m_h, m_b, m_l, m_p, m_n;
+
+  void WipeMemory();
+
 public:
- 	SVFilter(Patch *Host);
-	
-	bool CreatePorts();
+  virtual SVFilter *Initialize(Patch *Host);
+  static inline SVFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-	virtual void Process(UnsignedType SampleCount);
-	virtual void Reset();
+  bool CreatePorts();
+
+  virtual void Process(UnsignedType SampleCount);
+  virtual void Reset();
 };
 
 #endif

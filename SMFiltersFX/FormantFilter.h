@@ -25,26 +25,38 @@
 
 using namespace Spiral;
 
-class FormantFilter : public Device
+//Initially commited by Dave, Thu Jan 2 01:56:48 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1041494208::FormantFilter"
+//  =>  78bd5c2e8967c372c264d5745359fdf5 (legacy == 2A)
+#define FormantFilterID 78bd5c2e8967c372c264d5745359fdf5
+class FormantFilter : Gumbo(Device)
 {
-DeviceDescriptionTemplate(FormantFilter)
+  GumboClassDefinition(FormantFilter, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(FormantFilterID));
+      mVersion = 1;
+    },
+    {
+    },
+  );
 private:
   /* Instance State */
-	void WipeMemory();
+  void WipeMemory();
 
-	InputPort *input[2];
-	OutputPort *output;
-	FloatProperty *m_Vowel;
-		
-	//FIXME - NOT VOICE SAFE
-	double memory[5][10];
+  InputPort *input[2];
+  OutputPort *output;
+  FloatProperty *m_Vowel;
+      
+  //FIXME - NOT VOICE SAFE
+  double memory[5][10];
 public:
- 	FormantFilter(Patch *Host);
+  virtual FormantFilter *Initialize(Patch *Host);
+  static inline FormantFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-	bool CreatePorts();
+  bool CreatePorts();
 
-	virtual void Process(UnsignedType SampleCount);
-	virtual void Reset();
+  virtual void Process(UnsignedType SampleCount);
+  virtual void Reset();
 };
 
 #endif

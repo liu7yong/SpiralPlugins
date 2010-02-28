@@ -11,6 +11,32 @@
 			"Label": "Another Filter",
 			"Info": "Another Filter",
 			"Category":"Filters/FX",
+
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        {
+          "Index": 1,
+          "Name": "Cutoff CV",
+          "Tooltip": "Cutoff CV"
+        },
+        {
+          "Index": 2,
+          "Name": "Emphasis CV",
+          "Tooltip": "Emphasis CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Output",
+          "Tooltip": "Low Pass Output"
+        }
+      ],
 			
 			"Resources":{
 					"Icon": "Filter.png"
@@ -28,6 +54,32 @@
 			"Info": "Filter",
 			"Category":"Filters/FX",
 
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        {
+          "Index": 1,
+          "Name": "Cutoff CV",
+          "Tooltip": "Cutoff CV"
+        },
+        {
+          "Index": 2,
+          "Name": "Emphasis CV",
+          "Tooltip": "Emphasis CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Output",
+          "Tooltip": "Low Pass Output"
+        }
+      ],
+
 			"Resources":{
 				"Icon": "Filter.png"
 			}
@@ -44,6 +96,26 @@
 			"Info": "Formant Filter",
 			"Category":"Filters/FX",
 
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        {
+          "Index": 1,
+          "Name": "Vowel CV",
+          "Tooltip": "Vowel CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Output",
+          "Tooltip": "Low Pass Output"
+        }
+      ],
 			"Resources":{
 				"Icon": "Filter.png"
 			}			
@@ -59,6 +131,42 @@
 			"Label": "Moog Filter",
 			"Info": "Moog Filter",
 			"Category":"Filters/FX",
+
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        {
+          "Index": 1,
+          "Name": "Cutoff CV",
+          "Tooltip": "Cutoff CV"
+        },
+        {
+          "Index": 2,
+          "Name": "Emphasis CV",
+          "Tooltip": "Emphasis CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Low Pass Output",
+          "Tooltip": "Low Pass Output"
+        },
+        {
+          "Index": 1,
+          "Name": "Band Pass Output",
+          "Tooltip": "Band Pass Output"
+        },
+        {
+          "Index": 2,
+          "Name": "High Pass Output",
+          "Tooltip": "High Pass Output"
+        }
+      ],
 
 			"Resources":{
 				"Icon": "Filter.png"
@@ -76,6 +184,52 @@
 			"Info": "State Variable Filter",
 			"Category":"Filters/FX",
 
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        {
+          "Index": 1,
+          "Name": "Cutoff CV",
+          "Tooltip": "Cutoff CV"
+        },
+        {
+          "Index": 2,
+          "Name": "Emphasis CV",
+          "Tooltip": "Emphasis CV"
+        }
+      ],
+      
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Low Pass Output",
+          "Tooltip": "Low Pass Output"
+        },
+        {
+          "Index": 1,
+          "Name": "Band Pass Output",
+          "Tooltip": "Band Pass Output"
+        },
+        {
+          "Index": 2,
+          "Name": "High Pass Output",
+          "Tooltip": "High Pass Output"
+        },
+        {
+          "Index": 3,
+          "Name": "Notch Output",
+          "Tooltip": "Notch Output"
+        },
+        {
+          "Index": 4,
+          "Name": "Peaking Output",
+          "Tooltip": "Peaking Output"
+        }
+      ],
+      
 			"Resources":{
 				"Icon": "Filter.png"
 			}

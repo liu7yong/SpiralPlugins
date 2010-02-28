@@ -27,44 +27,56 @@
 
 using namespace Spiral;
 
-class Filter : public Device
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Filter"
+//  => 90ad6dd029d6e71cb86008c489933f5c (legacy == B)
+#define FilterID 90ad6dd029d6e71cb86008c489933f5c
+class Filter : Gumbo(Device)
 {
-DeviceDescriptionTemplate(Filter)
+  GumboClassDefinition(Filter, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(FilterID));
+      mVersion = 1;
+    },
+    {
+    },
+  );
 private:
   /* Instance State */
-	void SetupCoeffs();
+  void SetupCoeffs();
 
-	InputPort *input[3];
-	OutputPort *output;
+  InputPort *input[3];
+  OutputPort *output;
 
-	//FIXME NOT VOICE SAFE YET
+  //FIXME NOT VOICE SAFE YET
 
-	// Voice specifics
-	FILTER   iir; 
-   	
-	// Voice independant
-	FloatType    *coef; 
+  // Voice specifics
+  FILTER   iir; 
 
-	FloatProperty *fc;     // cutoff frequency  
-	FloatProperty *Q;      // Resonance > 1.0 < 1000  
+  // Voice independant
+  FloatType    *coef; 
 
-	//FIXME IS THIS VOICE SAFE??
-	FloatType   m_LastFC;
-	FloatType   m_LastQ;
+  FloatProperty *fc;     // cutoff frequency  
+  FloatProperty *Q;      // Resonance > 1.0 < 1000  
 
-	unsigned nInd; 
-	FloatType   a0, a1, a2, b0, b1, b2; 
-	FloatType   k;          // overall gain factor 
+  //FIXME - NOT VOICE SAFE
+  FloatType   m_LastFC;
+  FloatType   m_LastQ;
+
+  unsigned nInd; 
+  FloatType   a0, a1, a2, b0, b1, b2; 
+  FloatType   k;          // overall gain factor 
+protected:
+  virtual void Finalize();
+
 public:
- 	Filter(Patch *Host);
+  virtual Filter *Initialize(Patch *Host);
+  static inline Filter *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-	bool Setup();
-	void Shutdown();
+  bool CreatePorts();
 
-	bool CreatePorts();
-
-	virtual void Process(UnsignedType SampleCount);
-	virtual void Reset();
+  virtual void Process(UnsignedType SampleCount);
+  virtual void Reset();
 };
 
 #endif

@@ -20,7 +20,6 @@
 #include "FormantFilter.h"
 //#include "SpiralIcon.xpm"
 
-using namespace std;
 using namespace Spicy;
 using namespace Spiral;
 
@@ -56,25 +55,7 @@ const double coeff[5][11]= {
 };
 //---------------------------------------------------------------------------------
 
-//Initially commited by Dave, Thu Jan 2 01:56:48 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1041494208::FormantFilter"
-#define device_id 78bd5c2e8967c372c264d5745359fdf5// legacy == 2A
-#define device_version 1
-DevicePluginHook(FormantFilter, device_id, device_version)
-
-/*const DeviceDescription FormantFilter::mDescription = 
-{
-  UniqueID       : FormantFilter::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "David Griffiths",
-  Version        : 1,
-  Label          : "Formant Filter",
-  Info           : "Formant Filter",
-  Category       : "Filters/FX",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(FormantFilter, FormantFilterID)
 
 ///////////////////////////////////////////////////////
 const FloatType zero = 0.0; 
@@ -85,21 +66,25 @@ const FloatType four = 4.0;
 const FloatType five = 5.0; 
 const FloatType six = 6.0; 
 
-FormantFilter::FormantFilter(Patch *Host) :
-Device(Host),
-output(NULL),
-m_Vowel(new FloatProperty(DefaultLinearFlags,zero, zero, four, 0.0001, 0.001))
+FormantFilter *FormantFilter::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(m_Vowel, StringHash("VOWEL")/*"Vowel", "Vowel"*/);
+  Super::Initialize(Host);
+
+  m_Vowel = FloatProperty::New(DefaultLinearFlags,zero, zero, four, 0.0001, 0.001);
+  RegisterSharedProperty(m_Vowel, StringHash("VOWEL")/*"Vowel", "Vowel"*/);
+  
+  return this;
 }
 
 bool FormantFilter::CreatePorts()
 {
-	input[0] = new InputPort(this/*,  "Input"*/);
-	input[1] = new InputPort(this/*, "Vowel CV"*/);
-	output = new OutputPort(this/*, "Output"*/);
+  input[0] = InputPort::New(this/*,  "Input"*/);
+  output = OutputPort::New(this/*, "Output"*/);
 
-	return true;
+  /* These should be Control Ports, i.e., autocreated by the properties they are for */
+  input[1] = InputPort::New(this/*, "Vowel CV"*/);
+
+  return true;
 }
 
 void FormantFilter::Reset()
@@ -224,6 +209,7 @@ void FormantFilter::Process(UnsignedType SampleCount)
 	
 void FormantFilter::WipeMemory()
 {
+    /* FIXME - wouldn't a simple memset work better? */
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 10; j++)

@@ -110,7 +110,10 @@ private:
     
     return b(0);
   }
-	
+
+protected:
+  virtual void Finalize();
+
 public:
   virtual Noise *Initialize(Patch *Host);
   static inline Noise *New(Patch *Host) { return Alloc()->Initialize(Host); }

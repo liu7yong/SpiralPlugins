@@ -26,29 +26,43 @@
 
 using namespace Spiral;
 
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::MoogFilter"
+//  => d668f07998c4e09b149ae1570d2143cc (legacy == D)
+#define MoogFilterID d668f07998c4e09b149ae1570d2143cc
+
 class MoogFilter : public Device
 {
-DeviceDescriptionTemplate(MoogFilter)
+  GumboClassDefinition(MoogFilter, Device,
+    {
+      mUniqueID = String::New(XSTRINGIFY(MoogFilterID));
+      mVersion = 1;
+    },
+    {
+    },
+  );
 private:
   /* Instance State */
-	void WipeState();
+  void WipeState();
 
-	InputPort *input[3];
-	OutputPort *output[3];
+  InputPort *input[3];
+  OutputPort *output[3];
 
-	FloatProperty *Cutoff, *Resonance;
-	
-	FloatType fc;
-	FloatType f,p,q;
-	FloatType b0,b1,b2,b3,b4;
-	FloatType t1,t2;
+  FloatProperty *Cutoff, *Resonance;
+
+  //FIXME - NOT VOICE SAFE
+  FloatType fc;
+  FloatType f,p,q;
+  FloatType b0,b1,b2,b3,b4;
+  FloatType t1,t2;
 public:
- 	MoogFilter(Patch *Host);
-	
-	bool CreatePorts();
+  virtual MoogFilter *Initialize(Patch *Host);
+  static inline MoogFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-	virtual void Process(UnsignedType SampleCount);
-	virtual void Reset();
+  bool CreatePorts();
+
+  virtual void Process(UnsignedType SampleCount);
+  virtual void Reset();
 };
 
 #endif

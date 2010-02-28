@@ -12,6 +12,36 @@
 			"Info": "Audio Input/Output",
 			"Category": "Input/Output",
 
+      "Inputs":[
+        {
+          "Index": 0,
+          "Monophonic":true,
+          "Name": "Left Input",
+          "Tooltip": "Left Input"
+        },
+        {
+          "Index": 1,
+          "Monophonic":true,
+          "Name": "Right Input",
+          "Tooltip": "Right Input"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Monophonic":true,
+          "Name": "Left Output",
+          "Tooltip": "Left Output"
+        },
+        {
+          "Index": 1,
+          "Monophonic":true,
+          "Name": "Right Output",
+          "Tooltip": "Right Output"
+        }
+      ],
+      
 			"Resources": {
 				"Icon": "AudioOutput.png"
 			}
@@ -27,6 +57,27 @@
 			"Label": "Disk Writer",
 			"Info": "Disk Writer",
 			"Category": "Input/Output",
+
+      "Inputs":[
+        {
+          "Index": 0,
+          "Monophonic":true,
+          "Name": "Left Input",
+          "Tooltip": "Left Input"
+        },
+        {
+          "Index": 1,
+          "Monophonic":true,
+          "Name": "Right Input",
+          "Tooltip": "Right Input"
+        },
+        {
+          "Index": 2,
+          "Monophonic":true,
+          "Name": "Record CV",
+          "Tooltip": "Record CV"
+        }
+      ],
 
 			"Resources": {
 				"Icon": "DiskWriter.png"

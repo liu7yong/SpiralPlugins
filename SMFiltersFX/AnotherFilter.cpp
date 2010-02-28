@@ -21,105 +21,88 @@
 
 #define PI 3.141592654
 
-using namespace std;
-
 static const int GRANULARITY = 10;
 
-//Initially commited by Dave, Thu Jan 2 01:56:01 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1043740561::AnotherFilter"
-#define device_id 420c8ee427e7ae589bc74eb766e66323// legacy == 2B
-#define device_version 1
-
-DevicePluginHook(AnotherFilter, device_id, device_version)
-
-/*const DeviceDescription AnotherFilter::mDescription = 
-{
-  UniqueID       : AnotherFilter::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "David Griffiths",
-  Version        : 1,
-  Label          : "AnotherFilter",
-  Info           : "Another Filter",
-  Category       : "Filters/FX",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(AnotherFilter, AnotherFilterID)
 
 ///////////////////////////////////////////////////////
 
 const NumericPropertyValue zeroFloat = DefaultFloat(0.0f);
-AnotherFilter::AnotherFilter(Patch *Host) :
-	Device(Host),
 
-	Cutoff(new FloatProperty(DefaultLinearFlags,0.0, 0.0, 1.0, 0.0001, 0.0001)),
-	Resonance(new FloatProperty(DefaultLinearFlags,0.0, 0.0, 1.0, 0.00001, 0.00001)),
-
-	/* Voice State Properties */
-	m_VibraPosInd(NewStateProperty(zeroFloat)),
-	m_VibraSpeedInd(NewStateProperty(zeroFloat)),
-	m_ResonanceInd(NewStateProperty(zeroFloat)),
-	m_CutoffInd(NewStateProperty(zeroFloat))
+AnotherFilter *AnotherFilter::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
-	RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  Super::Initialize(Host),
+
+  Cutoff = FloatProperty::New(DefaultLinearFlags,0.0, 0.0, 1.0, 0.0001, 0.0001);
+  Resonance = FloatProperty::New(DefaultLinearFlags,0.0, 0.0, 1.0, 0.00001, 0.00001);
+  
+  RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  
+  /* Voice State Properties */
+  m_VibraPosInd = NewStateProperty(zeroFloat);
+  m_VibraSpeedInd = NewStateProperty(zeroFloat);
+  m_ResonanceInd = NewStateProperty(zeroFloat);
+  m_CutoffInd = NewStateProperty(zeroFloat);
+  
+  return this;
 }
 
 bool AnotherFilter::CreatePorts()
 {
-	input[0] = new InputPort(this/*, "Input"*/);
-	output[0] = new OutputPort(this/*, "LowPass Output"*/);
+  input[0] = InputPort::New(this/*, "Input"*/);
+  output[0] = OutputPort::New(this/*, "LowPass Output"*/);
 
-	/* These should be Control Ports, i.e., autocreated by the properties they are for */
-	input[1] = new InputPort(this/*, "Cutoff CV"*/);
-	input[2] = new InputPort(this/*, "Emphasis CV"*/);
+  /* These should be Control Ports, i.e., autocreated by the properties they are for */
+  input[1] = InputPort::New(this/*, "Cutoff CV"*/);
+  input[2] = InputPort::New(this/*, "Emphasis CV"*/);
 
-	return true;
+  return true;
 }
 
 void AnotherFilter::Process(UnsignedType SampleCount)
 {
-	FloatType cut, res, vibrapos, vibraspeed, resonance, cutoff;
-			
-	cut = Cutoff->Value.AsFloat;		
-	res = Resonance->Value.AsFloat;		
+  FloatType cut, res, vibrapos, vibraspeed, resonance, cutoff;
+          
+  cut = Cutoff->Value.AsFloat;		
+  res = Resonance->Value.AsFloat;		
 
-	vibrapos = StateValue(m_VibraPosInd)->AsFloat;
-	vibraspeed = StateValue(m_VibraSpeedInd)->AsFloat;
-	resonance = StateValue(m_ResonanceInd)->AsFloat;
-	cutoff = StateValue(m_CutoffInd)->AsFloat;
+  vibrapos = StateValue(m_VibraPosInd)->AsFloat;
+  vibraspeed = StateValue(m_VibraSpeedInd)->AsFloat;
+  resonance = StateValue(m_ResonanceInd)->AsFloat;
+  cutoff = StateValue(m_CutoffInd)->AsFloat;
 
-	for (UnsignedType n=0; n<SampleCount; n++)
-	{
-		if (n%GRANULARITY==0)
-		{
-			FloatType w,q;
+  for (UnsignedType n=0; n<SampleCount; n++)
+  {
+    if (n%GRANULARITY==0)
+    {
+      FloatType w,q;
 
-			w = 2.0*PI*((cut+GetInput(input[1], n))*(FloatType)(SignedType)10000+1.0)/(FloatType)(SignedType)SampleRate(); // Pole angle
-			q = 1.0-w/(2.0*(((res+GetInput(input[2], n))*(FloatType)(SignedType)10+1.0)+0.5/(1.0+w))+w-2.0); // Pole magnitude
-			resonance = q*q;
-			cutoff = resonance+1.0-2.0*cos(w)*q;
-		}
+      w = 2.0*PI*((cut+GetInput(input[1], n))*(FloatType)(SignedType)10000+1.0)/(FloatType)(SignedType)SampleRate(); // Pole angle
+      q = 1.0-w/(2.0*(((res+GetInput(input[2], n))*(FloatType)(SignedType)10+1.0)+0.5/(1.0+w))+w-2.0); // Pole magnitude
+      resonance = q*q;
+      cutoff = resonance+1.0-2.0*cos(w)*q;
+    }
 
-		/* Accelerate vibra by signal-vibra, multiplied by lowpasscutoff */
-		vibraspeed += (GetInput(input[0], n)*0.3f - vibrapos) * cutoff;
+    /* Accelerate vibra by signal-vibra, multiplied by lowpasscutoff */
+    vibraspeed += (GetInput(input[0], n)*0.3f - vibrapos) * cutoff;
 
-		/* Add velocity to vibra's position */
-		vibrapos += vibraspeed;
+    /* Add velocity to vibra's position */
+    vibrapos += vibraspeed;
 
-		/* Attenuate/amplify vibra's velocity by resonance */
-		vibraspeed *= resonance;
+    /* Attenuate/amplify vibra's velocity by resonance */
+    vibraspeed *= resonance;
 
-		// needs clipping :(
-		if (vibrapos>1.0f) vibrapos=1.0f;
-		if (vibrapos<-1.0f) vibrapos=-1.0f;
+    // needs clipping :(
+    vibrapos = MIN(vibrapos, 1.0f);
+    vibrapos = MAX(vibrapos, -1.0f);
 
-		/* Store new value */
-		SetOutput(output[0], n, vibrapos);
-	}
+    /* Store new value */
+    SetOutput(output[0], n, vibrapos);
+  }
 
-	StateValue(m_VibraPosInd)->AsFloat = vibrapos;
-	StateValue(m_VibraSpeedInd)->AsFloat = vibraspeed;
-	StateValue(m_ResonanceInd)->AsFloat = resonance;
-	StateValue(m_CutoffInd)->AsFloat = cutoff;
+  StateValue(m_VibraPosInd)->AsFloat = vibrapos;
+  StateValue(m_VibraSpeedInd)->AsFloat = vibraspeed;
+  StateValue(m_ResonanceInd)->AsFloat = resonance;
+  StateValue(m_CutoffInd)->AsFloat = cutoff;
 }

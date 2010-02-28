@@ -27,26 +27,7 @@ using namespace Spiral;
 static const FloatType PI = 3.141592654;
 static const int GRANULARITY = 10;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::SVFilter"
-#define device_id ba7dbd3d0088109861334e1787616b2e// legacy == C
-#define device_version 2
-
-DevicePluginHook(SVFilter, device_id, device_version)
-
-/*const DeviceDescription SVFilter::mDescription = 
-{
-  UniqueID       : SVFilter::mUniqueID,
-  AudioDriver    : false,
-  HostPlugin     : false,
-
-  Author         : "David Griffiths",
-  Version        : 2,
-  Label          : "SVFilter",
-  Info           : "State Variable Filter",
-  Category       : "Filters/FX",
-  PluginInstance : DevicePluginHookName(device_id)
-};*/
+DevicePluginHook(SVFilter, SVFilterID)
 
 ///////////////////////////////////////////////////////
 
@@ -58,39 +39,46 @@ const FloatType four = 4.0;
 const FloatType five = 5.0; 
 const FloatType six = 6.0; 
 
-SVFilter::SVFilter(Patch *Host) :
-	Device(Host),
-	Cutoff(new FloatProperty(DefaultLinearFlags, zero, zero, one, 0.0001, 0.001)),
-	Resonance(new FloatProperty(DefaultLinearFlags, zero, zero, one, 0.00001, 0.0001)),
-
-	fc(1000.0f),
-	q(zero),
-	m_f(zero),
-	m_q(zero),
-	m_qnrm(zero),
-	m_h(zero),
-	m_b(zero), 
-	m_l(zero),
-	m_p(zero),
-	m_n(zero)
+SVFilter *SVFilter::Initialize(Patch *Host)
 {
-	RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
-	RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  Super::Initialize(Host);
+  
+  Cutoff = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.0001, 0.001);
+  Resonance = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.00001, 0.0001);
+  
+  RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  
+  /* These should be internal state properties */
+  fc = 1000.0f;
+  q = zero;
+  m_f = zero;
+  m_q = zero;
+  m_qnrm = zero;
+  m_h = zero;
+  m_b = zero; 
+  m_l = zero;
+  m_p = zero;
+  m_n = zero;
+
+  return this;
 }
 
 bool SVFilter::CreatePorts()
 {
-	new InputPort(this/*, "Input"*/);	
-	new InputPort(this/*, "Cutoff CV"*/);	
-	new InputPort(this/*, "Emphasis CV"*/);	
+  InputPort::New(this/*, "Input"*/);	
 
-	new OutputPort(this/*,  "LowPass output"*/);
-	new OutputPort(this/*,  "BandPass output"*/);
-	new OutputPort(this/*,  "HighPass output"*/);
-	new OutputPort(this/*,  "Notch output"*/);
-	new OutputPort(this/*,  "Peaking output"*/);
+  OutputPort::New(this/*,  "LowPass output"*/);
+  OutputPort::New(this/*,  "BandPass output"*/);
+  OutputPort::New(this/*,  "HighPass output"*/);
+  OutputPort::New(this/*,  "Notch output"*/);
+  OutputPort::New(this/*,  "Peaking output"*/);
 
-	return true;
+  /* These should be Control Ports, i.e., autocreated by the properties they are for */
+  InputPort::New(this/*, "Cutoff CV"*/);	
+  InputPort::New(this/*, "Emphasis CV"*/);	
+
+  return true;
 }
 
 void SVFilter::Reset()
@@ -116,13 +104,13 @@ void SVFilter::Process(UnsignedType SampleCount)
 		{
 			FloatType cv1, cv2;
 
-			cv1 = GetInput(m_InputPorts[1],n);
+			cv1 = GetInput(GetInputPort(1),n);
 			if (NUMBER_IS_INSANE(cv1))
 				cv1 = zero;
 
 			fc = 4000.0f*(cut+cv1);
 
-			cv2 = GetInput(m_InputPorts[2],n);
+			cv2 = GetInput(GetInputPort(2),n);
 			if (NUMBER_IS_INSANE(cv2))
 				cv2=zero;
 
@@ -130,7 +118,7 @@ void SVFilter::Process(UnsignedType SampleCount)
 			m_f = two*sin(PI*fc/(FloatType)(SignedType)SampleRate());
 		}
 
-		in = GetInput(m_InputPorts[0],n);
+		in = GetInput(GetInputPort(0),n);
 
 		if (NUMBER_IS_INSANE(in))
 			in=zero;
@@ -154,11 +142,11 @@ void SVFilter::Process(UnsignedType SampleCount)
 			m_p = m_l - m_h;
 		}
 		
-		SetOutput(m_OutputPorts[0],n,m_l);
-		SetOutput(m_OutputPorts[1],n,m_b);
-		SetOutput(m_OutputPorts[2],n,m_h);
-		SetOutput(m_OutputPorts[3],n,m_n);
-		SetOutput(m_OutputPorts[4],n,m_p);
+		SetOutput(GetOutputPort(0),n,m_l);
+		SetOutput(GetOutputPort(1),n,m_b);
+		SetOutput(GetOutputPort(2),n,m_h);
+		SetOutput(GetOutputPort(3),n,m_n);
+		SetOutput(GetOutputPort(4),n,m_p);
 	}
 
 }

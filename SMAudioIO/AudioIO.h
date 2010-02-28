@@ -63,15 +63,12 @@ public:
 
 	static inline AudioIO *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-	bool Setup();
-
 	bool CreatePorts();
 
 	/* General Plugin Function */
 	virtual	void	Process(UnsignedType SampleCount);
 	//virtual void	ExecuteCommands();
 
-	virtual void	Shutdown();
 	virtual void	Reset();
 	
 	/* Audio Driver Specific Functions */

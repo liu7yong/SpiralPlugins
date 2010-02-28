@@ -25,11 +25,21 @@
 
 using namespace Spiral;
 
-// A State Variable Filter
-class AnotherFilter : public Device
+//Initially commited by Dave, Thu Jan 2 01:56:01 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1043740561::AnotherFilter"
+//  => 420c8ee427e7ae589bc74eb766e66323 (legacy == 2B)
+#define AnotherFilterID 420c8ee427e7ae589bc74eb766e66323
+class AnotherFilter : Gumbo(Device)
 {
-DeviceDescriptionTemplate(AnotherFilter)
-private:
+  GumboClassDefinition(AnotherFilter, Device,
+    {
+     mUniqueID = String::New(XSTRINGIFY(AnotherFilterID));
+     mVersion = 1;
+    },
+    {
+    },
+  );
+ private:
 	// Shared Property Values
 	FloatProperty *Cutoff, *Resonance;
 
@@ -40,7 +50,8 @@ private:
 	OutputPort *output[1];
 
 public:
- 	AnotherFilter(Patch *Host);
+ 	virtual AnotherFilter *Initialize(Patch *Host);
+    static inline AnotherFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
 	bool CreatePorts();
 	
