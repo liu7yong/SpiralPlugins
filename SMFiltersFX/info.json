@@ -1,58 +1,16 @@
 {
-	"Spiral Devices": {
-		"420c8ee427e7ae589bc74eb766e66323": { 
-			"Author": "David Griffiths",
-			"Version":1,
-			"API Version":0.4,
+  "Spiral Devices": {
+    "420c8ee427e7ae589bc74eb766e66323": { 
+      "Author": "David Griffiths",
+      "Version":1,
+      "API Version":0.4,
 
-			"AudioDriver": false,
-			"HostPlugin": false,
+      "AudioDriver": false,
+      "HostPlugin": false,
 
-			"Label": "Another Filter",
-			"Info": "Another Filter",
-			"Category":"Filters/FX",
-
-      "Inputs":[
-        {
-          "Index": 0,
-          "Name": "Input",
-          "Tooltip": "Input"
-        },
-        {
-          "Index": 1,
-          "Name": "Cutoff CV",
-          "Tooltip": "Cutoff CV"
-        },
-        {
-          "Index": 2,
-          "Name": "Emphasis CV",
-          "Tooltip": "Emphasis CV"
-        }
-      ],
-
-      "Outputs":[
-        {
-          "Index": 0,
-          "Name": "Output",
-          "Tooltip": "Low Pass Output"
-        }
-      ],
-			
-			"Resources":{
-					"Icon": "Filter.png"
-			}
-		},
-		"90ad6dd029d6e71cb86008c489933f5c": { 
-			"Author": "David Griffiths",
-			"Version":1,
-			"API Version":0.4,
-
-			"AudioDriver": false,
-			"HostPlugin": false,
-
-			"Label": "Filter",
-			"Info": "Filter",
-			"Category":"Filters/FX",
+      "Label": "Another Filter",
+      "Info": "Another Filter",
+      "Category":"Filters/FX",
 
       "Inputs":[
         {
@@ -79,22 +37,64 @@
           "Tooltip": "Low Pass Output"
         }
       ],
+      
+      "Resources":{
+          "Icon": "Filter.png"
+      }
+    },
+    "90ad6dd029d6e71cb86008c489933f5c": { 
+      "Author": "David Griffiths",
+      "Version":1,
+      "API Version":0.4,
 
-			"Resources":{
-				"Icon": "Filter.png"
-			}
-		},
-		"78bd5c2e8967c372c264d5745359fdf5": { 
-			"Author": "David Griffiths",
-			"Version":1,
-			"API Version":0.4,
+      "AudioDriver": false,
+      "HostPlugin": false,
 
-			"AudioDriver": false,
-			"HostPlugin": false,
+      "Label": "Filter",
+      "Info": "Filter",
+      "Category":"Filters/FX",
 
-			"Label": "Formant Filter",
-			"Info": "Formant Filter",
-			"Category":"Filters/FX",
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        {
+          "Index": 1,
+          "Name": "Cutoff CV",
+          "Tooltip": "Cutoff CV"
+        },
+        {
+          "Index": 2,
+          "Name": "Emphasis CV",
+          "Tooltip": "Emphasis CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Output",
+          "Tooltip": "Low Pass Output"
+        }
+      ],
+
+      "Resources":{
+        "Icon": "Filter.png"
+      }
+    },
+    "78bd5c2e8967c372c264d5745359fdf5": { 
+      "Author": "David Griffiths",
+      "Version":1,
+      "API Version":0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Formant Filter",
+      "Info": "Formant Filter",
+      "Category":"Filters/FX",
 
       "Inputs":[
         {
@@ -116,21 +116,21 @@
           "Tooltip": "Low Pass Output"
         }
       ],
-			"Resources":{
-				"Icon": "Filter.png"
-			}			
-		},
-		"d668f07998c4e09b149ae1570d2143cc": { 
-			"Author": "David Griffiths",
-			"Version":1,
-			"API Version":0.4,
+      "Resources":{
+        "Icon": "Filter.png"
+      }     
+    },
+    "d668f07998c4e09b149ae1570d2143cc": { 
+      "Author": "David Griffiths",
+      "Version":1,
+      "API Version":0.4,
 
-			"AudioDriver": false,
-			"HostPlugin": false,
+      "AudioDriver": false,
+      "HostPlugin": false,
 
-			"Label": "Moog Filter",
-			"Info": "Moog Filter",
-			"Category":"Filters/FX",
+      "Label": "Moog Filter",
+      "Info": "Moog Filter",
+      "Category":"Filters/FX",
 
       "Inputs":[
         {
@@ -168,21 +168,21 @@
         }
       ],
 
-			"Resources":{
-				"Icon": "Filter.png"
-			}
-		},
-		"ba7dbd3d0088109861334e1787616b2e": { 
-			"Author": "David Griffiths",
-			"Version":2,
-			"API Version":0.4,
+      "Resources":{
+        "Icon": "Filter.png"
+      }
+    },
+    "ba7dbd3d0088109861334e1787616b2e": { 
+      "Author": "David Griffiths",
+      "Version":2,
+      "API Version":0.4,
 
-			"AudioDriver": false,
-			"HostPlugin": false,
+      "AudioDriver": false,
+      "HostPlugin": false,
 
-			"Label": "SVFilter",
-			"Info": "State Variable Filter",
-			"Category":"Filters/FX",
+      "Label": "SVFilter",
+      "Info": "State Variable Filter",
+      "Category":"Filters/FX",
 
       "Inputs":[
         {
@@ -230,9 +230,9 @@
         }
       ],
       
-			"Resources":{
-				"Icon": "Filter.png"
-			}
-		}
-	}
+      "Resources":{
+        "Icon": "Filter.png"
+      }
+    }
+  }
 }
