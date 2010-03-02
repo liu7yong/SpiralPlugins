@@ -20,7 +20,6 @@
 #include "SVFilter.h"
 //#include "SpiralIcon.xpm"
 
-using namespace std;
 using namespace Spicy;
 using namespace Spiral;
 

@@ -40,10 +40,6 @@ class AudioIO : Gumbo(AudioDriver)
     },
   );
 private:
-  /* Instance State */
-	InputPort *in[2];
-	OutputPort *out[2];
-
 	//NumericProperty m_Volume, *m_Mode;
 	FloatType m_Volume;
 	int m_Mode;
@@ -67,7 +63,6 @@ public:
 
 	/* General Plugin Function */
 	virtual	void	Process(UnsignedType SampleCount);
-	//virtual void	ExecuteCommands();
 
 	virtual void	Reset();
 	

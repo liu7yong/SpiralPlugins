@@ -38,7 +38,7 @@ void WaveTable::Class::WriteWaves()
   for (UnsignedType n=0; n<NUM_TABLES; n++)
     mTable->Append(Sample::New(DEFAULT_TABLE_LEN));
 
-  FloatType RadCycle = (M_PI/180)*360;
+  FloatType RadCycle = M_PI*2;
   FloatType Pos=0, v=0;
   FloatType HalfTab=DEFAULT_TABLE_LEN/2;
   

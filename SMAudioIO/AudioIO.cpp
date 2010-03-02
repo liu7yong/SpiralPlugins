@@ -86,11 +86,11 @@ AudioIO *AudioIO::Initialize(Patch *Host)
 
 bool AudioIO::CreatePorts()
 {
-  in[0] = InputPort::New(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-  in[1] = InputPort::New(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  InputPort::New(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  InputPort::New(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
 
-  out[0] = OutputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
-  out[1] = OutputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
+  OutputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
+  OutputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
 
   return true;
 }
@@ -135,11 +135,38 @@ void AudioIO::Process(UnsignedType SampleCount)
 
 	if (m_RealMode==2 || m_RealMode==3)
 	{
-      OUTPUTCLIENT::Get()->SendStereo(in[0],in[1]);
+      OUTPUTCLIENT::Get()->SendStereo(GetInputPort(0),GetInputPort(1));
 	}
 
 	if (m_RealMode==1 || m_RealMode==3)
-           OUTPUTCLIENT::Get()->GetStereo(out[0],out[1]);
+           OUTPUTCLIENT::Get()->GetStereo(GetOutputPort(0),GetOutputPort(1));
+}
+
+void AudioIO::ProcessAudio()
+{
+  if (!m_RefCount)
+    return;
+  
+      if (m_RealMode == 0)
+      {
+              m_RealMode=2;
+              Reset();
+      }
+
+	if ((SampleCount() != OUTPUTCLIENT::Get()->SampleCount())
+		|| (SampleRate() != OUTPUTCLIENT::Get()->SampleRate()))
+	{
+		ChangeBufferAndSampleRate(OUTPUTCLIENT::Get()->SampleCount(), OUTPUTCLIENT::Get()->SampleRate(), m_Parent);
+	}
+
+	// Only Play() once per set of plugins
+	m_NoExecuted--;
+	if (m_NoExecuted<=0)
+	{
+		if (m_RealMode==1 || m_RealMode==3) OUTPUTCLIENT::Get()->Read();
+		if (m_RealMode==2 || m_RealMode==3) OUTPUTCLIENT::Get()->Play();
+		m_NoExecuted=m_RefCount;
+	}
 }
 
 /*void AudioIO::ExecuteCommands()
@@ -196,30 +223,3 @@ void AudioIO::Process(UnsignedType SampleCount)
 		}
         }
 }*/
-
-void AudioIO::ProcessAudio()
-{
-  if (!m_RefCount)
-    return;
-  
-      if (m_RealMode == 0)
-      {
-              m_RealMode=2;
-              Reset();
-      }
-
-	if ((SampleCount() != OUTPUTCLIENT::Get()->SampleCount())
-		|| (SampleRate() != OUTPUTCLIENT::Get()->SampleRate()))
-	{
-		ChangeBufferAndSampleRate(OUTPUTCLIENT::Get()->SampleCount(), OUTPUTCLIENT::Get()->SampleRate(), m_Parent);
-	}
-
-	// Only Play() once per set of plugins
-	m_NoExecuted--;
-	if (m_NoExecuted<=0)
-	{
-		if (m_RealMode==1 || m_RealMode==3) OUTPUTCLIENT::Get()->Read();
-		if (m_RealMode==2 || m_RealMode==3) OUTPUTCLIENT::Get()->Play();
-		m_NoExecuted=m_RefCount;
-	}
-}

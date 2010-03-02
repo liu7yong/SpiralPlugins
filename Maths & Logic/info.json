@@ -1,0 +1,186 @@
+{
+  "Spiral Devices": {
+    "ede0519adcefedfb270bf0613c5fc210": {
+      "Author": "David Griffiths",
+      "Version": 1,
+      "API Version": 0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Trig",
+      "Info": "Trig",
+      "Category": "Maths/Logic",
+
+      "Properties":[
+        {
+          "COMMENTS": [
+            "Rough early concept for describing properties. Still needs unique id.", 
+            "Also this would be better off as a named set property."
+          ],
+                 
+          "Name": "Operator",
+          "Type": "Signed Integer",
+          "Default": 1,
+          
+          "Flags":
+          {
+            "WriteOnly": true,
+            "ClampLower": true,
+            "ClampUpper": true
+          },
+          
+          "Bounds":
+          {
+            "Min":0,
+            "Max":3,
+            "SmallStep": 1,
+            "Step":1
+          }
+        }
+      ],
+      
+      "Inputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
+          ]
+        }, 
+
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Input",
+          "Tooltip": "Input"
+        }
+      ],
+
+      "Outputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
+          ]
+        }, 
+        
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+      
+      "Resources": {
+        "Icon": "Trig.png"
+      }
+    },
+    
+    "3bf687891e0216a806077e1ec1f4a4aa": {
+      "Author": "David Griffiths",
+      "Version": 2,
+      "API Version": 0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Operator",
+      "Info": "Operator",
+      "Category": "Maths/Logic",
+
+      "Properties":[
+        {
+          "COMMENTS": [
+            "Rough early concept for describing properties. Still needs unique id."
+          ]
+        },
+    
+        {
+          "COMMENTS": [
+            "This would be better off as a named set property."
+          ],
+                 
+          "Name": "Operator",
+          "Type": "Signed Integer",
+          "Default": 1,
+          
+          "Flags":
+          {
+            "WriteOnly": true,
+            "ClampLower": true,
+            "ClampUpper": true
+          },
+          
+          "Bounds":
+          {
+            "Min":0,
+            "Max":3,
+            "SmallStep": 1,
+            "Step":1
+          }
+        },
+
+        {
+          "Name": "Constant",
+          "Type": "Float",
+          "Default": 0.0,
+          
+          "Flags":
+          {
+            "WriteOnly": true,
+            "ClampLower": true,
+            "ClampUpper": true
+          },
+          
+          "Bounds":
+          {
+            "Min": 0,
+            "Max": 1,
+            "SmallStep": 0.01,
+            "Step": 0.1
+          }
+        }
+      ],
+      
+      "Inputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
+          ]
+        }, 
+
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Input 1",
+          "Tooltip": "Input 1"
+        },
+        
+        {
+          "Index": 1,
+          "Monophonic":false,
+          "Name": "Input 2",
+          "Tooltip": "Input 2"
+        }
+      ],
+
+      "Outputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
+          ]
+        }, 
+        
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+      
+      "Resources": {
+        "Icon": "Operator.png"
+      }
+    }
+   }
+}
