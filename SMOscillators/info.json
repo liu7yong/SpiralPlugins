@@ -126,6 +126,48 @@
       "Resources":{
         "Icon": "ExtraNoise.png"
       }
+    },
+    "7f4e8dfa239d37c75b7ecce1a4048da9": {
+      "Author": "David Griffiths",
+      "Version":1,
+      "API Version":0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Oscillator",
+      "Info": "Oscillator",
+      "Category":"Oscillators",
+
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Frequency",
+          "Tooltip": "Frequency CV"
+        },
+        {
+          "Index": 1,
+          "Name": "PulseWidth",
+          "Tooltip": "PulseWidth CV"
+        },
+        {
+          "Index": 2,
+          "Name": "Sample & Hold Length",
+          "Tooltip": "Sample & Hold Length CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+
+      "Resources":{
+        "Icon": "WaveTable.png"
+      }
     }
   }
 }

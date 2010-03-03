@@ -18,8 +18,6 @@
 #include <math.h>
 #include "WaveTable.h"
 
-using namespace std;
-
 static const unsigned int NUM_TABLES = 8;
 static const unsigned int DEFAULT_TABLE_LEN = 1024;
 
@@ -128,11 +126,6 @@ bool WaveTable::CreatePorts()
   output = OutputPort::New(this/*, "Output"*/);
 	
   return true;
-}
-
-void WaveTable::Reset()
-{
-	Device::Reset();
 }
 
 void WaveTable::Process(UnsignedType SampleCount)

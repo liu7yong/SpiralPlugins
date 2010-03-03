@@ -25,7 +25,6 @@
 #include <SpiralCore/Patch.h>
 
 using namespace Spiral;
-using namespace Spiral;
 
 //WaveTable Was initially commited by Dave, Sun Jul 28 23:18:17 2002 UTC
 //md5 -s "Dave Griffiths::dave@pawfal.org::1027916297::WaveTable"
@@ -97,7 +96,6 @@ public:
   bool CreatePorts();
 
   virtual void 		Process(UnsignedType SampleCount);
-  virtual void		Reset();
   
   void NoteTrigger(int V,int s,int v);
 };

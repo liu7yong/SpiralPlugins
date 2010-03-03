@@ -107,6 +107,8 @@
 		B4B1425F113EA39500DCAC2D /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4B1422E113EA23700DCAC2D /* info.json */; };
 		B4B14302113EB91900DCAC2D /* Amp.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B14301113EB90200DCAC2D /* Amp.h */; };
 		B4B14303113EB91C00DCAC2D /* Amp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B14300113EB90200DCAC2D /* Amp.cpp */; };
+		B4B1437A113EF5D200DCAC2D /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B14378113EF5D200DCAC2D /* Oscillator.cpp */; };
+		B4B1437B113EF5D200DCAC2D /* Oscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B14379113EF5D200DCAC2D /* Oscillator.h */; };
 		B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2919111A542C00EC7A4E /* AudioIO.h */; };
 		B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291C111A542C00EC7A4E /* DiskWriter.h */; };
 		B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291E111A542C00EC7A4E /* ESDClient.h */; };
@@ -292,6 +294,8 @@
 		B4B14245113EA2B600DCAC2D /* SMAmpsAndMixers.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMAmpsAndMixers.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B14300113EB90200DCAC2D /* Amp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Amp.cpp; sourceTree = "<group>"; };
 		B4B14301113EB90200DCAC2D /* Amp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amp.h; sourceTree = "<group>"; };
+		B4B14378113EF5D200DCAC2D /* Oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Oscillator.cpp; sourceTree = "<group>"; };
+		B4B14379113EF5D200DCAC2D /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
 		B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMOscillators.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE2919111A542C00EC7A4E /* AudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioIO.h; sourceTree = "<group>"; };
@@ -516,6 +520,8 @@
 				B4EE2938111A542C00EC7A4E /* LFO.cpp */,
 				B4EE293B111A542C00EC7A4E /* Noise.h */,
 				B4EE293A111A542C00EC7A4E /* Noise.cpp */,
+				B4B14379113EF5D200DCAC2D /* Oscillator.h */,
+				B4B14378113EF5D200DCAC2D /* Oscillator.cpp */,
 				B4EE293D111A542C00EC7A4E /* WaveTable.h */,
 				B4EE293C111A542C00EC7A4E /* WaveTable.cpp */,
 			);
@@ -588,6 +594,7 @@
 				B4EE2993111A564F00EC7A4E /* LFO.h in Headers */,
 				B4EE2994111A564F00EC7A4E /* Noise.h in Headers */,
 				B4EE2995111A564F00EC7A4E /* WaveTable.h in Headers */,
+				B4B1437B113EF5D200DCAC2D /* Oscillator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +764,7 @@
 				B4EE2997111A567400EC7A4E /* LFO.cpp in Sources */,
 				B4EE2998111A567400EC7A4E /* Noise.cpp in Sources */,
 				B4EE2999111A567400EC7A4E /* WaveTable.cpp in Sources */,
+				B4B1437A113EF5D200DCAC2D /* Oscillator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
