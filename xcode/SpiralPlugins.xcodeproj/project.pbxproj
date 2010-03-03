@@ -109,6 +109,8 @@
 		B4B14303113EB91C00DCAC2D /* Amp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B14300113EB90200DCAC2D /* Amp.cpp */; };
 		B4B1437A113EF5D200DCAC2D /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B14378113EF5D200DCAC2D /* Oscillator.cpp */; };
 		B4B1437B113EF5D200DCAC2D /* Oscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B14379113EF5D200DCAC2D /* Oscillator.h */; };
+		B4B143CF113EFE5800DCAC2D /* RingMod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B143CD113EFE5800DCAC2D /* RingMod.cpp */; };
+		B4B143D0113EFE5800DCAC2D /* RingMod.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B143CE113EFE5800DCAC2D /* RingMod.h */; };
 		B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2919111A542C00EC7A4E /* AudioIO.h */; };
 		B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291C111A542C00EC7A4E /* DiskWriter.h */; };
 		B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291E111A542C00EC7A4E /* ESDClient.h */; };
@@ -296,6 +298,8 @@
 		B4B14301113EB90200DCAC2D /* Amp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amp.h; sourceTree = "<group>"; };
 		B4B14378113EF5D200DCAC2D /* Oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Oscillator.cpp; sourceTree = "<group>"; };
 		B4B14379113EF5D200DCAC2D /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
+		B4B143CD113EFE5800DCAC2D /* RingMod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingMod.cpp; sourceTree = "<group>"; };
+		B4B143CE113EFE5800DCAC2D /* RingMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingMod.h; sourceTree = "<group>"; };
 		B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMOscillators.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE2919111A542C00EC7A4E /* AudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioIO.h; sourceTree = "<group>"; };
@@ -499,6 +503,8 @@
 				B4EE292C111A542C00EC7A4E /* FormantFilter.cpp */,
 				B4EE292F111A542C00EC7A4E /* MoogFilter.h */,
 				B4EE292E111A542C00EC7A4E /* MoogFilter.cpp */,
+				B4B143CE113EFE5800DCAC2D /* RingMod.h */,
+				B4B143CD113EFE5800DCAC2D /* RingMod.cpp */,
 				B4EE2931111A542C00EC7A4E /* SVFilter.h */,
 				B4EE2930111A542C00EC7A4E /* SVFilter.cpp */,
 				B4EE2933111A542C00EC7A4E /* iir_filter.h */,
@@ -619,6 +625,7 @@
 				B4EE29D8111A57C300EC7A4E /* MoogFilter.h in Headers */,
 				B4EE29DA111A57C300EC7A4E /* SVFilter.h in Headers */,
 				B4EE29DC111A57C300EC7A4E /* iir_filter.h in Headers */,
+				B4B143D0113EFE5800DCAC2D /* RingMod.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +795,7 @@
 				B4EE29D9111A57C300EC7A4E /* MoogFilter.cpp in Sources */,
 				B4EE29DB111A57C300EC7A4E /* SVFilter.cpp in Sources */,
 				B4EE29DD111A57C300EC7A4E /* iir_filter.cpp in Sources */,
+				B4B143CF113EFE5800DCAC2D /* RingMod.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

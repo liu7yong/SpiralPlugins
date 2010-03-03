@@ -16,8 +16,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */ 
 
-#ifndef __MoogFilter_H__
-#define __MoogFilter_H__
+#ifndef __RINGMOD_H__
+#define __RINGMOD_H__
 
 #include <SpiralCore/Property.h>
 #include <SpiralCore/Port.h>
@@ -26,43 +26,34 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::MoogFilter"
-//  => d668f07998c4e09b149ae1570d2143cc (legacy == D)
-#define MoogFilterID d668f07998c4e09b149ae1570d2143cc
+//Initially commited by Dave, 
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::RingMod"
+//  => f9587ded2aed867d761fca167c1d3960 (legacy == 0xA)
+#define RingModID f9587ded2aed867d761fca167c1d3960
 
-class MoogFilter : Gumbo(Device)
+class RingMod : Gumbo(Device)
 {
-  GumboClassDefinition(MoogFilter, Device,
+  GumboClassDefinition(RingMod, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(MoogFilterID));
+      mUniqueID = String::New(XSTRINGIFY(RingModID));
       mVersion = 1;
     },
     {
     },
   );
 private:
-  /* Instance State */
-  void WipeState();
+	FloatProperty *m_Amount;
 
-  InputPort *input[3];
-  OutputPort *output[3];
+protected:
+  virtual void Finalize();
 
-  FloatProperty *Cutoff, *Resonance;
-
-  //FIXME - NOT VOICE SAFE
-  FloatType fc;
-  FloatType f,p,q;
-  FloatType b0,b1,b2,b3,b4;
-  FloatType t1,t2;
 public:
-  virtual MoogFilter *Initialize(Patch *Host);
-  static inline MoogFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }
+ 	virtual RingMod* Initialize(Patch *Host);
+  static inline RingMod *New(Patch *Host) { return Alloc()->Initialize(Host); }
+  
+	bool CreatePorts();
 
-  bool CreatePorts();
-
-  virtual void Process(UnsignedType SampleCount);
-  virtual void Reset();
+	virtual void Process(UnsignedType SampleCount);
 };
 
 #endif

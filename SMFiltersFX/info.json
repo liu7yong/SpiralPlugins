@@ -172,6 +172,48 @@
         "Icon": "Filter.png"
       }
     },
+    "f9587ded2aed867d761fca167c1d3960": { 
+      "Author": "David Griffiths",
+      "Version":1,
+      "API Version":0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "RingMod",
+      "Info": "RingMod",
+      "Category":"Filters/FX",
+
+      "Inputs":[
+        {
+          "Index": 0,
+          "Name": "Input 1",
+          "Tooltip": "Input 1"
+        },
+        {
+          "Index": 1,
+          "Name": "Input 2",
+          "Tooltip": "Input 2"
+        },
+        {
+          "Index": 2,
+          "Name": "Emphasis CV",
+          "Tooltip": "Emphasis CV"
+        }
+      ],
+
+      "Outputs":[
+        {
+          "Index": 0,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+
+      "Resources":{
+        "Icon": "RingMod.png"
+      }
+    },
     "ba7dbd3d0088109861334e1787616b2e": { 
       "Author": "David Griffiths",
       "Version":2,
