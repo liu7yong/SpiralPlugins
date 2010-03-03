@@ -111,6 +111,10 @@
 		B4B1437B113EF5D200DCAC2D /* Oscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B14379113EF5D200DCAC2D /* Oscillator.h */; };
 		B4B143CF113EFE5800DCAC2D /* RingMod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B143CD113EFE5800DCAC2D /* RingMod.cpp */; };
 		B4B143D0113EFE5800DCAC2D /* RingMod.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B143CE113EFE5800DCAC2D /* RingMod.h */; };
+		B4B1442D113F069E00DCAC2D /* Switch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1442B113F069E00DCAC2D /* Switch.cpp */; };
+		B4B1442E113F069E00DCAC2D /* Switch.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B1442C113F069E00DCAC2D /* Switch.h */; };
+		B4B1443F113F0A7F00DCAC2D /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1443D113F0A7F00DCAC2D /* Counter.cpp */; };
+		B4B14440113F0A7F00DCAC2D /* Counter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B1443E113F0A7F00DCAC2D /* Counter.h */; };
 		B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2919111A542C00EC7A4E /* AudioIO.h */; };
 		B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291C111A542C00EC7A4E /* DiskWriter.h */; };
 		B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291E111A542C00EC7A4E /* ESDClient.h */; };
@@ -300,6 +304,10 @@
 		B4B14379113EF5D200DCAC2D /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
 		B4B143CD113EFE5800DCAC2D /* RingMod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingMod.cpp; sourceTree = "<group>"; };
 		B4B143CE113EFE5800DCAC2D /* RingMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingMod.h; sourceTree = "<group>"; };
+		B4B1442B113F069E00DCAC2D /* Switch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Switch.cpp; sourceTree = "<group>"; };
+		B4B1442C113F069E00DCAC2D /* Switch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Switch.h; sourceTree = "<group>"; };
+		B4B1443D113F0A7F00DCAC2D /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
+		B4B1443E113F0A7F00DCAC2D /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMOscillators.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE2919111A542C00EC7A4E /* AudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioIO.h; sourceTree = "<group>"; };
@@ -430,8 +438,12 @@
 			isa = PBXGroup;
 			children = (
 				B4B1411E113DADA500DCAC2D /* Resources */,
+				B4B1443E113F0A7F00DCAC2D /* Counter.h */,
+				B4B1443D113F0A7F00DCAC2D /* Counter.cpp */,
 				B4B1418E113DD28F00DCAC2D /* Operator.h */,
 				B4B1418D113DD28F00DCAC2D /* Operator.cpp */,
+				B4B1442C113F069E00DCAC2D /* Switch.h */,
+				B4B1442B113F069E00DCAC2D /* Switch.cpp */,
 				B4B1411C113DAD9400DCAC2D /* Trig.h */,
 				B4B1411B113DAD9400DCAC2D /* Trig.cpp */,
 			);
@@ -580,6 +592,8 @@
 			files = (
 				B4B14190113DD71300DCAC2D /* Operator.h in Headers */,
 				B4B14124113DADEB00DCAC2D /* Trig.h in Headers */,
+				B4B1442E113F069E00DCAC2D /* Switch.h in Headers */,
+				B4B14440113F0A7F00DCAC2D /* Counter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +765,8 @@
 			files = (
 				B4B1418F113DD71100DCAC2D /* Operator.cpp in Sources */,
 				B4B14123113DADE900DCAC2D /* Trig.cpp in Sources */,
+				B4B1442D113F069E00DCAC2D /* Switch.cpp in Sources */,
+				B4B1443F113F0A7F00DCAC2D /* Counter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

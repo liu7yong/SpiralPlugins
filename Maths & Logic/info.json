@@ -181,6 +181,160 @@
       "Resources": {
         "Icon": "Operator.png"
       }
+    },
+    "18a0084d130df33f1ae53a08ccb2f558": {
+      "Author": "David Griffiths",
+      "Version": 1,
+      "API Version": 0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Switch",
+      "Info": "Switch",
+      "Category": "Maths/Logic",
+
+      "Properties":[
+        {
+          "COMMENTS": [
+            "Rough early concept for describing properties. Still needs unique id."
+          ]
+        },
+    
+        {
+          "Name": "Mix",
+          "Type": "Boolean",
+          "Default": false,
+          
+          "Flags":
+          {
+            "WriteOnly": true
+          }
+        }
+      ],
+      
+      "Inputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
+          ]
+        }, 
+
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Input 1",
+          "Tooltip": "Input 1"
+        },
+        
+        {
+          "Index": 1,
+          "Monophonic":false,
+          "Name": "Input 2",
+          "Tooltip": "Input 2"
+        },
+        
+        {
+          "Index": 2,
+          "Monophonic":false,
+          "Name": "CV",
+          "Tooltip": "CV"
+        }
+      ],
+
+      "Outputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
+          ]
+        }, 
+        
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+      
+      "Resources": {
+        "Icon": "Switch.png"
+      }
+    },
+    "d56ffbfa40b244e2976ec36ce4d5b1a4": {
+      "Author": "David Griffiths",
+      "Version": 1,
+      "API Version": 0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Counter",
+      "Info": "Counter",
+      "Category": "Maths/Logic",
+
+      "Properties":[
+        {
+          "COMMENTS": [
+            "Rough early concept for describing properties. Still needs unique id."
+          ]
+        },
+    
+        {
+          "Name": "Count",
+          "Type": "Signed Integer",
+          "Default": 4,
+
+          "Flags":
+          {
+            "WriteOnly": true,
+            "ClampLower": true,
+            "ClampUpper": true
+          },
+          
+          "Bounds":
+          {
+            "Min": 0,
+            "Max": 10000,
+            "SmallStep": 1,
+            "Step": 1
+          }
+        }
+      ],
+      
+      "Inputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
+          ]
+        }, 
+
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Input",
+          "Tooltip": "Input"
+        }
+      ],
+
+      "Outputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
+          ]
+        }, 
+        
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+      
+      "Resources": {
+        "Icon": "Counter.png"
+      }
     }
    }
 }
