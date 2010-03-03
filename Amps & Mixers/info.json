@@ -1,0 +1,37 @@
+{
+  "Spiral Devices": {
+    "752ea58ee28b9765618d0b306bcd79b6": {
+      "Author": "David Griffiths",
+      "Version": 2,
+      "API Version": 0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Mixer",
+      "Info": "Mixer",
+      "Category": "Amps/Mixers",
+      
+      "Resources": {
+        "Icon": "Mixer.png"
+      }
+    },
+
+    "3d2307b7d767fd8d270c11e2f712a870": {
+      "Author": "David Griffiths",
+      "Version": 1,
+      "API Version": 0.4,
+
+      "AudioDriver": false,
+      "HostPlugin": false,
+
+      "Label": "Amp",
+      "Info": "Amp",
+      "Category": "Amps/Mixers",
+      
+      "Resources": {
+        "Icon": "Amp.png"
+      }
+    }
+  }
+}

@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		B4B14251113EA34C00DCAC2D /* SMAmpsAndMixers */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B4B14258113EA34C00DCAC2D /* Build configuration list for PBXAggregateTarget "SMAmpsAndMixers" */;
+			buildPhases = (
+				B4B14254113EA34C00DCAC2D /* CopyFiles */,
+			);
+			dependencies = (
+				B4B1425E113EA37500DCAC2D /* PBXTargetDependency */,
+			);
+			name = SMAmpsAndMixers;
+			productName = SMMathsAndLogic;
+		};
 		B4C6E9D6113DA9EF00DAAA23 /* SMMathsAndLogic */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = B4C6E9DB113DAA1300DAAA23 /* Build configuration list for PBXAggregateTarget "SMMathsAndLogic" */;
@@ -65,6 +77,7 @@
 				B4EE29E4111A57FE00EC7A4E /* PBXTargetDependency */,
 				B4EE29E2111A57FC00EC7A4E /* PBXTargetDependency */,
 				B4B14189113DAFDF00DCAC2D /* PBXTargetDependency */,
+				B4B14266113EA3D200DCAC2D /* PBXTargetDependency */,
 			);
 			name = SpiralPlugins;
 			productName = SpiralPlugins;
@@ -86,6 +99,14 @@
 		B4B14187113DAFD700DCAC2D /* SMMathsAndLogic.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4B14153113DAE2100DCAC2D /* SMMathsAndLogic.dylib */; };
 		B4B1418F113DD71100DCAC2D /* Operator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1418D113DD28F00DCAC2D /* Operator.cpp */; };
 		B4B14190113DD71300DCAC2D /* Operator.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B1418E113DD28F00DCAC2D /* Operator.h */; };
+		B4B14241113EA28D00DCAC2D /* Mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B1422D113EA23700DCAC2D /* Mixer.h */; };
+		B4B14242113EA29100DCAC2D /* Mixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1422C113EA23700DCAC2D /* Mixer.cpp */; };
+		B4B14243113EA29600DCAC2D /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172B1137678800DDF954 /* Spicy.framework */; };
+		B4B14244113EA29600DCAC2D /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172C1137678800DDF954 /* SpiralCore.framework */; };
+		B4B14257113EA34C00DCAC2D /* SMAmpsAndMixers.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4B14245113EA2B600DCAC2D /* SMAmpsAndMixers.dylib */; };
+		B4B1425F113EA39500DCAC2D /* info.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4B1422E113EA23700DCAC2D /* info.json */; };
+		B4B14302113EB91900DCAC2D /* Amp.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B14301113EB90200DCAC2D /* Amp.h */; };
+		B4B14303113EB91C00DCAC2D /* Amp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B14300113EB90200DCAC2D /* Amp.cpp */; };
 		B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE2919111A542C00EC7A4E /* AudioIO.h */; };
 		B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291C111A542C00EC7A4E /* DiskWriter.h */; };
 		B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B4EE291E111A542C00EC7A4E /* ESDClient.h */; };
@@ -129,15 +150,29 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B4C6E9D6113DA9EF00DAAA23 /* SMMathsAndLogic */;
+			remoteGlobalIDString = B4C6E9D6113DA9EF00DAAA23;
 			remoteInfo = SMMathsAndLogic;
 		};
 		B4B14197113DD72F00DCAC2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B4B14110113DAD1400DCAC2D /* SMMathsAndLogic.dylib */;
+			remoteGlobalIDString = B4B14110113DAD1400DCAC2D;
 			remoteInfo = SMMathsAndLogic.dylib;
+		};
+		B4B1425D113EA37500DCAC2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4B14233113EA26300DCAC2D /* SMAmpsAndMixers.dylib */;
+			remoteInfo = SMAmpsAndMixers.dylib;
+		};
+		B4B14265113EA3D200DCAC2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4B14251113EA34C00DCAC2D /* SMAmpsAndMixers */;
+			remoteInfo = SMAmpsAndMixers;
 		};
 		B4CB4C4F11175CF500F772FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -188,10 +223,21 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = SMMathsAndLogic.plugin;
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 1;
 			files = (
 				B4B14187113DAFD700DCAC2D /* SMMathsAndLogic.dylib in CopyFiles */,
 				B4B14186113DAFD400DCAC2D /* info.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B14254113EA34C00DCAC2D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = SMAmpsAndMixers.plugin;
+			dstSubfolderSpec = 1;
+			files = (
+				B4B1425F113EA39500DCAC2D /* info.json in CopyFiles */,
+				B4B14257113EA34C00DCAC2D /* SMAmpsAndMixers.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +286,12 @@
 		B4B14153113DAE2100DCAC2D /* SMMathsAndLogic.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMMathsAndLogic.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B1418D113DD28F00DCAC2D /* Operator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Operator.cpp; sourceTree = "<group>"; };
 		B4B1418E113DD28F00DCAC2D /* Operator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operator.h; sourceTree = "<group>"; };
+		B4B1422C113EA23700DCAC2D /* Mixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mixer.cpp; sourceTree = "<group>"; };
+		B4B1422D113EA23700DCAC2D /* Mixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixer.h; sourceTree = "<group>"; };
+		B4B1422E113EA23700DCAC2D /* info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = info.json; sourceTree = "<group>"; };
+		B4B14245113EA2B600DCAC2D /* SMAmpsAndMixers.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMAmpsAndMixers.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B14300113EB90200DCAC2D /* Amp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Amp.cpp; sourceTree = "<group>"; };
+		B4B14301113EB90200DCAC2D /* Amp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amp.h; sourceTree = "<group>"; };
 		B4CB4C4911175C9F00F772FC /* SMOscillators.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SMOscillators.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EE2918111A542C00EC7A4E /* AudioIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = AudioIO.cpp; sourceTree = "<group>"; usesTabs = 0; };
 		B4EE2919111A542C00EC7A4E /* AudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioIO.h; sourceTree = "<group>"; };
@@ -290,6 +342,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B4B1423A113EA26300DCAC2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B14243113EA29600DCAC2D /* Spicy.framework in Frameworks */,
+				B4B14244113EA29600DCAC2D /* SpiralCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4CB4C4711175C9F00F772FC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,10 +386,11 @@
 		089C166AFE841209C02AAC07 /* SpiralPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				B4B1422B113EA23700DCAC2D /* Amps & Mixers */,
+				B4B1411A113DAD9400DCAC2D /* Maths & Logic */,
 				B4EE2917111A542C00EC7A4E /* SMAudioIO */,
 				B4EE2935111A542C00EC7A4E /* SMOscillators */,
 				B4EE2927111A542C00EC7A4E /* SMFiltersFX */,
-				B4B1411A113DAD9400DCAC2D /* Maths & Logic */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
 			);
@@ -351,6 +413,7 @@
 				B4EE2986111A551700EC7A4E /* SMAudioIO.dylib */,
 				B4EE29BD111A575300EC7A4E /* SMFiltersFX.dylib */,
 				B4B14153113DAE2100DCAC2D /* SMMathsAndLogic.dylib */,
+				B4B14245113EA2B600DCAC2D /* SMAmpsAndMixers.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -372,6 +435,29 @@
 			isa = PBXGroup;
 			children = (
 				B4B1411D113DAD9400DCAC2D /* info.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B4B1422B113EA23700DCAC2D /* Amps & Mixers */ = {
+			isa = PBXGroup;
+			children = (
+				B4B1422F113EA24300DCAC2D /* Resources */,
+				B4B14301113EB90200DCAC2D /* Amp.h */,
+				B4B14300113EB90200DCAC2D /* Amp.cpp */,
+				B4B1422C113EA23700DCAC2D /* Mixer.cpp */,
+				B4B1422D113EA23700DCAC2D /* Mixer.h */,
+			);
+			indentWidth = 2;
+			name = "Amps & Mixers";
+			path = "../Amps & Mixers";
+			sourceTree = SOURCE_ROOT;
+			usesTabs = 0;
+		};
+		B4B1422F113EA24300DCAC2D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4B1422E113EA23700DCAC2D /* info.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -485,6 +571,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B4B14234113EA26300DCAC2D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B14302113EB91900DCAC2D /* Amp.h in Headers */,
+				B4B14241113EA28D00DCAC2D /* Mixer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4CB4C4511175C9F00F772FC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,6 +633,23 @@
 			name = SMMathsAndLogic.dylib;
 			productName = SMMathsAndLogic.dylib;
 			productReference = B4B14153113DAE2100DCAC2D /* SMMathsAndLogic.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		B4B14233113EA26300DCAC2D /* SMAmpsAndMixers.dylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4B1423D113EA26300DCAC2D /* Build configuration list for PBXNativeTarget "SMAmpsAndMixers.dylib" */;
+			buildPhases = (
+				B4B14234113EA26300DCAC2D /* Headers */,
+				B4B14237113EA26300DCAC2D /* Sources */,
+				B4B1423A113EA26300DCAC2D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMAmpsAndMixers.dylib;
+			productName = SMMathsAndLogic.dylib;
+			productReference = B4B14245113EA2B600DCAC2D /* SMAmpsAndMixers.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		B4CB4C4811175C9F00F772FC /* SMOscillators.dylib */ = {
@@ -608,10 +720,12 @@
 				B4CB4C4C11175CDA00F772FC /* SMOscillators */,
 				B4EE299F111A56E700EC7A4E /* SMFiltersFX */,
 				B4C6E9D6113DA9EF00DAAA23 /* SMMathsAndLogic */,
+				B4B14251113EA34C00DCAC2D /* SMAmpsAndMixers */,
 				B4EE297D111A551700EC7A4E /* SMAudioIO.dylib */,
 				B4CB4C4811175C9F00F772FC /* SMOscillators.dylib */,
 				B4EE29AC111A575300EC7A4E /* SMFiltersFX.dylib */,
 				B4B14110113DAD1400DCAC2D /* SMMathsAndLogic.dylib */,
+				B4B14233113EA26300DCAC2D /* SMAmpsAndMixers.dylib */,
 			);
 		};
 /* End PBXProject section */
@@ -623,6 +737,15 @@
 			files = (
 				B4B1418F113DD71100DCAC2D /* Operator.cpp in Sources */,
 				B4B14123113DADE900DCAC2D /* Trig.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B14237113EA26300DCAC2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4B14303113EB91C00DCAC2D /* Amp.cpp in Sources */,
+				B4B14242113EA29100DCAC2D /* Mixer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +795,16 @@
 			isa = PBXTargetDependency;
 			target = B4B14110113DAD1400DCAC2D /* SMMathsAndLogic.dylib */;
 			targetProxy = B4B14197113DD72F00DCAC2D /* PBXContainerItemProxy */;
+		};
+		B4B1425E113EA37500DCAC2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4B14233113EA26300DCAC2D /* SMAmpsAndMixers.dylib */;
+			targetProxy = B4B1425D113EA37500DCAC2D /* PBXContainerItemProxy */;
+		};
+		B4B14266113EA3D200DCAC2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4B14251113EA34C00DCAC2D /* SMAmpsAndMixers */;
+			targetProxy = B4B14265113EA3D200DCAC2D /* PBXContainerItemProxy */;
 		};
 		B4CB4C5011175CF500F772FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -775,6 +908,63 @@
 				INSTALL_PATH = /usr/local/lib;
 				PREBINDING = NO;
 				PRODUCT_NAME = SMMathsAndLogic;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4B1423E113EA26300DCAC2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INSTALL_PATH = /usr/local/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = SMAmpsAndMixers;
+			};
+			name = Debug;
+		};
+		B4B1423F113EA26300DCAC2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INSTALL_PATH = /usr/local/lib;
+				PREBINDING = NO;
+				PRODUCT_NAME = SMAmpsAndMixers;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B4B14259113EA34C00DCAC2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = SMAmpsAndMixers;
+			};
+			name = Debug;
+		};
+		B4B1425A113EA34C00DCAC2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = SMAmpsAndMixers;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1023,6 +1213,24 @@
 			buildConfigurations = (
 				B4B14112113DAD1500DCAC2D /* Debug */,
 				B4B14113113DAD1500DCAC2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4B1423D113EA26300DCAC2D /* Build configuration list for PBXNativeTarget "SMAmpsAndMixers.dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4B1423E113EA26300DCAC2D /* Debug */,
+				B4B1423F113EA26300DCAC2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4B14258113EA34C00DCAC2D /* Build configuration list for PBXAggregateTarget "SMAmpsAndMixers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4B14259113EA34C00DCAC2D /* Debug */,
+				B4B1425A113EA34C00DCAC2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

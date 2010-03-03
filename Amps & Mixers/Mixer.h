@@ -14,10 +14,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/ 
+*/
 
-#ifndef __OPERATOR_H__
-#define __OPERATOR_H__
+#ifndef __MIXER_H__
+#define __MIXER_H__
 
 #include <SpiralCore/Port.h>
 #include <SpiralCore/Device.h>
@@ -25,15 +25,15 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jan 19 01:25:53 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042939553::Operator"
-//  =>  3bf687891e0216a806077e1ec1f4a4aa (legacy == 0x2C)
-#define OperatorID 3bf687891e0216a806077e1ec1f4a4aa
-class Operator : Gumbo(Device)
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Mixer"
+//  =>  752ea58ee28b9765618d0b306bcd79b6 (legacy == 0x7)
+#define MixerID 752ea58ee28b9765618d0b306bcd79b6
+class Mixer : Gumbo(Device)
 {
-  GumboClassDefinition(Operator, Device,
+  GumboClassDefinition(Mixer, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(OperatorID));
+      mUniqueID = String::New(XSTRINGIFY(MixerID));
       mVersion = 2;
     },
     {
@@ -41,19 +41,27 @@ class Operator : Gumbo(Device)
   );
   
 private:
-  SignedProperty *m_Operator;
-  FloatProperty *m_Constant;
+	void EnsureChannelProperties();
+
+	UnsignedProperty *m_NumChannels;
+	ToggleProperty *m_Peak;
+
+	ArrayProperty<FloatProperty> *m_Volume;
+	ArrayProperty<ToggleProperty> *m_VolumePeak;
 
 protected:
   virtual void Finalize();
-
+  
 public:
-  virtual Self *Initialize(Patch *Host);
-  static inline Self *New(Patch *Host) { return Alloc()->Initialize(Host); }
+	virtual Mixer *Initialize(Patch *Host);
+  static inline Mixer *New(Patch *Host) { return Alloc()->Initialize(Host); }
+  
+	//bool LoadProperties(map<string,Property*> &properties);
+	//bool UpdateProperty(string name);
 
-  bool CreatePorts();
+	bool CreatePorts();
 
-  virtual void  Process(UnsignedType SampleCount);
+	virtual void Process(UnsignedType SampleCount);
 };
 
 #endif

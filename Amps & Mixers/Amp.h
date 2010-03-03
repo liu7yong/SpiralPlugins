@@ -14,10 +14,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/ 
+*/
 
-#ifndef __OPERATOR_H__
-#define __OPERATOR_H__
+#ifndef __AMP_H__
+#define __AMP_H__
 
 #include <SpiralCore/Port.h>
 #include <SpiralCore/Device.h>
@@ -25,35 +25,35 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jan 19 01:25:53 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042939553::Operator"
-//  =>  3bf687891e0216a806077e1ec1f4a4aa (legacy == 0x2C)
-#define OperatorID 3bf687891e0216a806077e1ec1f4a4aa
-class Operator : Gumbo(Device)
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Amp"
+//  =>  3d2307b7d767fd8d270c11e2f712a870 (legacy == 0x9)
+#define AmpID 3d2307b7d767fd8d270c11e2f712a870
+class Amp : Gumbo(Device)
 {
-  GumboClassDefinition(Operator, Device,
+  GumboClassDefinition(Amp, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(OperatorID));
-      mVersion = 2;
+      mUniqueID = String::New(XSTRINGIFY(AmpID));
+      mVersion = 1;
     },
     {
     },
   );
   
 private:
-  SignedProperty *m_Operator;
-  FloatProperty *m_Constant;
+	FloatProperty *m_Gain, *m_DC;
 
 protected:
   virtual void Finalize();
-
+  
 public:
-  virtual Self *Initialize(Patch *Host);
-  static inline Self *New(Patch *Host) { return Alloc()->Initialize(Host); }
+ 	virtual Amp *Initialize(Patch *Host);
+  static inline Amp *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
-  bool CreatePorts();
+	virtual bool CreatePorts();
 
-  virtual void  Process(UnsignedType SampleCount);
+	virtual void Process(UnsignedType SampleCount);
+
 };
 
 #endif
