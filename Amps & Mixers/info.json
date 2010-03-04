@@ -14,7 +14,88 @@
       
       "Resources": {
         "Icon": "Mixer.png"
-      }
+      },
+      
+      "Inputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index" 
+          ]
+        }, 
+        
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Input",
+          "Tooltip": "Input",
+          "Template": true
+        }
+      ],
+
+      "Outputs":[
+        { 
+          "COMMENTS": [
+            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
+          ]
+        }, 
+        
+        {
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      ],
+      
+      "Properties": [
+        {
+          "COMMENTS": [
+            "Rough early concept for describing properties. Still needs unique id."
+          ]
+        },
+  
+        {
+          "Name": "Channels",
+          "Type": "Unsigned Integer"
+        },
+
+        {
+          "Name":"Peak",
+          "Type":"Boolean",
+          "Default": false,
+          
+          "Flags":{
+            "ReadOnly": true
+          }
+        },      
+        
+        {
+          "Name": "Volume",
+          "Type": "Array",
+          "Count": "Channels",
+          
+          "Template": 
+          {
+            "Type":"Float",
+            "Default": 0.5
+          }
+        },
+        
+        {
+          "Name": "Peak",
+          "Type": "Array",
+          "Controller": "Channels",
+          "Template": 
+          {
+            "Type":"Boolean",
+            "Default": false,
+            
+            "Flags":{
+              "ReadOnly": true
+            }
+          }      
+        }
+      ]
     },
 
     "3d2307b7d767fd8d270c11e2f712a870": {

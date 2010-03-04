@@ -54,7 +54,6 @@ bool Counter::CreatePorts()
 	return true;
 }
 
-
 void Counter::Process(UnsignedType SampleCount)
 {	
 	UnsignedType count = m_Count->Value.AsUnsigned;

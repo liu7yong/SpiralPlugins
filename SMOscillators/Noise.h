@@ -51,7 +51,7 @@ private:
   // Common Shared Properties
   SetProperty *m_Type;
 
-  #define b(n) StateValue(concat(mB, n))->AsFloat
+  #define b(n) StateValue(CONCAT(mB, n))->AsFloat
   
   inline FloatType GenerateWhite()
   {
