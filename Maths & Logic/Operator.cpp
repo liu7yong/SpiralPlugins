@@ -46,11 +46,16 @@ Operator *Operator::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In1 = StringHash("Input 1");
+static const UnsignedType In2 = StringHash("Input 2");
+
+static const UnsignedType Out = StringHash("Output");
+
 bool Operator::CreatePorts() 
 {
-  InputPort::New(this/*, "Input 1"*/);
-  InputPort::New(this/*, "Input 2"*/);
-  OutputPort::New(this/*, "Output"*/);
+  InputPort::New(this, In1);
+  InputPort::New(this, In2);
+  OutputPort::New(this, Out);
 
   return true;
 }
@@ -63,71 +68,71 @@ void Operator::Process(UnsignedType SampleCount)
   {
     default:
     case 0 : 
-      if (InputExists(GetInputPort(1)))
+      if (InputExists(GetInputPort(In2)))
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)+GetInput(GetInputPort(1),n));
+          SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)+GetInput(GetInputPort(In2),n));
         } 
       }
       else
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)+constant);
+          SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)+constant);
         } 
       }
     break;
       
     case 1 : 
-      if (InputExists(GetInputPort(1)))
+      if (InputExists(GetInputPort(In2)))
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)-GetInput(GetInputPort(1),n));
+          SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)-GetInput(GetInputPort(In2),n));
         } 
       }
       else
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)-constant);
+          SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)-constant);
         } 
       }
     break;
       
     case 2 : 
-      if (InputExists(GetInputPort(1)))
+      if (InputExists(GetInputPort(In2)))
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          if (GetInput(GetInputPort(1),n)==0) SetOutput(GetOutputPort(0),n,0);
-          else SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)/GetInput(GetInputPort(1),n));
+          if (GetInput(GetInputPort(In2),n)==0) SetOutput(GetOutputPort(Out),n,0);
+          else SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)/GetInput(GetInputPort(In2),n));
         } 
       }
       else
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          if (constant==0) SetOutput(GetOutputPort(0),n,0);
-          else SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)/constant);
+          if (constant==0) SetOutput(GetOutputPort(Out),n,0);
+          else SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)/constant);
         } 
       }
     break;
       
     case 3 :
-      if (InputExists(GetInputPort(1)))
+      if (InputExists(GetInputPort(In2)))
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)*GetInput(GetInputPort(1),n));
+          SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)*GetInput(GetInputPort(In2),n));
         }
       }
       else
       {
         for (UnsignedType n=0; n<SampleCount; n++)
         {
-          SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)*constant);
+          SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)*constant);
         }
       }
     break;

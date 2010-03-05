@@ -65,17 +65,27 @@ MoogFilter *MoogFilter::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In = StringHash("Input");
+
+static const UnsignedType LowPassOut = StringHash("LowPass output");
+static const UnsignedType BandPassOut = StringHash("BandPass output");
+static const UnsignedType HighPassOut = StringHash("HighPass output");
+
+/* These should be Control Ports, i.e., autocreated by the properties they are for */
+static const UnsignedType CutoffCV = StringHash("Cutoff CV");	
+static const UnsignedType EmphasisCV = StringHash("Emphasis CV");	
+
 bool MoogFilter::CreatePorts()
 {	
-  input[0] = InputPort::New(this/*, "Input"*/);	
+  input[0] = InputPort::New(this, In);	
 
-  output[0] = OutputPort::New(this/*, "LowPass output"*/);
-  output[1] = OutputPort::New(this/*, "BandPass output"*/);
-  output[2] = OutputPort::New(this/*, "HighPass output"*/);
+  output[0] = OutputPort::New(this, LowPassOut);
+  output[1] = OutputPort::New(this, BandPassOut);
+  output[2] = OutputPort::New(this, HighPassOut);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = InputPort::New(this/*, "Cutoff CV"*/);	
-  input[2] = InputPort::New(this/*, "Emphasis CV"*/);	
+  input[1] = InputPort::New(this, CutoffCV);	
+  input[2] = InputPort::New(this, EmphasisCV);	
 
   return true;
 }

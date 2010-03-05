@@ -120,10 +120,14 @@ WaveTable *WaveTable::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType FrequencyCV = StringHash("Frequency CV");
+
+static const UnsignedType Out = StringHash("Output");
+
 bool WaveTable::CreatePorts()
-{	
-  frequency = InputPort::New(this/*, "Frequency CV"*/);
-  output = OutputPort::New(this/*, "Output"*/);
+{
+  frequency = InputPort::New(this, FrequencyCV);
+  output = OutputPort::New(this, Out);
 	
   return true;
 }
@@ -132,7 +136,7 @@ void WaveTable::Process(UnsignedType SampleCount)
 {
   const Sample *table;
   
-  int octave, type, Note;
+  UnsignedType octave, type, Note;
   FloatType Freq=0, fine, mod;
   FloatType Incr, CyclePos;
 

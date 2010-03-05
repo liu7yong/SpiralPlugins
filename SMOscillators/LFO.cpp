@@ -39,7 +39,7 @@ void LFO::Class::WriteWaves()
   UnsignedType HalfTab = Math::Divide<DEFAULT_TABLE_LEN, 2>::Result;
   UnsignedType QuatTab = Math::Divide<DEFAULT_TABLE_LEN, 4>::Result;
   UnsignedType ThreeQuatTab = Math::Subtract<DEFAULT_TABLE_LEN, Math::Divide<DEFAULT_TABLE_LEN, 4>::Result>::Result;
-  int Shift;
+  SignedType Shift;
   
   for (UnsignedType n=0; n<DEFAULT_TABLE_LEN; n++) 
   {
@@ -101,11 +101,16 @@ LFO *LFO::Initialize(Patch *Host)
   return this;
 }
 
+
+static const UnsignedType Out = StringHash("Output");
+static const UnsignedType CosOut = StringHash("'Cosine' Output");
+static const UnsignedType InvOut = StringHash("Inverted Output");
+
 bool LFO::CreatePorts() 
 {
-  output[0] = OutputPort::New(this/*, "Output"*/);
-  output[1] = OutputPort::New(this/*, "'Cosine' Output"*/);
-  output[2] = OutputPort::New(this/*, "Inverted Output"*/);
+  output[0] = OutputPort::New(this, Out);
+  output[1] = OutputPort::New(this, CosOut);
+  output[2] = OutputPort::New(this, InvOut);
 
   return true;
 }

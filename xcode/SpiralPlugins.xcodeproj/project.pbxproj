@@ -447,9 +447,11 @@
 				B4B1411C113DAD9400DCAC2D /* Trig.h */,
 				B4B1411B113DAD9400DCAC2D /* Trig.cpp */,
 			);
+			indentWidth = 2;
 			name = "Maths & Logic";
 			path = "../Maths & Logic";
 			sourceTree = SOURCE_ROOT;
+			usesTabs = 0;
 		};
 		B4B1411E113DADA500DCAC2D /* Resources */ = {
 			isa = PBXGroup;

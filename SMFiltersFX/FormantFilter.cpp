@@ -77,13 +77,19 @@ FormantFilter *FormantFilter::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In = StringHash("Input");
+static const UnsignedType Out = StringHash("Output");
+
+/* These should be Control Ports, i.e., autocreated by the properties they are for */
+static const UnsignedType VowelCV = StringHash("Vowel CV");	
+
 bool FormantFilter::CreatePorts()
 {
-  input[0] = InputPort::New(this/*,  "Input"*/);
-  output = OutputPort::New(this/*, "Output"*/);
+  input[0] = InputPort::New(this, In);
+  output = OutputPort::New(this, Out);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = InputPort::New(this/*, "Vowel CV"*/);
+  input[1] = InputPort::New(this, VowelCV);
 
   return true;
 }

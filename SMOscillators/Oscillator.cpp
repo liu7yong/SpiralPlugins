@@ -74,13 +74,19 @@ Oscillator *Oscillator::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType FrequencyCV = StringHash("Frequency CV");
+static const UnsignedType PulseWidthCV = StringHash("PulseWidth CV");
+static const UnsignedType SampleHoldCV = StringHash("Sample & Hold Length CV");
+
+static const UnsignedType Out = StringHash("Output");
+
 bool Oscillator::CreatePorts() 
 {
-	OutputPort::New(this/*, "Output"*/);
+  OutputPort::New(this, Out);
 
-	InputPort::New(this/*, "Frequency CV"*/);//Does it make sense to allow feedbacking the frequency?
-	InputPort::New(this, /*"PulseWidth CV", */Port::CAN_FEEDBACK);
-	InputPort::New(this, /*"Sample & Hold length CV",*/ Port::CAN_FEEDBACK);
+  InputPort::New(this, FrequencyCV);//Does it make sense to allow feedbacking the frequency?
+  InputPort::New(this, PulseWidthCV, Port::CAN_FEEDBACK);
+  InputPort::New(this, SampleHoldCV, Port::CAN_FEEDBACK);
 
   return true;
 }
@@ -90,7 +96,7 @@ void Oscillator::Process(UnsignedType SampleCount)
 	FloatType Freq=0, fine, mod, pulsewidth, shlen;
 	FloatType CycleLen=0;
 	SignedType CyclePos, Noisev;
-	int samplelen, PW, octave;
+	SignedType samplelen, PW, octave;
 
 	octave = m_Octave->Value.AsUnsigned;
 	fine = m_FineFreq->Value.AsFloat;
@@ -106,8 +112,8 @@ void Oscillator::Process(UnsignedType SampleCount)
 	case SquareWave:
 		for (UnsignedType n=0; n<SampleCount; n++)
 		{
-			if (InputExists(GetInputPort(0))) 
-			  Freq=GetInputPitch(GetInputPort(0),n);
+			if (InputExists(GetInputPort(FrequencyCV))) 
+			  Freq=GetInputPitch(GetInputPort(FrequencyCV),n);
 			else 
 			  Freq=110;
 			  
@@ -117,27 +123,27 @@ void Oscillator::Process(UnsignedType SampleCount)
 			if (octave<0) Freq/=1<<(-octave);
 			
 			CycleLen = SampleRate()/Freq;
-			PW = (int)((pulsewidth+GetInput(GetInputPort(1),n)*mod) * CycleLen);
+			PW = (int)((pulsewidth+GetInput(GetInputPort(PulseWidthCV),n)*mod) * CycleLen);
 
 			// calculate square wave pattern
 			CyclePos++;
 			if (CyclePos>CycleLen) CyclePos=0;
 
-			if (CyclePos<PW) SetOutput(GetOutputPort(0),n,1);
-			else SetOutput(GetOutputPort(0),n,-1);
+			if (CyclePos<PW) SetOutput(GetOutputPort(Out),n,1);
+			else SetOutput(GetOutputPort(Out),n,-1);
 		}
 		break;
 
 	case SawWave:
 		for (UnsignedType n=0; n<SampleCount; n++)
 		{
-			if (InputExists(GetInputPort(0))) Freq=GetInputPitch(GetInputPort(0),n);
+			if (InputExists(GetInputPort(FrequencyCV))) Freq=GetInputPitch(GetInputPort(FrequencyCV),n);
 			else Freq=110;
 			Freq*=fine;
 			if (octave>0) Freq*=1<<(octave);
 			if (octave<0) Freq/=1<<(-octave);
 			CycleLen = SampleRate()/Freq;
-			PW = (int)((pulsewidth+GetInput(GetInputPort(1),n)*mod) * CycleLen);
+			PW = (int)((pulsewidth+GetInput(GetInputPort(PulseWidthCV),n)*mod) * CycleLen);
 
 			// normalise position between cycle
 			CyclePos++;
@@ -146,12 +152,12 @@ void Oscillator::Process(UnsignedType SampleCount)
 			if (CyclePos<PW)
 			{
 				// before pw -1->1
-				SetOutput(GetOutputPort(0),n,Linear(0,PW,CyclePos,-1,1));
+				SetOutput(GetOutputPort(Out),n,Linear(0,PW,CyclePos,-1,1));
 			}
 			else
 			{
 				// after pw 1->-1
-				SetOutput(GetOutputPort(0),n,Linear(PW,CycleLen,CyclePos,1,-1));
+				SetOutput(GetOutputPort(Out),n,Linear(PW,CycleLen,CyclePos,1,-1));
 			}
 		}
 		break;
@@ -162,7 +168,7 @@ void Oscillator::Process(UnsignedType SampleCount)
 			CyclePos++;
 
 			//modulate the sample & hold length
-			samplelen = (int)((shlen+GetInput(GetInputPort(2),n)*mod)*SampleRate());
+			samplelen = (int)((shlen+GetInput(GetInputPort(SampleHoldCV),n)*mod)*SampleRate());
 
 			// do sample & hold on the noise
 			if (CyclePos>samplelen)
@@ -170,7 +176,7 @@ void Oscillator::Process(UnsignedType SampleCount)
 				Noisev=(short)((rand()%SHRT_MAX*2)-SHRT_MAX);
 				CyclePos=0;
 			}
-			SetOutput(GetOutputPort(0),n,Noisev/(FloatType)SHRT_MAX);
+			SetOutput(GetOutputPort(Out),n,Noisev/(FloatType)SHRT_MAX);
 		}
 		break;
 	}

@@ -42,10 +42,13 @@ Trig* Trig::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In = StringHash("Input");
+static const UnsignedType Out = StringHash("Output");
+
 bool Trig::CreatePorts() 
 {
-  InputPort::New(this/*, "Input"*/);
-  OutputPort::New(this/*, "Output"*/);
+  InputPort::New(this, In);
+  OutputPort::New(this, Out);
 
   return true;
 }
@@ -59,21 +62,21 @@ void Trig::Process(UnsignedType SampleCount)
     case 1 : 
       for (UnsignedType n=0; n<SampleCount; n++)
       {
-		SetOutput(GetOutputPort(0),n,std::sin(GetInput(GetInputPort(0),n)*RAD));
+		SetOutput(GetOutputPort(Out),n,std::sin(GetInput(GetInputPort(In),n)*RAD));
       } 
       break;
       
     case 2 : 
       for (UnsignedType n=0; n<SampleCount; n++)
       {
-		SetOutput(GetOutputPort(0),n,std::cos(GetInput(GetInputPort(0),n)*RAD));
+		SetOutput(GetOutputPort(Out),n,std::cos(GetInput(GetInputPort(In),n)*RAD));
       } 
       break;
       
     case 3 :
       for (UnsignedType n=0; n<SampleCount; n++)
       {
-		SetOutput(GetOutputPort(0),n,std::tan(GetInput(GetInputPort(0),n)*RAD));
+		SetOutput(GetOutputPort(Out),n,std::tan(GetInput(GetInputPort(In),n)*RAD));
       }
       break;
       

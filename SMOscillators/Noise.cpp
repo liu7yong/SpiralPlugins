@@ -62,9 +62,11 @@ Noise *Noise::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType Out = StringHash("Output");
+
 bool Noise::CreatePorts()
 {
-  output = OutputPort::New(this/*, "Output"*/);
+  output = OutputPort::New(this, Out);
 
   return true;
 }

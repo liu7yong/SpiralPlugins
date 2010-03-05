@@ -13,7 +13,7 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 #include <limits.h>
-#include <math.h>
+#include <cmath>
 #include "ExtraNoise.h"
 
 DevicePluginHook(ExtraNoise, ExtraNoiseID)
@@ -36,12 +36,17 @@ ExtraNoise *ExtraNoise::Initialize(Patch *Host)
   return this;
 }
 
+
+static const UnsignedType MagicACV = StringHash("Magic A CV");
+static const UnsignedType MagicBCV = StringHash("Magic B CV");
+static const UnsignedType Out = StringHash("Output");
+
 bool ExtraNoise::CreatePorts()
 {
-  input[0] = InputPort::New(this/*,  "Magic A"*/);
-  input[1] = InputPort::New(this/*, "Magic B"*/);
+  input[0] = InputPort::New(this, MagicACV);
+  input[1] = InputPort::New(this, MagicBCV);
 
-  output = OutputPort::New(this/*, "Output"*/);
+  output = OutputPort::New(this, Out);
 	
   return true;
 }
@@ -86,7 +91,7 @@ void ExtraNoise::Process(UnsignedType SampleCount)
 		if (NUMBER_IS_INSANE(in1))
 			in1 = 0.0f;
 
-		FloatType leak = 1.0f-powf(fabsf(state), mMagicA->Value.AsFloat); 
+        FloatType leak = 1.0f-powf(fabsf(state), mMagicA->Value.AsFloat); 
 		
 		state = evil(leak*state, ((in1))*white); 
 

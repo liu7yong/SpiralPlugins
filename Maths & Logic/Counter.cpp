@@ -36,22 +36,26 @@ Counter *Counter::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
   
-	m_Count = SignedProperty::New(DefaultLinearFlags, 4, 0, 10000, 1, 1);
-	RegisterSharedProperty(m_Count, StringHash("Count")/*, "Count"*/);
+  m_Count = SignedProperty::New(DefaultLinearFlags, 4, 0, 10000, 1, 1);
+  RegisterSharedProperty(m_Count, StringHash("Count")/*, "Count"*/);
 
-	m_TriggeredInd = NewStateProperty(defTrigger);
-	m_CurrentInd = NewStateProperty(defCurrent);
-	m_CurrentLevelInd = NewStateProperty(defCurrentLevel);
+  m_TriggeredInd = NewStateProperty(defTrigger);
+  m_CurrentInd = NewStateProperty(defCurrent);
+  m_CurrentLevelInd = NewStateProperty(defCurrentLevel);
 	
   return this;
 }
 
+static const UnsignedType In = StringHash("Input");
+
+static const UnsignedType Out = StringHash("Output");
+
 bool Counter::CreatePorts()
 {	
-	InputPort::New(this/*, "Input"*/);
-	OutputPort::New(this/*, "Output"*/);
-	
-	return true;
+  InputPort::New(this, In);
+  OutputPort::New(this, Out);
+  
+  return true;
 }
 
 void Counter::Process(UnsignedType SampleCount)
@@ -64,7 +68,7 @@ void Counter::Process(UnsignedType SampleCount)
 	
 	for (UnsignedType n=0; n<SampleCount; n++)
 	{
-		if (GetInput(GetInputPort(0),n)>0)
+		if (GetInput(GetInputPort(In),n)>0)
 		{
 			if(!Triggered)
 			{
@@ -87,7 +91,7 @@ void Counter::Process(UnsignedType SampleCount)
 			Current=0;
 		}
 		
-		SetOutput(GetOutputPort(0),n,CurrentLevel);
+		SetOutput(GetOutputPort(Out),n,CurrentLevel);
 	}
 
 	StateValue(m_TriggeredInd)->AsBoolean = Triggered;

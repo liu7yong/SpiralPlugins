@@ -88,17 +88,17 @@ private:
   }*/
   inline FloatType GenerateBrown()
   {
-    float32 white = 0.1f*(2.0f*randf() - 1.0f);
+    float32 white = 0.2f*(float32)randf() - 0.1f;
 
     union { float32 f; uint32_t i; } u, ub;
     u.f = (float32)b(0) + white;
     
     // Only keep the exponent, which is n+127 where n<0 if |a+b|<1.0.
-    u.i &= 0xff<<23;
+    u.i &= (uint32_t)Math::Shl<0xff,23>::Result;
     // Normalize the exponent. The sign will match in both representations.
-    u.i -= 127<<23;
+    u.i -= (uint32_t)Math::Shl<127, 23>::Result;
     // Only keep the sign. Minus if |a+b|<1.0.
-    u.i &= 1<<31;
+    u.i &= (uint32_t)Math::Shl<1, 31>::Result;
     
     // Flip ub’s sign based on u, negating ub if |a+b|<1.0.
     ub.f = white;

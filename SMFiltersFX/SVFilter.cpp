@@ -63,19 +63,31 @@ SVFilter *SVFilter::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In = StringHash("Input");
+
+static const UnsignedType LowPassOut = StringHash("LowPass output");
+static const UnsignedType BandPassOut = StringHash("BandPass output");
+static const UnsignedType HighPassOut = StringHash("HighPass output");
+static const UnsignedType NotchOut = StringHash("Notch output");
+static const UnsignedType PeakingOut = StringHash("Peaking output");
+
+/* These should be Control Ports, i.e., autocreated by the properties they are for */
+static const UnsignedType CutoffCV = StringHash("Cutoff CV");	
+static const UnsignedType EmphasisCV = StringHash("Emphasis CV");	
+
 bool SVFilter::CreatePorts()
 {
-  InputPort::New(this/*, "Input"*/);	
+  InputPort::New(this, In);	
 
-  OutputPort::New(this/*,  "LowPass output"*/);
-  OutputPort::New(this/*,  "BandPass output"*/);
-  OutputPort::New(this/*,  "HighPass output"*/);
-  OutputPort::New(this/*,  "Notch output"*/);
-  OutputPort::New(this/*,  "Peaking output"*/);
+  OutputPort::New(this, LowPassOut);
+  OutputPort::New(this, BandPassOut);
+  OutputPort::New(this, HighPassOut);
+  OutputPort::New(this, NotchOut);
+  OutputPort::New(this, PeakingOut);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  InputPort::New(this/*, "Cutoff CV"*/);	
-  InputPort::New(this/*, "Emphasis CV"*/);	
+  InputPort::New(this, CutoffCV);	
+  InputPort::New(this, EmphasisCV);	
 
   return true;
 }
@@ -103,13 +115,13 @@ void SVFilter::Process(UnsignedType SampleCount)
 		{
 			FloatType cv1, cv2;
 
-			cv1 = GetInput(GetInputPort(1),n);
+			cv1 = GetInput(GetInputPort(CutoffCV),n);
 			if (NUMBER_IS_INSANE(cv1))
 				cv1 = zero;
 
 			fc = 4000.0f*(cut+cv1);
 
-			cv2 = GetInput(GetInputPort(2),n);
+			cv2 = GetInput(GetInputPort(EmphasisCV),n);
 			if (NUMBER_IS_INSANE(cv2))
 				cv2=zero;
 
@@ -117,7 +129,7 @@ void SVFilter::Process(UnsignedType SampleCount)
           m_f = two*std::sin(PI*fc/(FloatType)(SignedType)SampleRate());
 		}
 
-		in = GetInput(GetInputPort(0),n);
+		in = GetInput(GetInputPort(In),n);
 
 		if (NUMBER_IS_INSANE(in))
 			in=zero;
@@ -141,11 +153,11 @@ void SVFilter::Process(UnsignedType SampleCount)
 			m_p = m_l - m_h;
 		}
 		
-		SetOutput(GetOutputPort(0),n,m_l);
-		SetOutput(GetOutputPort(1),n,m_b);
-		SetOutput(GetOutputPort(2),n,m_h);
-		SetOutput(GetOutputPort(3),n,m_n);
-		SetOutput(GetOutputPort(4),n,m_p);
+		SetOutput(GetOutputPort(LowPassOut),n,m_l);
+		SetOutput(GetOutputPort(HighPassOut),n,m_b);
+		SetOutput(GetOutputPort(BandPassOut),n,m_h);
+		SetOutput(GetOutputPort(NotchOut),n,m_n);
+		SetOutput(GetOutputPort(PeakingOut),n,m_p);
 	}
 
 }

@@ -84,13 +84,18 @@ AudioIO *AudioIO::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType LeftIn = StringHash("Left In");
+static const UnsignedType RightIn = StringHash("Right In");
+static const UnsignedType LeftOut = StringHash("Left Out");
+static const UnsignedType RightOut = StringHash("Right Out");
+
 bool AudioIO::CreatePorts()
 {
-  InputPort::New(this, /*"Left In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-  InputPort::New(this, /*"Right In",*/ Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  InputPort::New(this, LeftIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  InputPort::New(this, RightIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
 
-  OutputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
-  OutputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
+  OutputPort::New(this, LeftOut, Port::IS_MONOPHONIC);
+  OutputPort::New(this, RightOut, Port::IS_MONOPHONIC);
 
   return true;
 }
@@ -135,11 +140,11 @@ void AudioIO::Process(UnsignedType SampleCount)
 
 	if (m_RealMode==2 || m_RealMode==3)
 	{
-      OUTPUTCLIENT::Get()->SendStereo(GetInputPort(0),GetInputPort(1));
+      OUTPUTCLIENT::Get()->SendStereo(GetInputPort(LeftIn),GetInputPort(RightIn));
 	}
 
 	if (m_RealMode==1 || m_RealMode==3)
-           OUTPUTCLIENT::Get()->GetStereo(GetOutputPort(0),GetOutputPort(1));
+           OUTPUTCLIENT::Get()->GetStereo(GetOutputPort(LeftOut),GetOutputPort(RightOut));
 }
 
 void AudioIO::ProcessAudio()

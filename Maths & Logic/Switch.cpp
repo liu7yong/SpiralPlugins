@@ -31,21 +31,27 @@ Switch *Switch::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-	m_Mix = ToggleProperty::New(Property::WriteOnly,false);
-	RegisterSharedProperty(m_Mix, StringHash("Mix")/*, "Mix"*/);
+  m_Mix = ToggleProperty::New(Property::WriteOnly,false);
+  RegisterSharedProperty(m_Mix, StringHash("Mix")/*, "Mix"*/);
 
   return this;
 }
 
+static const UnsignedType In1 = StringHash("Input 1");
+static const UnsignedType In2 = StringHash("Input 2");
+static const UnsignedType CV = StringHash("CV");
+
+static const UnsignedType Out = StringHash("Output");
+
 bool Switch::CreatePorts()
 {
-	InputPort::New(this/*, "Input 1"*/);
-	InputPort::New(this/*, "Input 2"*/);
-	InputPort::New(this/*, "CV"*/);
+  InputPort::New(this, In1);
+  InputPort::New(this, In2);
+  InputPort::New(this, CV);
 
-	OutputPort::New(this/*, "Output"*/);
+  OutputPort::New(this, Out);
 
-	return true;
+  return true;
 }
 
 void Switch::Process(UnsignedType SampleCount)
@@ -54,16 +60,16 @@ void Switch::Process(UnsignedType SampleCount)
 	{
 		for (UnsignedType n=0; n<SampleCount; n++)
 		{
-			if (GetInput(GetInputPort(2),n)<=0)
+			if (GetInput(GetInputPort(CV),n)<=0)
 			{
-				SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n));
+				SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n));
 				continue;
 			}
 
-			SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(1),n));
+			SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In2),n));
 		}
 	}
 	else 
   	for (UnsignedType n=0; n<SampleCount; n++)
-  		SetOutput(GetOutputPort(0),n,Linear(-1.0f,1.0f,GetInput(GetInputPort(2),n),GetInput(GetInputPort(0),n),GetInput(GetInputPort(1),n)));
+  		SetOutput(GetOutputPort(Out),n,Linear(-1.0f,1.0f,GetInput(GetInputPort(CV),n),GetInput(GetInputPort(In1),n),GetInput(GetInputPort(In2),n)));
 }

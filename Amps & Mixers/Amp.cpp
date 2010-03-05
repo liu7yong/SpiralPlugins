@@ -42,30 +42,36 @@ Amp *Amp::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In = StringHash("Input");
+static const UnsignedType Out = StringHash("Output");
+
+static const UnsignedType GainCV = StringHash("Gain CV");
+static const UnsignedType DCOffsetCV = StringHash("DC Offset CV");
+
 bool Amp::CreatePorts()
 {
-	InputPort::New(this/*, "Input"*/);
-	OutputPort::New(this/*, "Output"*/);
+  InputPort::New(this, In);
+  OutputPort::New(this, Out);
 
-	InputPort::New(this/*, "Gain CV"*/);
-	InputPort::New(this/*, "DC Offset CV"*/);
+  InputPort::New(this, GainCV);
+  InputPort::New(this, DCOffsetCV);
 
-	return true;
+  return true;
 }
 
 void Amp::Process(UnsignedType SampleCount)
 {
-	FloatType out, gain, dc;
-	
-	gain = m_Gain->Value.AsFloat;
-	dc = m_DC->Value.AsFloat;
+  FloatType out, gain, dc;
 
-	for (UnsignedType n=0; n<SampleCount; n++)
-	{
-		out = GetInput(GetInputPort(0), n);
-    out *= gain + GetInput(GetInputPort(1), n);
-		out += (-dc) +  GetInput(GetInputPort(2), n);
+  gain = m_Gain->Value.AsFloat;
+  dc = m_DC->Value.AsFloat;
 
-		SetOutput(GetOutputPort(0), n, out);
-	}		
+  for (UnsignedType n=0; n<SampleCount; n++)
+  {
+    out = GetInput(GetInputPort(In), n);
+    out *= gain + GetInput(GetInputPort(GainCV), n);
+    out += (-dc) +  GetInput(GetInputPort(DCOffsetCV), n);
+
+    SetOutput(GetOutputPort(Out), n, out);
+  }		
 }

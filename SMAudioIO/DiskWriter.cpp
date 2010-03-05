@@ -66,11 +66,15 @@ DiskWriter *DiskWriter::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType LeftIn = StringHash("Left In");
+static const UnsignedType RightIn = StringHash("Right In");
+static const UnsignedType RecordCV= StringHash("Record CV");
+
 bool DiskWriter::CreatePorts()
 {
-  left = InputPort::New(this, /*"Left Out",*/ Port::IS_MONOPHONIC);
-  right = InputPort::New(this, /*"Right Out",*/ Port::IS_MONOPHONIC);
-  recordcv = InputPort::New(this, /*"Record Controller",*/ Port::IS_MONOPHONIC);
+  left = InputPort::New(this, LeftIn, Port::IS_MONOPHONIC);
+  right = InputPort::New(this, RightIn, Port::IS_MONOPHONIC);
+  recordcv = InputPort::New(this, RecordCV, Port::IS_MONOPHONIC);
 
   return true;
 }

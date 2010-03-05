@@ -56,10 +56,13 @@ Mixer *Mixer::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType Out = StringHash("Output");
+
 bool Mixer::CreatePorts()
 {
+    /* FIXME - right now these ports can get created on Synth */
 	if (!OutputPorts()->Count())
-		OutputPort::New(this/*, "Output"*/);
+		OutputPort::New(this, Out);
 
 	while (InputPorts()->Count() > m_NumChannels->Value.AsUnsigned) 
 	{
@@ -71,7 +74,9 @@ bool Mixer::CreatePorts()
 	  /* TODO - Given that meta information is going to be variable */
 	  /* There needs to be a way to both map to unique localizeable information */
 	  /* And have the description in the info.json file */
-		InputPort::New(this/*,FormatedString("Input %d", m_InputPorts.size())*/);
+        String *tmp = FormatedString("Input %d", InputPorts()->Count());
+		InputPort::New(this,tmp->Hash());
+        UnReference(tmp);
 	}
 
 	EnsureChannelProperties();
@@ -139,7 +144,7 @@ void Mixer::Process(UnsignedType SampleCount)
 
 		for (UnsignedType c=0; c<InputPorts()->Count(); c++) 
 		{
-			in = GetInput(GetInputPort(c), n) * ((*m_Volume)[c])->Value.AsFloat;
+			in = GetInput(((InputPort*)(*InputPorts())[c]), n) * ((*m_Volume)[c])->Value.AsFloat;
 			out += in;
 
 			/* This is going to potentially be wrong for voices - one voice might be peaked, another not */
@@ -148,7 +153,7 @@ void Mixer::Process(UnsignedType SampleCount)
 			((*m_VolumePeak)[c])->Value.AsBoolean = (in > 1.0);
 		}
 
-		SetOutput(GetOutputPort(0), n, out);
+		SetOutput(GetOutputPort(Out), n, out);
 
 		/* Again, This is going to potentially be wrong for voices - one voice might be peaked, another not */
 		/* More specifics will need a VoiceMixer */

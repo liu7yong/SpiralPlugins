@@ -37,13 +37,17 @@ RingMod *RingMod::Initialize(Patch *Host)
   return this;
 }
 
+static const UnsignedType In1 = StringHash("Input 1");
+static const UnsignedType In2 = StringHash("Input 2");
+static const UnsignedType Out = StringHash("Output");
+
 bool RingMod::CreatePorts()
 {	
-	InputPort::New(this/*, "Input 1"*/);
-	InputPort::New(this/*, "Input 2"*/);
-	OutputPort::New(this/*, "Output"*/);
+  InputPort::New(this, In1);
+  InputPort::New(this, In2);
+  OutputPort::New(this, Out);
 
-	return true;
+  return true;
 }
 
 void RingMod::Process(UnsignedType SampleCount)
@@ -51,5 +55,5 @@ void RingMod::Process(UnsignedType SampleCount)
 	FloatType amount = m_Amount->Value.AsFloat;
 
 	for (UnsignedType n=0; n<SampleCount; n++)
-      SetOutput(GetOutputPort(0),n,GetInput(GetInputPort(0),n)*GetInput(GetInputPort(1),n)*amount);
+      SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)*GetInput(GetInputPort(In2),n)*amount);
 }
