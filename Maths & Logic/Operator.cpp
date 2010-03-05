@@ -40,7 +40,7 @@ Operator *Operator::Initialize(Patch *Host)
   m_Operator = SignedProperty::New(DefaultLinearFlags,0,0,3,1,1);
   RegisterSharedProperty(m_Operator, StringHash("Operator"));
 
-  m_Constant = FloatProperty::New(DefaultLinearFlags,0,0,1,0.01,0.1);
+  m_Constant = FloatProperty::New(DefaultLinearFlags,0,0,1,0.01f,0.1f);
   RegisterSharedProperty(m_Constant, StringHash("Constant"));
 
   return this;

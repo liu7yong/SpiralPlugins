@@ -58,19 +58,20 @@ const double coeff[5][11]= {
 DevicePluginHook(FormantFilter, FormantFilterID)
 
 ///////////////////////////////////////////////////////
-const FloatType zero = 0.0; 
-const FloatType one = 1.0; 
-const FloatType two = 2.0; 
-const FloatType three = 3.0; 
-const FloatType four = 4.0; 
-const FloatType five = 5.0; 
-const FloatType six = 6.0; 
+/// Uhhhhhhhhh.
+const FloatType zero = 0.0f; 
+const FloatType one = 1.0f; 
+const FloatType two = 2.0f; 
+const FloatType three = 3.0f; 
+const FloatType four = 4.0f; 
+const FloatType five = 5.0f; 
+const FloatType six = 6.0f; 
 
 FormantFilter *FormantFilter::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_Vowel = FloatProperty::New(DefaultLinearFlags,zero, zero, four, 0.0001, 0.001);
+  m_Vowel = FloatProperty::New(DefaultLinearFlags,zero, zero, four, 0.0001f, 0.001f);
   RegisterSharedProperty(m_Vowel, StringHash("VOWEL")/*"Vowel", "Vowel"*/);
   
   return this;
@@ -147,7 +148,7 @@ void FormantFilter::Process(UnsignedType SampleCount)
 
 		if (InputExists(input[1])) 
 		{	
-			in = fabs(GetInput(input[1],n));
+          in = std::fabs(GetInput(input[1],n));
 			/* When old files can be imported with the knob reset to zero 
 				if cv /was/ wired, this should be vow+= */
 			vow=in*four;

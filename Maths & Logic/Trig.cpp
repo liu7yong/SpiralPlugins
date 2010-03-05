@@ -15,11 +15,10 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */ 
-#include <math.h>
 #include <SpiralCore/NoteTable.h>
 #include "Trig.h"
 
-static const FloatType RAD = 2*M_PI;
+static const FloatType RAD = (FloatType)(2.0f*M_PI);
 
 using namespace Spiral;
 
@@ -53,28 +52,28 @@ bool Trig::CreatePorts()
 
 void Trig::Process(UnsignedType SampleCount)
 { 
-  int op = m_Operator->Value.AsSigned;
+  SignedType op = m_Operator->Value.AsSigned;
 
   switch (op) 
   {
     case 1 : 
       for (UnsignedType n=0; n<SampleCount; n++)
       {
-        SetOutput(GetOutputPort(0),n,sin(GetInput(GetInputPort(0),n)*RAD));
+		SetOutput(GetOutputPort(0),n,std::sin(GetInput(GetInputPort(0),n)*RAD));
       } 
       break;
       
     case 2 : 
       for (UnsignedType n=0; n<SampleCount; n++)
       {
-        SetOutput(GetOutputPort(0),n,cos(GetInput(GetInputPort(0),n)*RAD));
+		SetOutput(GetOutputPort(0),n,std::cos(GetInput(GetInputPort(0),n)*RAD));
       } 
       break;
       
     case 3 :
       for (UnsignedType n=0; n<SampleCount; n++)
       {
-        SetOutput(GetOutputPort(0),n,tan(GetInput(GetInputPort(0),n)*RAD));
+		SetOutput(GetOutputPort(0),n,std::tan(GetInput(GetInputPort(0),n)*RAD));
       }
       break;
       

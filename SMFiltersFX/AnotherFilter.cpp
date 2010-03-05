@@ -15,13 +15,12 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */ 
-#include <math.h>
 #include "AnotherFilter.h"
 //#include "SpiralIcon.xpm"
 
-#define PI 3.141592654
+static const FloatType PI = 3.141592654f;
 
-static const int GRANULARITY = 10;
+static const UnsignedType GRANULARITY = 10;
 
 DevicePluginHook(AnotherFilter, AnotherFilterID)
 
@@ -33,8 +32,8 @@ AnotherFilter *AnotherFilter::Initialize(Patch *Host)
 {
   Super::Initialize(Host),
 
-  Cutoff = FloatProperty::New(DefaultLinearFlags,0.0, 0.0, 1.0, 0.0001, 0.0001);
-  Resonance = FloatProperty::New(DefaultLinearFlags,0.0, 0.0, 1.0, 0.00001, 0.00001);
+  Cutoff = FloatProperty::New(DefaultLinearFlags,0.0f, 0.0f, 1.0f, 0.0001f, 0.0001f);
+  Resonance = FloatProperty::New(DefaultLinearFlags,0.0f, 0.0f, 1.0f, 0.00001f, 0.00001f);
   
   RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
   RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
@@ -78,10 +77,10 @@ void AnotherFilter::Process(UnsignedType SampleCount)
     {
       FloatType w,q;
 
-      w = 2.0*PI*((cut+GetInput(input[1], n))*(FloatType)(SignedType)10000+1.0)/(FloatType)(SignedType)SampleRate(); // Pole angle
-      q = 1.0-w/(2.0*(((res+GetInput(input[2], n))*(FloatType)(SignedType)10+1.0)+0.5/(1.0+w))+w-2.0); // Pole magnitude
+      w = 2.0f*PI*((cut+GetInput(input[1], n))*10000.0f+1.0f)/SampleRate(); // Pole angle
+      q = 1.0f-w/(2.0f*(((res+GetInput(input[2], n))*10.0f+1.0f)+0.5f/(1.0f+w))+w-2.0f); // Pole magnitude
       resonance = q*q;
-      cutoff = resonance+1.0-2.0*cos(w)*q;
+      cutoff = resonance+1.0f-2.0f*std::cos(w)*q;
     }
 
     /* Accelerate vibra by signal-vibra, multiplied by lowpasscutoff */

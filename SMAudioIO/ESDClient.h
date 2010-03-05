@@ -67,8 +67,8 @@ private:
 
 		bool connected;
 
-		UnsignedType frames;
-		UnsignedType rate;
+		unsigned int frames;
+		unsigned int rate;
 	} pcm;
 
 	static ESDClient* m_Singleton;

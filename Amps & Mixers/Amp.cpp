@@ -33,8 +33,8 @@ Amp *Amp::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-	m_Gain = FloatProperty::New(DefaultLinearFlags, 1.0, -2.0, 2.0, 0.001, 0.1);
-	m_DC = FloatProperty::New(DefaultLinearFlags, 0.0, -2.0, 2.0, 0.001, 0.1);
+	m_Gain = FloatProperty::New(DefaultLinearFlags, 1.0f, -2.0f, 2.0f, 0.001f, 0.1f);
+	m_DC = FloatProperty::New(DefaultLinearFlags, 0.0f, -2.0f, 2.0f, 0.001f, 0.1f);
 
 	RegisterSharedProperty(m_Gain, StringHash("Gain"));
 	RegisterSharedProperty(m_DC, StringHash("DC"));

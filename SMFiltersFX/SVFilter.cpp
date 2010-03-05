@@ -23,27 +23,27 @@
 using namespace Spicy;
 using namespace Spiral;
 
-static const FloatType PI = 3.141592654;
+static const FloatType PI = 3.141592654f;
 static const int GRANULARITY = 10;
 
 DevicePluginHook(SVFilter, SVFilterID)
 
 ///////////////////////////////////////////////////////
 
-const FloatType zero = 0.0; 
-const FloatType one = 1.0; 
-const FloatType two = 2.0; 
-const FloatType three = 3.0; 
-const FloatType four = 4.0; 
-const FloatType five = 5.0; 
-const FloatType six = 6.0; 
+const FloatType zero = 0.0f; 
+const FloatType one = 1.0f; 
+const FloatType two = 2.0f; 
+const FloatType three = 3.0f; 
+const FloatType four = 4.0f; 
+const FloatType five = 5.0f; 
+const FloatType six = 6.0f; 
 
 SVFilter *SVFilter::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
   
-  Cutoff = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.0001, 0.001);
-  Resonance = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.00001, 0.0001);
+  Cutoff = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.0001f, 0.001f);
+  Resonance = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.00001f, 0.0001f);
   
   RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
   RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
@@ -114,7 +114,7 @@ void SVFilter::Process(UnsignedType SampleCount)
 				cv2=zero;
 
 	 		q  = one-res+cv2;
-			m_f = two*sin(PI*fc/(FloatType)(SignedType)SampleRate());
+          m_f = two*std::sin(PI*fc/(FloatType)(SignedType)SampleRate());
 		}
 
 		in = GetInput(GetInputPort(0),n);

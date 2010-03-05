@@ -55,7 +55,7 @@ private:
   
   inline FloatType GenerateWhite()
   {
-    return 1.0f-((rand()%INT_MAX)/(FloatType)INT_MAX)*2.0;
+    return 1.0f-((rand()%INT_MAX)/(FloatType)INT_MAX)*2.0f;
   }
   
   inline FloatType GeneratePink()
@@ -88,10 +88,10 @@ private:
   }*/
   inline FloatType GenerateBrown()
   {
-    FloatType white = 0.1f*(2.0f*randf() - 1.0f);
+    float32 white = 0.1f*(2.0f*randf() - 1.0f);
 
-    union { FloatType f; UnsignedType i; } u, ub;
-    u.f = b(0) + white;
+    union { float32 f; uint32_t i; } u, ub;
+    u.f = (float32)b(0) + white;
     
     // Only keep the exponent, which is n+127 where n<0 if |a+b|<1.0.
     u.i &= 0xff<<23;

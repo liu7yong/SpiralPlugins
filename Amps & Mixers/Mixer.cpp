@@ -135,7 +135,7 @@ void Mixer::Process(UnsignedType SampleCount)
 	// Mix the inputs
 	for (UnsignedType n=0; n<SampleCount; n++) 
 	{
-		FloatType in, out = 0.0;
+		FloatType in, out = 0.0f;
 
 		for (UnsignedType c=0; c<InputPorts()->Count(); c++) 
 		{
@@ -170,7 +170,7 @@ void Mixer::EnsureChannelProperties()
 	/* Add Channel Properties */
 	while (m_Volume->Count() < num) 
 	{
-		m_Volume->Append(FloatProperty::New(DefaultLinearFlags, 1.0, 0.0, 2.0, 0.001, 0.01));
+		m_Volume->Append(FloatProperty::New(DefaultLinearFlags, 1.0f, 0.0f, 2.0f, 0.001f, 0.01f));
 		m_VolumePeak->Append(ToggleProperty::New(Property::ReadOnly, false));
 	}
 }

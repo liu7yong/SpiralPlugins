@@ -55,10 +55,10 @@ Oscillator *Oscillator::Initialize(Patch *Host)
   /* Shared Properties */
   m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
   m_Octave = UnsignedProperty::New(DefaultLinearFlags,0,0,6,1,1);
-  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414, 0.000001, 0.0001);
-  m_PulseWidth = FloatProperty::New(DefaultLinearFlags, 0.5f, 0, 1, 0.01, 0.1);
-  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001, 0.01);
-  m_SHLen = FloatProperty::New(DefaultLinearFlags, 0.1f, 0, 0.2f, 0.001, 0.01);
+  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414f, 0.000001f, 0.0001f);
+  m_PulseWidth = FloatProperty::New(DefaultLinearFlags, 0.5f, 0, 1, 0.01f, 0.1f);
+  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001f, 0.01f);
+  m_SHLen = FloatProperty::New(DefaultLinearFlags, 0.1f, 0, 0.2f, 0.001f, 0.01f);
 
   RegisterSharedProperty(m_Type, StringHash("Wave Type")/*, "Wave Type"*/);
   RegisterSharedProperty(m_Octave, StringHash("Octave")/*, "Octave"*/);

@@ -21,8 +21,8 @@
 
 DevicePluginHook(LFO, LFOID)
 
-static const int NUM_TABLES = 6;
-static const int DEFAULT_TABLE_LEN = 1024;
+static const UnsignedType NUM_TABLES = 6;
+static const UnsignedType DEFAULT_TABLE_LEN = 1024;
 
 void LFO::Class::WriteWaves()
 {
@@ -33,22 +33,22 @@ void LFO::Class::WriteWaves()
   for (UnsignedType n=0; n<NUM_TABLES; n++)
     mTable->Append(Sample::New(DEFAULT_TABLE_LEN));
   
-  FloatType RadCycle = (M_PI/180)*360;
+  FloatType RadCycle = (FloatType)(M_PI/180)*360;
   FloatType Pos = 0;
   FloatType v = 0;
   UnsignedType HalfTab = Math::Divide<DEFAULT_TABLE_LEN, 2>::Result;
-  int QuatTab = Math::Divide<DEFAULT_TABLE_LEN, 4>::Result;
-  int ThreeQuatTab = Math::Subtract<DEFAULT_TABLE_LEN, Math::Divide<DEFAULT_TABLE_LEN, 4>::Result>::Result;
+  UnsignedType QuatTab = Math::Divide<DEFAULT_TABLE_LEN, 4>::Result;
+  UnsignedType ThreeQuatTab = Math::Subtract<DEFAULT_TABLE_LEN, Math::Divide<DEFAULT_TABLE_LEN, 4>::Result>::Result;
   int Shift;
   
-  for (int n=0; n<DEFAULT_TABLE_LEN; n++) 
+  for (UnsignedType n=0; n<DEFAULT_TABLE_LEN; n++) 
   {
     if (n==0) 
       Pos = 0; 
     else 
       Pos = (n/(FloatType)DEFAULT_TABLE_LEN) * RadCycle;
     
-    (*mTable)[SineWave]->Set (n, sin (Pos));
+    (*mTable)[SineWave]->Set (n, std::sin (Pos));
     
     if (n < QuatTab) 
       Shift=n+ThreeQuatTab; 
@@ -90,7 +90,7 @@ LFO *LFO::Initialize(Patch *Host)
 
   /* Shared Properties */
   m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  m_Freq = FloatProperty::New(DefaultLinearFlags,0.1, 0.0, 1.0, 0.001, 0.1);
+  m_Freq = FloatProperty::New(DefaultLinearFlags,0.1f, 0.0f, 1.0f, 0.001f, 0.1f);
 
   RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
   RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
@@ -113,7 +113,7 @@ bool LFO::CreatePorts()
 FloatType LFO::AdjustPos (FloatType pos) 
 {
 	if (pos > DEFAULT_TABLE_LEN)
-		pos = ((UnsignedType)floor(pos) % DEFAULT_TABLE_LEN) + (pos - floor(pos));
+      pos = ((UnsignedType)floor(pos) % DEFAULT_TABLE_LEN) + (pos - std::floor(pos));
 
 	pos = MAX(pos, 0);
     
@@ -142,7 +142,7 @@ void LFO::Process(UnsignedType SampleCount)
 		SetOutput (output[0], n, (*ClassObject()->Table(type))[CyclePos]);
 
 		// 'Cosine' Output
-		Pos = AdjustPos (CyclePos + (m_TableLength * 0.25));
+		Pos = AdjustPos (CyclePos + (m_TableLength * 0.25f));
 		SetOutput (output[1], n, (*ClassObject()->Table(type))[Pos]);
 
 		// Inverted Output

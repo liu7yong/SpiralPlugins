@@ -79,8 +79,8 @@ void prewarp(
 { 
     FloatType wp, pi; 
 
-    pi = 4.0 * atan(1.0); 
-    wp = 2.0 * fs * tan(pi * fc / fs); 
+    pi = 4.0f * std::atan(1.0f); 
+    wp = 2.0f * fs * std::tan(pi * fc / fs); 
 
     *a2 = (*a2) / (wp * wp); 
     *a1 = (*a1) / wp; 
@@ -97,19 +97,19 @@ void bilinear(
     FloatType ad, bd; 
 
                  /* alpha (Numerator in s-domain) */ 
-    ad = 4. * a2 * fs * fs + 2. * a1 * fs + a0; 
+    ad = 4.0f * a2 * fs * fs + 2.0f * a1 * fs + a0; 
                  /* beta (Denominator in s-domain) */ 
-    bd = 4. * b2 * fs * fs + 2. * b1* fs + b0; 
+    bd = 4.0f * b2 * fs * fs + 2.0f * b1* fs + b0; 
 
                  /* update gain constant for this section */ 
     *k *= ad/bd; 
 
                  /* Denominator */ 
-    *coef++ = (2. * b0 - 8. * b2 * fs * fs) / bd;         /* beta1 */ 
-    *coef++ = (4. * b2 * fs * fs - 2. * b1 * fs + b0) / bd; /* beta2 */ 
+    *coef++ = (2.0f * b0 - 8.0f * b2 * fs * fs) / bd;         /* beta1 */ 
+    *coef++ = (4.0f * b2 * fs * fs - 2.0f * b1 * fs + b0) / bd; /* beta2 */ 
                  /* Nominator */ 
-    *coef++ = (2. * a0 - 8. * a2 * fs * fs) / ad;         /* alpha1 */ 
-    *coef = (4. * a2 * fs * fs - 2. * a1 * fs + a0) / ad;   /* alpha2 */ 
+    *coef++ = (2.0f * a0 - 8.0f * a2 * fs * fs) / ad;         /* alpha1 */ 
+    *coef = (4.0f * a2 * fs * fs - 2.0f * a1 * fs + a0) / ad;   /* alpha2 */ 
 } 
 
 void szxform( 

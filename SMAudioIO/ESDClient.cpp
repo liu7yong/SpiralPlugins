@@ -13,7 +13,7 @@ void (*ESDClient::RunCallback)(void*, bool m) = NULL;
 void * ESDClient::RunContext = NULL;
 
 ESDClient::ESDClient() :
-m_Amp(0.5),
+m_Amp(0.5f),
 m_Channels(2),
 m_ReadBufferNum(0),
 m_WriteBufferNum(0),
@@ -39,7 +39,7 @@ void ESDClient::AllocateBuffer()
 	if (m_Buffer[0]==NULL)
 	{
 		if (!pcm.connected)
-			pcm.frames = host->SampleCount();
+			pcm.frames = (unsigned int)host->SampleCount();
 
 		// initialise for stereo
 		m_Buffer[0] = new short[pcm.frames*2];
@@ -76,10 +76,10 @@ void ESDClient::SendStereo(InputPort *ldata,InputPort *rdata)
 
 	const Sample *l, *r;
 	
-	l = ldata->GetSampleBuffer(0);
-	r = rdata->GetSampleBuffer(0);
+    l = ((ldata) && ldata->IsConnected())?ldata->GetSampleBuffer(0):(Sample::Null());
+    r = ((rdata) && rdata->IsConnected())?rdata->GetSampleBuffer(0):(Sample::Null());
 
-	count = (l)?l->GetLength():((r)?r->GetLength():0);
+	count = (!l->IsNull())?l->GetLength():((!r->IsNull())?r->GetLength():0);
 	count = MIN(pcm.frames, count);
 
 	for (UnsignedType n=0; n<count; n++)
@@ -87,7 +87,7 @@ void ESDClient::SendStereo(InputPort *ldata,InputPort *rdata)
 		if (m_IsDead)	return;
 
 		// stereo channels - interleave	
-		if (ldata) 
+		if (!l->IsNull()) 
 		{
 			t = CLAMP((float32)(ldata->GetSampleValue(n, 0)*m_Amp), -1, 1);
 
@@ -95,7 +95,7 @@ void ESDClient::SendStereo(InputPort *ldata,InputPort *rdata)
 		}
 		on++;
 		
-		if (rdata) 
+        if (!r->IsNull()) 
 		{
 			t = CLAMP((float32)(rdata->GetSampleValue(n, 0)*m_Amp), -1, 1);
 
@@ -176,8 +176,8 @@ bool ESDClient::OpenReadWrite()
 {
 	Close();
 
-	pcm.rate = host->SampleRate();
-	pcm.frames = host->SampleRate();
+	pcm.rate = (unsigned int)host->SampleRate();
+	pcm.frames = (unsigned int)host->SampleRate();
 
 	DeallocateBuffer();
 	AllocateBuffer();

@@ -31,7 +31,7 @@ RingMod *RingMod::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_Amount = FloatProperty::New(DefaultLinearFlags,1.0f, 0, 3, 0.0001, 0.001);
+  m_Amount = FloatProperty::New(DefaultLinearFlags,1.0f, 0, 3, 0.0001f, 0.001f);
   RegisterSharedProperty(m_Amount, StringHash("Amount")/*, "Amount"*/);
 
   return this;

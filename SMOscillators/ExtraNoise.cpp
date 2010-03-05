@@ -27,8 +27,8 @@ ExtraNoise *ExtraNoise::Initialize(Patch *Host)
   /* Voice State Properties */
   mState = NewStateProperty(defZeroFloat);
 
-  mMagicA = FloatProperty::New(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001, 0.001);
-  mMagicB = FloatProperty::New(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001, 0.001);
+  mMagicA = FloatProperty::New(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001f, 0.001f);
+  mMagicB = FloatProperty::New(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001f, 0.001f);
 
   RegisterSharedProperty(mMagicA, StringHash("MAGIC A")/*"Magic A", "Magic A"*/);
   RegisterSharedProperty(mMagicB, StringHash("MAGIC B")/*"Magic B", "Magic B"*/);
@@ -86,7 +86,7 @@ void ExtraNoise::Process(UnsignedType SampleCount)
 		if (NUMBER_IS_INSANE(in1))
 			in1 = 0.0f;
 
-		FloatType leak = 1.0f-powf(fabsf(state), (mMagicA->Value.AsFloat)); 
+		FloatType leak = 1.0f-powf(fabsf(state), mMagicA->Value.AsFloat); 
 		
 		state = evil(leak*state, ((in1))*white); 
 

@@ -65,7 +65,7 @@ AudioIO *AudioIO::Initialize(Patch *Host)
   RegisterSharedProperty(m_Mode, "Mode", "Mode");
   m_Mode->command = true;*/
 
-  m_Volume = 0.5;
+  m_Volume = 0.5f;
   m_Mode = 0;
   m_Mode = m_RealMode;
 

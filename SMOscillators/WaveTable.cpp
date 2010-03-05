@@ -36,7 +36,7 @@ void WaveTable::Class::WriteWaves()
   for (UnsignedType n=0; n<NUM_TABLES; n++)
     mTable->Append(Sample::New(DEFAULT_TABLE_LEN));
 
-  FloatType RadCycle = M_PI*2;
+  FloatType RadCycle = (FloatType)M_PI*2;
   FloatType Pos=0, v=0;
   FloatType HalfTab=DEFAULT_TABLE_LEN/2;
   
@@ -44,7 +44,7 @@ void WaveTable::Class::WriteWaves()
   {
     if (n==0) Pos=0;
     else Pos=(n/(FloatType)DEFAULT_TABLE_LEN)*RadCycle;
-    (*mTable)[SineWave]->Set(n,sin(Pos));		
+    (*mTable)[SineWave]->Set(n,std::sin(Pos));		
     
     if (n<HalfTab) 
     {
@@ -61,7 +61,7 @@ void WaveTable::Class::WriteWaves()
     
     (*mTable)[SawWave]->Set(n,1-(n/(FloatType)DEFAULT_TABLE_LEN)*2.0f);
     
-    (*mTable)[TriangleWave]->Set(n,v*0.99);		
+    (*mTable)[TriangleWave]->Set(n,v*0.99f);		
     if (n<DEFAULT_TABLE_LEN/1.2) 
       (*mTable)[Pulse1Wave]->Set(n,1);
     else 
@@ -79,7 +79,7 @@ void WaveTable::Class::WriteWaves()
     if (n==0) Pos=0;
     else Pos=(n/(FloatType)DEFAULT_TABLE_LEN)*RadCycle;
     if (sin(Pos)==0) (*mTable)[InverseSineWave]->Set(n,0);
-    else (*mTable)[InverseSineWave]->Set(n,(1.0f/sin(Pos))/10.0f);				
+    else (*mTable)[InverseSineWave]->Set(n,(1.0f/std::sin(Pos))/10.0f);				
   }
 }
 
@@ -105,8 +105,8 @@ WaveTable *WaveTable::Initialize(Patch *Host)
   /* Shared Properties */
   m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
   m_Octave = SignedProperty::New(DefaultLinearFlags,0,-3,3,1,1);
-  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414, 0.000001, 0.0001);
-  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001, 0.01);
+  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414f, 0.000001f, 0.0001f);
+  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001f, 0.01f);
 
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
@@ -172,7 +172,7 @@ void WaveTable::Process(UnsignedType SampleCount)
     CyclePos+=Incr;
 
     if (CyclePos > DEFAULT_TABLE_LEN)
-        CyclePos = ((UnsignedType)floor(CyclePos) % DEFAULT_TABLE_LEN) + (CyclePos - floor(CyclePos));
+      CyclePos = ((UnsignedType)floor(CyclePos) % DEFAULT_TABLE_LEN) + (CyclePos - std::floor(CyclePos));
 
     CyclePos = MAX(CyclePos, 0);
 
