@@ -108,9 +108,9 @@ static const UnsignedType InvOut = StringHash("Inverted Output");
 
 bool LFO::CreatePorts() 
 {
-  output[0] = OutputPort::New(this, Out);
-  output[1] = OutputPort::New(this, CosOut);
-  output[2] = OutputPort::New(this, InvOut);
+  output[0] = OutputPort::New(this, Out, Port::IS_MONOPHONIC);
+  output[1] = OutputPort::New(this, CosOut, Port::IS_MONOPHONIC);
+  output[2] = OutputPort::New(this, InvOut, Port::IS_MONOPHONIC);
 
   return true;
 }

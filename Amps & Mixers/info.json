@@ -16,21 +16,16 @@
         "Icon": "Mixer.png"
       },
       
-      "Inputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index" 
-          ]
-        }, 
-        
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Input",
           "Tooltip": "Input",
-          "Template": true
+          "Template": true,
+          "Factory": "Channels"
         }
-      ],
+      },
 
       "Outputs":[
         { 

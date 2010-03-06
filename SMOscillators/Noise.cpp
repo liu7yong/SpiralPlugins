@@ -66,7 +66,7 @@ static const UnsignedType Out = StringHash("Output");
 
 bool Noise::CreatePorts()
 {
-  output = OutputPort::New(this, Out);
+  output = OutputPort::New(this, Out, Port::IS_MONOPHONIC);
 
   return true;
 }

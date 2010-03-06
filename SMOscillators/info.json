@@ -139,31 +139,33 @@
       "Info": "Oscillator",
       "Category":"Oscillators",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Frequency CV":{
           "Index": 0,
           "Name": "Frequency",
           "Tooltip": "Frequency CV"
         },
-        {
+        
+        "PulseWidth CV":{
           "Index": 1,
           "Name": "PulseWidth",
           "Tooltip": "PulseWidth CV"
         },
-        {
+        
+        "Sample & Hold Length CV":{
           "Index": 2,
           "Name": "Sample & Hold Length",
           "Tooltip": "Sample & Hold Length CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "WaveTable.png"
