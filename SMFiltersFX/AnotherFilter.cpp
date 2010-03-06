@@ -22,7 +22,10 @@ static const FloatType PI = 3.141592654f;
 
 static const UnsignedType GRANULARITY = 10;
 
-DevicePluginHook(AnotherFilter, AnotherFilterID)
+//Initially commited by Dave, Thu Jan 2 01:56:01 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1043740561::AnotherFilter"
+//  => 420c8ee427e7ae589bc74eb766e66323 (legacy == 2B)
+DevicePluginHook(AnotherFilter, 420c8ee427e7ae589bc74eb766e66323)
 
 ///////////////////////////////////////////////////////
 
@@ -35,8 +38,8 @@ AnotherFilter *AnotherFilter::Initialize(Patch *Host)
   Cutoff = FloatProperty::New(DefaultLinearFlags,0.0f, 0.0f, 1.0f, 0.0001f, 0.0001f);
   Resonance = FloatProperty::New(DefaultLinearFlags,0.0f, 0.0f, 1.0f, 0.00001f, 0.00001f);
   
-  RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
-  RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  RegisterSharedProperty(Cutoff, StringHash("Cutoff", true)/*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(Resonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
   
   /* Voice State Properties */
   m_VibraPosInd = NewStateProperty(zeroFloat);
@@ -48,7 +51,6 @@ AnotherFilter *AnotherFilter::Initialize(Patch *Host)
 }
 
 static const UnsignedType In = StringHash("Input", true);
-
 static const UnsignedType LowPassOut = StringHash("Low Pass Output", true);
 
 /* These should be Control Ports, i.e., autocreated by the properties they are for */
@@ -57,12 +59,12 @@ static const UnsignedType EmphasisCV = StringHash("Emphasis CV", true);
 
 bool AnotherFilter::CreatePorts()
 {
-  input[0] = GetInputPort(In);//InputPort::New(this, In);
-  output[0] = GetOutputPort(LowPassOut);//OutputPort::New(this, LowPassOut);
+  input[0] = GetInputPort(In);
+  output[0] = GetOutputPort(LowPassOut);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = GetInputPort(CutoffCV);//InputPort::New(this, CutoffCV);
-  input[2] = GetInputPort(EmphasisCV);;//InputPort::New(this, EmphasisCV);
+  input[1] = GetInputPort(CutoffCV);
+  input[2] = GetInputPort(EmphasisCV);
 
   return true;
 }

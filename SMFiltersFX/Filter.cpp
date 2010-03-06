@@ -26,7 +26,10 @@ static const FloatType MAX_CUTOFF = 3000.0f;
 static const FloatType MIN_CUTOFF = 500.0f;
 static const SignedType FILTERGRAN = 50;
 
-DevicePluginHook(Filter, FilterID)
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Filter"
+//  => 90ad6dd029d6e71cb86008c489933f5c (legacy == B)
+DevicePluginHook(Filter, 90ad6dd029d6e71cb86008c489933f5c)
 
 ///////////////////////////////////////////////////////
 
@@ -86,7 +89,6 @@ Filter *Filter::Initialize(Patch *Host)
 }
 
 static const UnsignedType In = StringHash("Input", true);
-
 static const UnsignedType Out = StringHash("Low Pass Output", true);
 
 /* These should be Control Ports, i.e., autocreated by the properties they are for */
@@ -95,12 +97,12 @@ static const UnsignedType EmphasisCV = StringHash("Emphasis CV", true);
 
 bool Filter::CreatePorts()
 {	
-  input[0] = GetInputPort(In);//InputPort::New(this, In);
-  output = GetOutputPort(Out);//OutputPort::New(this, Out);
+  input[0] = GetInputPort(In);
+  output = GetOutputPort(Out);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = GetInputPort(CutoffCV);//InputPort::New(this, CutoffCV);
-  input[2] = GetInputPort(EmphasisCV);//InputPort::New(this, EmphasisCV);
+  input[1] = GetInputPort(CutoffCV);
+  input[2] = GetInputPort(EmphasisCV);
   
   return true;
 }

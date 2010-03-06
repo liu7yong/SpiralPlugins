@@ -28,17 +28,10 @@ using namespace Spiral;
 static const int NUM_CHANNELS = 4;
 
 // A State Variable Filter
-
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::SVFilter"
-//  => ba7dbd3d0088109861334e1787616b2e (legacy == C)
-#define SVFilterID ba7dbd3d0088109861334e1787616b2e
-
 class SVFilter : Gumbo(Device)
 {
   GumboClassDefinition(SVFilter, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(SVFilterID));
       mVersion = 2;
     },
     {

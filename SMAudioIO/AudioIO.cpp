@@ -22,9 +22,6 @@
 #define OUTPUTCLIENT ESDClient
 #include "ESDClient.h"
 
-//#include "SpiralIcon.xpm"
-
-using namespace std;
 
 static const int IN_FREQ  = 0;
 static const int IN_PW    = 1;
@@ -36,7 +33,10 @@ int AudioIO::m_RefCount=0;
 int AudioIO::m_NoExecuted=0;
 int AudioIO::m_RealMode=3;
 
-DevicePluginHook(AudioIO, AudioIOID)
+//SSM Was initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Output"
+//  =>  6e86a9417526779d302077af073d5111 (legacy == 0)
+DevicePluginHook(AudioIO, 6e86a9417526779d302077af073d5111)
 
 ///////////////////////////////////////////////////////
 
@@ -91,12 +91,6 @@ static const UnsignedType RightOut = StringHash("Right Out", true);
 
 bool AudioIO::CreatePorts()
 {
-  /*InputPort::New(this, LeftIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-  InputPort::New(this, RightIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
-
-  OutputPort::New(this, LeftOut, Port::IS_MONOPHONIC);
-  OutputPort::New(this, RightOut, Port::IS_MONOPHONIC);*/
-
   return true;
 }
 

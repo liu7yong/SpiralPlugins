@@ -25,16 +25,10 @@
 
 using namespace Spiral;
 
-//Disk Writer was initially commited by Dave, Nov 11 23:27:35 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1037078855::DiskWriter"
-//  => 1f5efd4bb21f90cf99ed081a335d913a (legacy == 29)
-#define DiskWriterID 1f5efd4bb21f90cf99ed081a335d913a
-
 class DiskWriter : Gumbo(AudioDriver)
 {
   GumboClassDefinition(DiskWriter, AudioDriver,
     {
-      mUniqueID = String::New(XSTRINGIFY(DiskWriterID));
       mVersion = 2;
     },
     {

@@ -17,7 +17,10 @@
 */ 
 #include "Counter.h"
 
-DevicePluginHook(Counter, CounterID);
+//Initially commited by Dave, Sun Jan 19 01:25:51 2003 UTC 
+//md5 -s "Dave Griffiths::dave@pawfal.org::1042939551::Counter"
+//  =>  d56ffbfa40b244e2976ec36ce4d5b1a4 (legacy == 0x2D)
+DevicePluginHook(Counter, d56ffbfa40b244e2976ec36ce4d5b1a4);
 
 ///////////////////////////////////////////////////////
 
@@ -52,10 +55,6 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool Counter::CreatePorts()
 {	
-  /*
-  InputPort::New(this, In);
-  OutputPort::New(this, Out);
-  */
   return true;
 }
 

@@ -17,7 +17,10 @@
 */
 #include "RingMod.h"
 
-DevicePluginHook(RingMod, RingModID);
+//Initially commited by Dave, 
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::RingMod"
+//  => f9587ded2aed867d761fca167c1d3960 (legacy == 0xA)
+DevicePluginHook(RingMod, f9587ded2aed867d761fca167c1d3960);
 
 ///////////////////////////////////////////////////////
 
@@ -43,10 +46,6 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool RingMod::CreatePorts()
 {	
-/*  InputPort::New(this, In1);
-  InputPort::New(this, In2);
-  OutputPort::New(this, Out);
-*/
   return true;
 }
 

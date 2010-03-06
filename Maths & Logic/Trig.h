@@ -25,15 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Tue Feb 4 19:57:26 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1044401569::Trig"
-//  =>  ede0519adcefedfb270bf0613c5fc210 (legacy == 0x35)
-#define TrigID ede0519adcefedfb270bf0613c5fc210
 class Trig : Gumbo(Device)
 {
   GumboClassDefinition(Trig, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(TrigID));
       mVersion = 1;
     },
     {

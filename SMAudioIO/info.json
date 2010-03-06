@@ -16,12 +16,14 @@
         "Left In":{
           "Index": 0,
           "Monophonic":true,
+          "CanFeedback":true,
           "Name": "Left Input",
           "Tooltip": "Left Input"
         },
         "Right In":{
           "Index": 1,
           "Monophonic":true,
+          "CanFeedback":true,
           "Name": "Right Input",
           "Tooltip": "Right Input"
         }

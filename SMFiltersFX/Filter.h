@@ -27,15 +27,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Filter"
-//  => 90ad6dd029d6e71cb86008c489933f5c (legacy == B)
-#define FilterID 90ad6dd029d6e71cb86008c489933f5c
 class Filter : Gumbo(Device)
 {
   GumboClassDefinition(Filter, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(FilterID));
       mVersion = 1;
     },
     {

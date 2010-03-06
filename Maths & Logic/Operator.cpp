@@ -21,7 +21,10 @@
 
 using namespace Spiral;
 
-DevicePluginHook(Operator, OperatorID);
+//Initially commited by Dave, Sun Jan 19 01:25:53 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1042939553::Operator"
+//  =>  3bf687891e0216a806077e1ec1f4a4aa (legacy == 0x2C)
+DevicePluginHook(Operator, 3bf687891e0216a806077e1ec1f4a4aa);
 
 ///////////////////////////////////////////////////////
 
@@ -53,11 +56,6 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool Operator::CreatePorts() 
 {
-  /*
-  InputPort::New(this, In1);
-  InputPort::New(this, In2);
-  OutputPort::New(this, Out);
-*/
   return true;
 }
 

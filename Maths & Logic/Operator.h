@@ -25,15 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jan 19 01:25:53 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042939553::Operator"
-//  =>  3bf687891e0216a806077e1ec1f4a4aa (legacy == 0x2C)
-#define OperatorID 3bf687891e0216a806077e1ec1f4a4aa
 class Operator : Gumbo(Device)
 {
   GumboClassDefinition(Operator, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(OperatorID));
       mVersion = 2;
     },
     {

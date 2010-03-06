@@ -26,16 +26,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::MoogFilter"
-//  => d668f07998c4e09b149ae1570d2143cc (legacy == D)
-#define MoogFilterID d668f07998c4e09b149ae1570d2143cc
-
 class MoogFilter : Gumbo(Device)
 {
   GumboClassDefinition(MoogFilter, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(MoogFilterID));
       mVersion = 1;
     },
     {

@@ -15,7 +15,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
-#include <math.h>
+#include <cmath>
 #include "WaveTable.h"
 
 static const unsigned int NUM_TABLES = 8;
@@ -25,7 +25,10 @@ static const int IN_FREQ  = 0;
 static const int IN_PW    = 1;
 static const int IN_SHLEN = 2;
 
-DevicePluginHook(WaveTable, WaveTableID)
+//WaveTable Was initially commited by Dave, Sun Jul 28 23:18:17 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916297::WaveTable"
+//  => d7a6e545474f4fc1c5f6d2acedc28cd7 (legacy == 17)
+DevicePluginHook(WaveTable, d7a6e545474f4fc1c5f6d2acedc28cd7)
 
 void WaveTable::Class::WriteWaves()
 {
@@ -121,13 +124,12 @@ WaveTable *WaveTable::Initialize(Patch *Host)
 }
 
 static const UnsignedType FrequencyCV = StringHash("Frequency CV", true);
-
 static const UnsignedType Out = StringHash("Output", true);
 
 bool WaveTable::CreatePorts()
 {
-  frequency = GetInputPort(FrequencyCV);//InputPort::New(this, FrequencyCV);
-  output = GetOutputPort(Out);//OutputPort::New(this, Out);
+  frequency = GetInputPort(FrequencyCV);
+  output = GetOutputPort(Out);
 	
   return true;
 }

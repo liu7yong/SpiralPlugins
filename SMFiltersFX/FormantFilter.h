@@ -25,15 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Thu Jan 2 01:56:48 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1041494208::FormantFilter"
-//  =>  78bd5c2e8967c372c264d5745359fdf5 (legacy == 2A)
-#define FormantFilterID 78bd5c2e8967c372c264d5745359fdf5
 class FormantFilter : Gumbo(Device)
 {
   GumboClassDefinition(FormantFilter, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(FormantFilterID));
       mVersion = 1;
     },
     {

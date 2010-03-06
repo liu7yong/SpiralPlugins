@@ -17,9 +17,12 @@
 */
 #include "Amp.h"
 
-///////////////////////////////////////////////////////
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Amp"
+//  =>  3d2307b7d767fd8d270c11e2f712a870 (legacy == 0x9)
+DevicePluginHook(Amp, 3d2307b7d767fd8d270c11e2f712a870);
 
-DevicePluginHook(Amp, AmpID);
+///////////////////////////////////////////////////////
 
 void Amp::Finalize()
 {
@@ -50,13 +53,6 @@ static const UnsignedType DCOffsetCV = StringHash("DC Offset CV", true);
 
 bool Amp::CreatePorts()
 {
-  /*
-  InputPort::New(this, In);
-  OutputPort::New(this, Out);
-
-  InputPort::New(this, GainCV);
-  InputPort::New(this, DCOffsetCV);*/
-
   return true;
 }
 

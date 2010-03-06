@@ -16,15 +16,12 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-// is this still relevant
-// for lrintf()
-#define	_ISOC9X_SOURCE	1
-#define _ISOC99_SOURCE	1
-
 #include "DiskWriter.h"
-//#include "SpiralIcon.xpm"
 
-DevicePluginHook(DiskWriter, DiskWriterID)
+//Disk Writer was initially commited by Dave, Nov 11 23:27:35 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1037078855::DiskWriter"
+//  => 1f5efd4bb21f90cf99ed081a335d913a (legacy == 29)
+DevicePluginHook(DiskWriter, 1f5efd4bb21f90cf99ed081a335d913a)
 
 ///////////////////////////////////////////////////////
 
@@ -72,9 +69,9 @@ static const UnsignedType RecordCV= StringHash("Record CV", true);
 
 bool DiskWriter::CreatePorts()
 {
-  left = GetInputPort(LeftIn);//InputPort::New(this, LeftIn, Port::IS_MONOPHONIC);
-  right = GetInputPort(RightIn);//InputPort::New(this, RightIn, Port::IS_MONOPHONIC);
-  recordcv = GetInputPort(RecordCV);//InputPort::New(this, RecordCV, Port::IS_MONOPHONIC);
+  left = GetInputPort(LeftIn);
+  right = GetInputPort(RightIn);
+  recordcv = GetInputPort(RecordCV);
 
   return true;
 }

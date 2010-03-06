@@ -25,15 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jan 19 01:25:51 2003 UTC 
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042939551::Counter"
-//  =>  d56ffbfa40b244e2976ec36ce4d5b1a4 (legacy == 0x2D)
-#define CounterID d56ffbfa40b244e2976ec36ce4d5b1a4
 class Counter : Gumbo(Device)
 {
   GumboClassDefinition(Counter, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(CounterID));
       mVersion = 1;
     },
     {

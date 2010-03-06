@@ -18,7 +18,10 @@
 
 #include "Switch.h"
 
-DevicePluginHook(Switch, SwitchID);
+//Initially commited by Dave, Sun Jan 19 01:25:54 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1042939554::Switch"
+//  =>  18a0084d130df33f1ae53a08ccb2f558 (legacy == 0x2F)
+DevicePluginHook(Switch, 18a0084d130df33f1ae53a08ccb2f558);
 
 ///////////////////////////////////////////////////////
 void Switch::Finalize()
@@ -45,13 +48,6 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool Switch::CreatePorts()
 {
-  /*
-  InputPort::New(this, In1);
-  InputPort::New(this, In2);
-  InputPort::New(this, CV);
-
-  OutputPort::New(this, Out);*/
-
   return true;
 }
 

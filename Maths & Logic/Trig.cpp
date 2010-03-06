@@ -22,7 +22,10 @@ static const FloatType RAD = (FloatType)(2.0f*M_PI);
 
 using namespace Spiral;
 
-DevicePluginHook(Trig, TrigID);
+//Initially commited by Dave, Tue Feb 4 19:57:26 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1044401569::Trig"
+//  =>  ede0519adcefedfb270bf0613c5fc210 (legacy == 0x35)
+DevicePluginHook(Trig, ede0519adcefedfb270bf0613c5fc210);
 
 ///////////////////////////////////////////////////////
 
@@ -47,8 +50,6 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool Trig::CreatePorts() 
 {
-//  InputPort::New(this, In);
-//  OutputPort::New(this, Out);
 
   return true;
 }

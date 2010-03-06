@@ -18,11 +18,12 @@
 
 #include "Mixer.h"
 
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Mixer"
+//  =>  752ea58ee28b9765618d0b306bcd79b6 (legacy == 0x7)
+DevicePluginHook(Mixer, 752ea58ee28b9765618d0b306bcd79b6);
+
 ///////////////////////////////////////////////////////
-
-using namespace Spiral;
-
-DevicePluginHook(Mixer, MixerID);
 
 void Mixer::Finalize()
 {

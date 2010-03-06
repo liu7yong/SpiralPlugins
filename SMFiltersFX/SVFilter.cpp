@@ -18,7 +18,6 @@
 #include <SpiralCore/Misc.h>
 
 #include "SVFilter.h"
-//#include "SpiralIcon.xpm"
 
 using namespace Spicy;
 using namespace Spiral;
@@ -26,7 +25,10 @@ using namespace Spiral;
 static const FloatType PI = 3.141592654f;
 static const int GRANULARITY = 10;
 
-DevicePluginHook(SVFilter, SVFilterID)
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::SVFilter"
+//  => ba7dbd3d0088109861334e1787616b2e (legacy == C)
+DevicePluginHook(SVFilter, ba7dbd3d0088109861334e1787616b2e)
 
 ///////////////////////////////////////////////////////
 

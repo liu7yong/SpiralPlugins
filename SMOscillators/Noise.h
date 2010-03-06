@@ -26,16 +26,10 @@
 
 using namespace Spiral;
 
-//Noise Was initially commited by Dave, Sun Jan 19 01:25:52 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042961152::Noise"
-//  => 7cac72b3687628ec373ef10ae8a2ab4a (legacy == 32)
-#define NoiseID 7cac72b3687628ec373ef10ae8a2ab4a
-
 class Noise : Gumbo(Device)
 {
   GumboClassDefinition(Noise, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(NoiseID));
       mVersion = 1;
     },
     {

@@ -25,15 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jan 19 01:25:54 2003 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1042939554::Switch"
-//  =>  18a0084d130df33f1ae53a08ccb2f558 (legacy == 0x2F)
-#define SwitchID 18a0084d130df33f1ae53a08ccb2f558
 class Switch : Gumbo(Device)
 {
   GumboClassDefinition(Switch, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(SwitchID));
       mVersion = 1;
     },
     {

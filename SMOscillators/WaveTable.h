@@ -26,18 +26,12 @@
 
 using namespace Spiral;
 
-//WaveTable Was initially commited by Dave, Sun Jul 28 23:18:17 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916297::WaveTable"
-//  => d7a6e545474f4fc1c5f6d2acedc28cd7 (legacy == 17)
-#define WaveTableID d7a6e545474f4fc1c5f6d2acedc28cd7
-  
 class WaveTable : Gumbo(Device)
 {
   GumboClassDefinition
   (
     WaveTable, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(WaveTableID));
       mVersion = 1;
 
       mTable = Array<Sample*>::New();

@@ -18,10 +18,14 @@
 #include <SpiralCore/Misc.h>
 
 #include "FormantFilter.h"
-//#include "SpiralIcon.xpm"
 
 using namespace Spicy;
 using namespace Spiral;
+
+//Initially commited by Dave, Thu Jan 2 01:56:48 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1041494208::FormantFilter"
+//  =>  78bd5c2e8967c372c264d5745359fdf5 (legacy == 2A)
+DevicePluginHook(FormantFilter, 78bd5c2e8967c372c264d5745359fdf5)
 
 /*
 Public source code by alex@smartelectronix.com
@@ -55,8 +59,6 @@ const double coeff[5][11]= {
 };
 //---------------------------------------------------------------------------------
 
-DevicePluginHook(FormantFilter, FormantFilterID)
-
 ///////////////////////////////////////////////////////
 /// Uhhhhhhhhh.
 const FloatType zero = 0.0f; 
@@ -85,11 +87,11 @@ static const UnsignedType VowelCV = StringHash("Vowel CV", true);
 
 bool FormantFilter::CreatePorts()
 {
-  input[0] = GetInputPort(In);//InputPort::New(this, In);
-  output = GetOutputPort(Out);//OutputPort::New(this, Out);
+  input[0] = GetInputPort(In);
+  output = GetOutputPort(Out);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = GetInputPort(VowelCV);//InputPort::New(this, VowelCV);
+  input[1] = GetInputPort(VowelCV);
 
   return true;
 }

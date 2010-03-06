@@ -17,7 +17,10 @@
 */
 #include "Oscillator.h"
 
-DevicePluginHook(Oscillator, OscillatorID)
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Oscillator"
+//  =>  7f4e8dfa239d37c75b7ecce1a4048da9 (legacy == 0x4)
+DevicePluginHook(Oscillator, 7f4e8dfa239d37c75b7ecce1a4048da9)
 
 ///////////////////////////////////////////////////////
 enum {
@@ -82,12 +85,6 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool Oscillator::CreatePorts() 
 {
-//  OutputPort::New(this, Out);
-
-//  InputPort::New(this, FrequencyCV);//Does it make sense to allow feedbacking the frequency?
-//  InputPort::New(this, PulseWidthCV, Port::CAN_FEEDBACK);
-//  InputPort::New(this, SampleHoldCV, Port::CAN_FEEDBACK);
-
   return true;
 }
 

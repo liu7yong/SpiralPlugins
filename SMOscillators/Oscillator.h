@@ -25,16 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Oscillator"
-//  =>  7f4e8dfa239d37c75b7ecce1a4048da9 (legacy == 0x4)
-#define OscillatorID 7f4e8dfa239d37c75b7ecce1a4048da9
-  
 class Oscillator : Gumbo(Device)
 {
   GumboClassDefinition(Oscillator, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(OscillatorID));
       mVersion = 1;
     },
     {

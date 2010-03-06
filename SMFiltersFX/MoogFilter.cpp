@@ -18,17 +18,17 @@
 #include <SpiralCore/Misc.h>
 
 #include "MoogFilter.h"
-//#include "SpiralIcon.xpm"
 
-#define PI 3.141592654
+static const FloatType PI = 3.141592654f;
 
-using namespace std;
-using namespace Spicy;
 using namespace Spiral;
 
 static const int GRANULARITY = 10;
 
-DevicePluginHook(MoogFilter, MoogFilterID)
+//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::MoogFilter"
+//  => d668f07998c4e09b149ae1570d2143cc (legacy == D)
+DevicePluginHook(MoogFilter, d668f07998c4e09b149ae1570d2143cc)
 
 ///////////////////////////////////////////////////////
 // ...............????????????
@@ -77,15 +77,15 @@ static const UnsignedType EmphasisCV = StringHash("Emphasis CV", true);
 
 bool MoogFilter::CreatePorts()
 {	
-  input[0] = GetInputPort(In);//InputPort::New(this, In);	
+  input[0] = GetInputPort(In);
 
-  output[0] = GetOutputPort(LowPassOut);//OutputPort::New(this, LowPassOut);
-  output[1] = GetOutputPort(BandPassOut);//OutputPort::New(this, BandPassOut);
-  output[2] = GetOutputPort(HighPassOut);//OutputPort::New(this, HighPassOut);
+  output[0] = GetOutputPort(LowPassOut);
+  output[1] = GetOutputPort(BandPassOut);
+  output[2] = GetOutputPort(HighPassOut);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = GetInputPort(CutoffCV);//InputPort::New(this, CutoffCV);	
-  input[2] = GetInputPort(EmphasisCV);//InputPort::New(this, EmphasisCV);	
+  input[1] = GetInputPort(CutoffCV);
+  input[2] = GetInputPort(EmphasisCV);
 
   return true;
 }

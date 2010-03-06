@@ -19,7 +19,10 @@
 #include <math.h>
 #include "LFO.h"
 
-DevicePluginHook(LFO, LFOID)
+//LFO Was initially commited by Dave, Sun Jul 28 23:18:18 2002 UTC
+//md5 -s "Andy Preston::andy@clubunix.co.uk::1027916298::LFO"
+//  =>  09f642cbfdbb5022d229b3a44c343ce0 (legacy == 7C)
+DevicePluginHook(LFO, 09f642cbfdbb5022d229b3a44c343ce0)
 
 static const UnsignedType NUM_TABLES = 6;
 static const UnsignedType DEFAULT_TABLE_LEN = 1024;
@@ -101,16 +104,15 @@ LFO *LFO::Initialize(Patch *Host)
   return this;
 }
 
-
 static const UnsignedType Out = StringHash("Output", true);
 static const UnsignedType CosOut = StringHash("Cosine Output", true);
 static const UnsignedType InvOut = StringHash("Inverted Output", true);
 
 bool LFO::CreatePorts() 
 {
-  output[0] = GetOutputPort(Out);//OutputPort::New(this, Out, Port::IS_MONOPHONIC);
-  output[1] = GetOutputPort(CosOut);//OutputPort::New(this, CosOut, Port::IS_MONOPHONIC);
-  output[2] = GetOutputPort(InvOut);//OutputPort::New(this, InvOut, Port::IS_MONOPHONIC);
+  output[0] = GetOutputPort(Out);
+  output[1] = GetOutputPort(CosOut);
+  output[2] = GetOutputPort(InvOut);
 
   return true;
 }

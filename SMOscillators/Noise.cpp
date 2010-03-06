@@ -16,12 +16,15 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 #include <limits.h>
-#include <math.h>
+#include <cmath>
 #include "Noise.h"
 
 using namespace Spiral;
 
-DevicePluginHook(Noise, NoiseID)
+//Noise Was initially commited by Dave, Sun Jan 19 01:25:52 2003 UTC
+//md5 -s "Dave Griffiths::dave@pawfal.org::1042961152::Noise"
+//  => 7cac72b3687628ec373ef10ae8a2ab4a (legacy == 32)
+DevicePluginHook(Noise, 7cac72b3687628ec373ef10ae8a2ab4a)
 
 ///////////////////////////////////////////////////////
 enum Type {WHITE=0, PINK, BROWN};
@@ -66,7 +69,7 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool Noise::CreatePorts()
 {
-  output = GetOutputPort(Out);//OutputPort::New(this, Out, Port::IS_MONOPHONIC);
+  output = GetOutputPort(Out);
 
   return true;
 }

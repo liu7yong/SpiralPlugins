@@ -16,24 +16,19 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
+#ifndef __AudioIO_H__
+#define __AudioIO_H__
+
 #include <SpiralCore/AudioDriver.h>
 #include <SpiralCore/RiffWav.h>
 #include <SpiralCore/Port.h>
 
 using namespace Spiral;
-#ifndef __AudioIO_H__
-#define __AudioIO_H__
-
-//SSM Was initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027916292::Output"
-//  =>  6e86a9417526779d302077af073d5111 (legacy == 0)
-#define AudioIOID 6e86a9417526779d302077af073d5111
 
 class AudioIO : Gumbo(AudioDriver)
 {
   GumboClassDefinition(AudioIO, AudioDriver,
     {
-      mUniqueID = String::New(XSTRINGIFY(AudioIOID));
       mVersion = 1;
     },
     {

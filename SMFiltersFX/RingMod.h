@@ -26,16 +26,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, 
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::RingMod"
-//  => f9587ded2aed867d761fca167c1d3960 (legacy == 0xA)
-#define RingModID f9587ded2aed867d761fca167c1d3960
-
 class RingMod : Gumbo(Device)
 {
   GumboClassDefinition(RingMod, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(RingModID));
       mVersion = 1;
     },
     {

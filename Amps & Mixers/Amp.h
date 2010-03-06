@@ -25,15 +25,10 @@
 
 using namespace Spiral;
 
-//Initially commited by Dave, Sun Jul 28 23:18:15 2002 UTC
-//md5 -s "Dave Griffiths::dave@pawfal.org::1027898295::Amp"
-//  =>  3d2307b7d767fd8d270c11e2f712a870 (legacy == 0x9)
-#define AmpID 3d2307b7d767fd8d270c11e2f712a870
 class Amp : Gumbo(Device)
 {
   GumboClassDefinition(Amp, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(AmpID));
       mVersion = 1;
     },
     {

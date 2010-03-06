@@ -26,18 +26,11 @@
 
 using namespace Spiral;
 
-//LFO Was initially commited by Dave, Sun Jul 28 23:18:18 2002 UTC
-
-//md5 -s "Andy Preston::andy@clubunix.co.uk::1027916298::LFO"
-//  =>  09f642cbfdbb5022d229b3a44c343ce0 (legacy == 7C)
-#define LFOID 09f642cbfdbb5022d229b3a44c343ce0
-
 class LFO : Gumbo(Device) 
 {
   GumboClassDefinition(
     LFO, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(LFOID));
       mVersion = 1;
 
       mTable = Array<Sample*>::New();

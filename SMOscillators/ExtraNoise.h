@@ -23,14 +23,10 @@
 
 using namespace Spiral;
 
-//md5 -s "Andrew Johnson; Jοhan Kiviniemi::ajgenius@ajgenius.us::1264696200::ExtraNoise"
-//  => d1d47c96e200908aedda145e912f6300
-#define ExtraNoiseID d1d47c96e200908aedda145e912f6300
 class ExtraNoise : Gumbo(Device)
 {
   GumboClassDefinition(ExtraNoise, Device,
     {
-      mUniqueID = String::New(XSTRINGIFY(ExtraNoiseID));
       mVersion = 1;
     },
     {
