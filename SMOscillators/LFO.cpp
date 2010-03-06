@@ -102,15 +102,15 @@ LFO *LFO::Initialize(Patch *Host)
 }
 
 
-static const UnsignedType Out = StringHash("Output");
-static const UnsignedType CosOut = StringHash("'Cosine' Output");
-static const UnsignedType InvOut = StringHash("Inverted Output");
+static const UnsignedType Out = StringHash("Output", true);
+static const UnsignedType CosOut = StringHash("Cosine Output", true);
+static const UnsignedType InvOut = StringHash("Inverted Output", true);
 
 bool LFO::CreatePorts() 
 {
-  output[0] = OutputPort::New(this, Out, Port::IS_MONOPHONIC);
-  output[1] = OutputPort::New(this, CosOut, Port::IS_MONOPHONIC);
-  output[2] = OutputPort::New(this, InvOut, Port::IS_MONOPHONIC);
+  output[0] = GetOutputPort(Out);//OutputPort::New(this, Out, Port::IS_MONOPHONIC);
+  output[1] = GetOutputPort(CosOut);//OutputPort::New(this, CosOut, Port::IS_MONOPHONIC);
+  output[2] = GetOutputPort(InvOut);//OutputPort::New(this, InvOut, Port::IS_MONOPHONIC);
 
   return true;
 }

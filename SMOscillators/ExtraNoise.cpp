@@ -37,16 +37,16 @@ ExtraNoise *ExtraNoise::Initialize(Patch *Host)
 }
 
 
-static const UnsignedType MagicACV = StringHash("Magic A CV");
-static const UnsignedType MagicBCV = StringHash("Magic B CV");
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType MagicACV = StringHash("Magic A CV", true);
+static const UnsignedType MagicBCV = StringHash("Magic B CV", true);
+static const UnsignedType Out = StringHash("Output", true);
 
 bool ExtraNoise::CreatePorts()
 {
-  input[0] = InputPort::New(this, MagicACV);
-  input[1] = InputPort::New(this, MagicBCV);
+  input[0] = GetInputPort(MagicACV);//InputPort::New(this, MagicACV);
+  input[1] = GetInputPort(MagicBCV);//InputPort::New(this, MagicBCV);
 
-  output = OutputPort::New(this, Out);
+  output = GetOutputPort(Out);//OutputPort::New(this, Out);
 	
   return true;
 }

@@ -12,31 +12,31 @@
       "Info": "Another Filter",
       "Category":"Filters/FX",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Name": "Input",
           "Tooltip": "Input"
         },
-        {
+        "Cutoff CV":{
           "Index": 1,
           "Name": "Cutoff CV",
           "Tooltip": "Cutoff CV"
         },
-        {
+        "Emphasis CV":{
           "Index": 2,
           "Name": "Emphasis CV",
           "Tooltip": "Emphasis CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Low Pass Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Low Pass Output"
         }
-      ],
+      },
       
       "Resources":{
           "Icon": "Filter.png"
@@ -54,31 +54,31 @@
       "Info": "Filter",
       "Category":"Filters/FX",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Name": "Input",
           "Tooltip": "Input"
         },
-        {
+        "Cutoff CV":{
           "Index": 1,
           "Name": "Cutoff CV",
           "Tooltip": "Cutoff CV"
         },
-        {
+        "Emphasis CV":{
           "Index": 2,
           "Name": "Emphasis CV",
           "Tooltip": "Emphasis CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Low Pass Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Low Pass Output"
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "Filter.png"
@@ -96,26 +96,27 @@
       "Info": "Formant Filter",
       "Category":"Filters/FX",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Name": "Input",
           "Tooltip": "Input"
         },
-        {
+        "Vowel CV":{
           "Index": 1,
           "Name": "Vowel CV",
           "Tooltip": "Vowel CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Low Pass Output"
         }
-      ],
+      },
+      
       "Resources":{
         "Icon": "Filter.png"
       }     
@@ -132,41 +133,41 @@
       "Info": "Moog Filter",
       "Category":"Filters/FX",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Name": "Input",
           "Tooltip": "Input"
         },
-        {
+        "Cutoff CV":{
           "Index": 1,
           "Name": "Cutoff CV",
           "Tooltip": "Cutoff CV"
         },
-        {
+        "Emphasis CV":{
           "Index": 2,
           "Name": "Emphasis CV",
           "Tooltip": "Emphasis CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Low Pass Output":{
           "Index": 0,
           "Name": "Low Pass Output",
           "Tooltip": "Low Pass Output"
         },
-        {
+        "Band Pass Output":{
           "Index": 1,
           "Name": "Band Pass Output",
           "Tooltip": "Band Pass Output"
         },
-        {
+        "High Pass Output":{
           "Index": 2,
           "Name": "High Pass Output",
           "Tooltip": "High Pass Output"
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "Filter.png"
@@ -184,31 +185,26 @@
       "Info": "RingMod",
       "Category":"Filters/FX",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Input 1":{
           "Index": 0,
           "Name": "Input 1",
           "Tooltip": "Input 1"
         },
-        {
+        "Input 2":{
           "Index": 1,
           "Name": "Input 2",
           "Tooltip": "Input 2"
-        },
-        {
-          "Index": 2,
-          "Name": "Emphasis CV",
-          "Tooltip": "Emphasis CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "RingMod.png"
@@ -226,51 +222,51 @@
       "Info": "State Variable Filter",
       "Category":"Filters/FX",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Name": "Input",
           "Tooltip": "Input"
         },
-        {
+        "Cutoff CV":{
           "Index": 1,
           "Name": "Cutoff CV",
           "Tooltip": "Cutoff CV"
         },
-        {
+        "Emphasis CV":{
           "Index": 2,
           "Name": "Emphasis CV",
           "Tooltip": "Emphasis CV"
         }
-      ],
+      },
       
-      "Outputs":[
-        {
+      "Outputs":{
+        "Low Pass Output":{
           "Index": 0,
           "Name": "Low Pass Output",
           "Tooltip": "Low Pass Output"
         },
-        {
+        "Band Pass Output":{
           "Index": 1,
           "Name": "Band Pass Output",
           "Tooltip": "Band Pass Output"
         },
-        {
+        "High Pass Output":{
           "Index": 2,
           "Name": "High Pass Output",
           "Tooltip": "High Pass Output"
         },
-        {
+        "Notch Output":{
           "Index": 3,
           "Name": "Notch Output",
           "Tooltip": "Notch Output"
         },
-        {
+        "Peaking Output":{
           "Index": 4,
           "Name": "Peaking Output",
           "Tooltip": "Peaking Output"
         }
-      ],
+      },
       
       "Resources":{
         "Icon": "Filter.png"

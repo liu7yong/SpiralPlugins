@@ -56,14 +56,18 @@ Mixer *Mixer::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType Out = StringHash("Output", true);
 
 bool Mixer::CreatePorts()
 {
-    /* FIXME - right now these ports can get created on Synth */
-	if (!OutputPorts()->Count())
-		OutputPort::New(this, Out);
-
+  /* FIXME - right now these ports can get created on Synth Thread */
+  /* This is unavoidable for now, - list nodes, Port self insert */
+  /* However, as long as the dsp code doesn't access the lists */
+  /* directly, it should be possible to handle adding ports */
+  /* on control thread, safely. The map would simply have to grow */
+  /* Which would mean allocating new map & nodes on control thread */
+  /* and lazy swapping, as a dependency for this - so queue of */
+  /* commands that require thread reply before continuing. */
 	while (InputPorts()->Count() > m_NumChannels->Value.AsUnsigned) 
 	{
 		UnReference(InputPorts()->Last());
@@ -74,9 +78,9 @@ bool Mixer::CreatePorts()
 	  /* TODO - Given that meta information is going to be variable */
 	  /* There needs to be a way to both map to unique localizeable information */
 	  /* And have the description in the info.json file */
-        String *tmp = FormatedString("Input %d", InputPorts()->Count());
+    String *tmp = FormatedString("Input %d", InputPorts()->Count());
 		InputPort::New(this,tmp->Hash());
-        UnReference(tmp);
+    UnReference(tmp);
 	}
 
 	EnsureChannelProperties();

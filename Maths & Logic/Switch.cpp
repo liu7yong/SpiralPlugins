@@ -37,19 +37,20 @@ Switch *Switch::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType In1 = StringHash("Input 1");
-static const UnsignedType In2 = StringHash("Input 2");
-static const UnsignedType CV = StringHash("CV");
+static const UnsignedType In1 = StringHash("Input 1", true);
+static const UnsignedType In2 = StringHash("Input 2", true);
+static const UnsignedType CV = StringHash("CV", true);
 
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType Out = StringHash("Output", true);
 
 bool Switch::CreatePorts()
 {
+  /*
   InputPort::New(this, In1);
   InputPort::New(this, In2);
   InputPort::New(this, CV);
 
-  OutputPort::New(this, Out);
+  OutputPort::New(this, Out);*/
 
   return true;
 }

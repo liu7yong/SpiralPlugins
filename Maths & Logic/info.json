@@ -40,35 +40,23 @@
         }
       ],
       
-      "Inputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
-          ]
-        }, 
-
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Input",
           "Tooltip": "Input"
         }
-      ],
+      },
 
-      "Outputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
-          ]
-        }, 
-        
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
       
       "Resources": {
         "Icon": "Trig.png"
@@ -141,42 +129,30 @@
         }
       ],
       
-      "Inputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
-          ]
-        }, 
-
-        {
+      "Inputs":{
+        "Input 1":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Input 1",
           "Tooltip": "Input 1"
         },
         
-        {
+        "Input 2":{
           "Index": 1,
           "Monophonic":false,
           "Name": "Input 2",
           "Tooltip": "Input 2"
         }
-      ],
+      },
 
-      "Outputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
-          ]
-        }, 
-        
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
       
       "Resources": {
         "Icon": "Operator.png"
@@ -213,49 +189,37 @@
         }
       ],
       
-      "Inputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
-          ]
-        }, 
-
-        {
+      "Inputs":{
+        "Input 1":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Input 1",
           "Tooltip": "Input 1"
         },
         
-        {
+        "Input 2":{
           "Index": 1,
           "Monophonic":false,
           "Name": "Input 2",
           "Tooltip": "Input 2"
         },
         
-        {
+        "CV":{
           "Index": 2,
           "Monophonic":false,
           "Name": "CV",
           "Tooltip": "CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
-          ]
-        }, 
-        
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
       
       "Resources": {
         "Icon": "Switch.png"
@@ -302,35 +266,23 @@
         }
       ],
       
-      "Inputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Input Ports - Potentially add a unique ID, which can abstract index"
-          ]
-        }, 
-
-        {
+      "Inputs":{
+        "Input":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Input",
           "Tooltip": "Input"
         }
-      ],
+      },
 
-      "Outputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
-          ]
-        }, 
-        
-        {
+      "Outputs":{        
+        "Output":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
       
       "Resources": {
         "Icon": "Counter.png"

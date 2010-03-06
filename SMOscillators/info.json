@@ -12,23 +12,26 @@
       "Info": "LFO",
       "Category":"Oscillators",
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
-          "Tooltip": "Output"
+          "Tooltip": "Output",
+          "Monophonic":true
         },
-        {
+        "Cosine Output":{
           "Index": 1,
           "Name": "Cosine Output",
-          "Tooltip": "Cosine Output"
+          "Tooltip": "Cosine Output",
+          "Monophonic":true
         },
-        {
+        "Inverted Output":{
           "Index": 2,
           "Name": "Inverted Output",
-          "Tooltip": "Inverted Output"
+          "Tooltip": "Inverted Output",
+          "Monophonic":true
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "LFO.png"
@@ -46,13 +49,14 @@
       "Info": "Noise Generator",
       "Category":"Oscillators",
       
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
-          "Tooltip": "Output"
+          "Tooltip": "Output",
+          "Monophonic":true
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "Noise.png"
@@ -70,21 +74,21 @@
       "Info": "Wave Table",
       "Category":"Oscillators",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Frequency CV":{
           "Index": 0,
           "Name": "Frequency",
           "Tooltip": "Frequency CV"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "WaveTable.png"
@@ -102,26 +106,26 @@
       "Info": "Configurable Noise Generator",
       "Category":"Oscillators",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Magic A CV":{
           "Index": 0,
           "Name": "Magic A",
           "Tooltip": "Magic A"
         },
-        {
+        "Magic B CV":{
           "Index": 1,
           "Name": "Magic B",
           "Tooltip": "Magic B"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
 
       "Resources":{
         "Icon": "ExtraNoise.png"
@@ -149,13 +153,15 @@
         "PulseWidth CV":{
           "Index": 1,
           "Name": "PulseWidth",
-          "Tooltip": "PulseWidth CV"
+          "Tooltip": "PulseWidth CV",
+          "CanFeedback": true
         },
         
         "Sample & Hold Length CV":{
           "Index": 2,
           "Name": "Sample & Hold Length",
-          "Tooltip": "Sample & Hold Length CV"
+          "Tooltip": "Sample & Hold Length CV",
+          "CanFeedback": true
         }
       },
 
@@ -168,7 +174,7 @@
       },
 
       "Resources":{
-        "Icon": "WaveTable.png"
+        "Icon": "Oscillator.png"
       }
     }
   }

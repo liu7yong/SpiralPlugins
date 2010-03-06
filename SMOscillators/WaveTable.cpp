@@ -120,14 +120,14 @@ WaveTable *WaveTable::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType FrequencyCV = StringHash("Frequency CV");
+static const UnsignedType FrequencyCV = StringHash("Frequency CV", true);
 
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType Out = StringHash("Output", true);
 
 bool WaveTable::CreatePorts()
 {
-  frequency = InputPort::New(this, FrequencyCV);
-  output = OutputPort::New(this, Out);
+  frequency = GetInputPort(FrequencyCV);//InputPort::New(this, FrequencyCV);
+  output = GetOutputPort(Out);//OutputPort::New(this, Out);
 	
   return true;
 }

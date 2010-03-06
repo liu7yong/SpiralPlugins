@@ -63,20 +63,21 @@ SVFilter *SVFilter::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType In = StringHash("Input");
+static const UnsignedType In = StringHash("Input", true);
 
-static const UnsignedType LowPassOut = StringHash("LowPass output");
-static const UnsignedType BandPassOut = StringHash("BandPass output");
-static const UnsignedType HighPassOut = StringHash("HighPass output");
-static const UnsignedType NotchOut = StringHash("Notch output");
-static const UnsignedType PeakingOut = StringHash("Peaking output");
+static const UnsignedType LowPassOut = StringHash("Low Pass Output", true);
+static const UnsignedType BandPassOut = StringHash("Band Pass Output", true);
+static const UnsignedType HighPassOut = StringHash("High Pass Output", true);
+static const UnsignedType NotchOut = StringHash("Notch Output", true);
+static const UnsignedType PeakingOut = StringHash("Peaking Output", true);
 
 /* These should be Control Ports, i.e., autocreated by the properties they are for */
-static const UnsignedType CutoffCV = StringHash("Cutoff CV");	
-static const UnsignedType EmphasisCV = StringHash("Emphasis CV");	
+static const UnsignedType CutoffCV = StringHash("Cutoff CV", true);	
+static const UnsignedType EmphasisCV = StringHash("Emphasis CV", true);	
 
 bool SVFilter::CreatePorts()
 {
+  /*
   InputPort::New(this, In);	
 
   OutputPort::New(this, LowPassOut);
@@ -84,10 +85,10 @@ bool SVFilter::CreatePorts()
   OutputPort::New(this, HighPassOut);
   OutputPort::New(this, NotchOut);
   OutputPort::New(this, PeakingOut);
-
+*/
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  InputPort::New(this, CutoffCV);	
-  InputPort::New(this, EmphasisCV);	
+//  InputPort::New(this, CutoffCV);	
+//  InputPort::New(this, EmphasisCV);	
 
   return true;
 }

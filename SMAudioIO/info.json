@@ -12,35 +12,37 @@
       "Info": "Audio Input/Output",
       "Category": "Input/Output",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Left In":{
           "Index": 0,
           "Monophonic":true,
           "Name": "Left Input",
           "Tooltip": "Left Input"
         },
-        {
+        "Right In":{
           "Index": 1,
           "Monophonic":true,
           "Name": "Right Input",
           "Tooltip": "Right Input"
         }
-      ],
+      },
 
-      "Outputs":[
-        {
+      "Outputs":{
+        "Left Out":{
           "Index": 0,
           "Monophonic":true,
+          "CanFeedback":true,
           "Name": "Left Output",
           "Tooltip": "Left Output"
         },
-        {
+        "Right Out":{
           "Index": 1,
           "Monophonic":true,
+          "CanFeedback":true,
           "Name": "Right Output",
           "Tooltip": "Right Output"
         }
-      ],
+      },
       
       "Resources": {
         "Icon": "AudioOutput.png"
@@ -58,26 +60,26 @@
       "Info": "Disk Writer",
       "Category": "Input/Output",
 
-      "Inputs":[
-        {
+      "Inputs":{
+        "Left In":{
           "Index": 0,
           "Monophonic":true,
-          "Name": "Left Input",
-          "Tooltip": "Left Input"
+          "Name": "Left In",
+          "Tooltip": "Left In"
         },
-        {
+        "Right In":{
           "Index": 1,
           "Monophonic":true,
-          "Name": "Right Input",
-          "Tooltip": "Right Input"
+          "Name": "Right In",
+          "Tooltip": "Right In"
         },
-        {
+        "Record CV":{
           "Index": 2,
           "Monophonic":true,
           "Name": "Record CV",
           "Tooltip": "Record CV"
         }
-      ],
+      },
 
       "Resources": {
         "Icon": "DiskWriter.png"

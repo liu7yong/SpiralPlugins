@@ -46,15 +46,16 @@ Counter *Counter::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType In = StringHash("Input");
+static const UnsignedType In = StringHash("Input", true);
 
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType Out = StringHash("Output", true);
 
 bool Counter::CreatePorts()
 {	
+  /*
   InputPort::New(this, In);
   OutputPort::New(this, Out);
-  
+  */
   return true;
 }
 

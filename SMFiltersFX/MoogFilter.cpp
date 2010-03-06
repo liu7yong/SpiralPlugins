@@ -65,27 +65,27 @@ MoogFilter *MoogFilter::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType In = StringHash("Input");
+static const UnsignedType In = StringHash("Input", true);
 
-static const UnsignedType LowPassOut = StringHash("LowPass output");
-static const UnsignedType BandPassOut = StringHash("BandPass output");
-static const UnsignedType HighPassOut = StringHash("HighPass output");
+static const UnsignedType LowPassOut = StringHash("Low Pass output", true);
+static const UnsignedType BandPassOut = StringHash("Band Pass output", true);
+static const UnsignedType HighPassOut = StringHash("High Pass output", true);
 
 /* These should be Control Ports, i.e., autocreated by the properties they are for */
-static const UnsignedType CutoffCV = StringHash("Cutoff CV");	
-static const UnsignedType EmphasisCV = StringHash("Emphasis CV");	
+static const UnsignedType CutoffCV = StringHash("Cutoff CV", true);	
+static const UnsignedType EmphasisCV = StringHash("Emphasis CV", true);	
 
 bool MoogFilter::CreatePorts()
 {	
-  input[0] = InputPort::New(this, In);	
+  input[0] = GetInputPort(In);//InputPort::New(this, In);	
 
-  output[0] = OutputPort::New(this, LowPassOut);
-  output[1] = OutputPort::New(this, BandPassOut);
-  output[2] = OutputPort::New(this, HighPassOut);
+  output[0] = GetOutputPort(LowPassOut);//OutputPort::New(this, LowPassOut);
+  output[1] = GetOutputPort(BandPassOut);//OutputPort::New(this, BandPassOut);
+  output[2] = GetOutputPort(HighPassOut);//OutputPort::New(this, HighPassOut);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = InputPort::New(this, CutoffCV);	
-  input[2] = InputPort::New(this, EmphasisCV);	
+  input[1] = GetInputPort(CutoffCV);//InputPort::New(this, CutoffCV);	
+  input[2] = GetInputPort(EmphasisCV);//InputPort::New(this, EmphasisCV);	
 
   return true;
 }

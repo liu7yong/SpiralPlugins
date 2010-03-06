@@ -74,19 +74,19 @@ Oscillator *Oscillator::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType FrequencyCV = StringHash("Frequency CV");
-static const UnsignedType PulseWidthCV = StringHash("PulseWidth CV");
-static const UnsignedType SampleHoldCV = StringHash("Sample & Hold Length CV");
+static const UnsignedType FrequencyCV = StringHash("Frequency CV", true);
+static const UnsignedType PulseWidthCV = StringHash("PulseWidth CV", true);
+static const UnsignedType SampleHoldCV = StringHash("Sample & Hold Length CV", true);
 
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType Out = StringHash("Output", true);
 
 bool Oscillator::CreatePorts() 
 {
-  OutputPort::New(this, Out);
+//  OutputPort::New(this, Out);
 
-  InputPort::New(this, FrequencyCV);//Does it make sense to allow feedbacking the frequency?
-  InputPort::New(this, PulseWidthCV, Port::CAN_FEEDBACK);
-  InputPort::New(this, SampleHoldCV, Port::CAN_FEEDBACK);
+//  InputPort::New(this, FrequencyCV);//Does it make sense to allow feedbacking the frequency?
+//  InputPort::New(this, PulseWidthCV, Port::CAN_FEEDBACK);
+//  InputPort::New(this, SampleHoldCV, Port::CAN_FEEDBACK);
 
   return true;
 }

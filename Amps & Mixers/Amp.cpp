@@ -42,19 +42,20 @@ Amp *Amp::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType In = StringHash("Input");
-static const UnsignedType Out = StringHash("Output");
+static const UnsignedType In = StringHash("Input", true);
+static const UnsignedType Out = StringHash("Output", true);
 
-static const UnsignedType GainCV = StringHash("Gain CV");
-static const UnsignedType DCOffsetCV = StringHash("DC Offset CV");
+static const UnsignedType GainCV = StringHash("Gain CV", true);
+static const UnsignedType DCOffsetCV = StringHash("DC Offset CV", true);
 
 bool Amp::CreatePorts()
 {
+  /*
   InputPort::New(this, In);
   OutputPort::New(this, Out);
 
   InputPort::New(this, GainCV);
-  InputPort::New(this, DCOffsetCV);
+  InputPort::New(this, DCOffsetCV);*/
 
   return true;
 }

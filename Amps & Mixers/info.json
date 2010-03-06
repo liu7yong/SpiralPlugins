@@ -27,20 +27,14 @@
         }
       },
 
-      "Outputs":[
-        { 
-          "COMMENTS": [
-            "Concept for Describing Output Ports - Potentially add a unique ID, which can abstract index" 
-          ]
-        }, 
-        
-        {
+      "Outputs":{
+        "Output":{
           "Index": 0,
           "Monophonic":false,
           "Name": "Output",
           "Tooltip": "Output"
         }
-      ],
+      },
       
       "Properties": [
         {
@@ -104,7 +98,37 @@
       "Label": "Amp",
       "Info": "Amp",
       "Category": "Amps/Mixers",
+
+      "Inputs":{
+        "Input":{
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Input",
+          "Tooltip": "Input"
+        },
+        "Gain CV":{
+          "Index": 1,
+          "Monophonic":false,
+          "Name": "Gain",
+          "Tooltip": "Gain CV"
+        },
+        "DC Offset CV":{
+          "Index": 2,
+          "Monophonic":false,
+          "Name": "DC Offset",
+          "Tooltip": "DC Offset CV"
+        }
+      },
       
+      "Outputs":{
+        "Output":{
+          "Index": 0,
+          "Monophonic":false,
+          "Name": "Output",
+          "Tooltip": "Output"
+        }
+      },
+
       "Resources": {
         "Icon": "Amp.png"
       }

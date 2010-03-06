@@ -84,18 +84,18 @@ AudioIO *AudioIO::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType LeftIn = StringHash("Left In");
-static const UnsignedType RightIn = StringHash("Right In");
-static const UnsignedType LeftOut = StringHash("Left Out");
-static const UnsignedType RightOut = StringHash("Right Out");
+static const UnsignedType LeftIn = StringHash("Left In", true);
+static const UnsignedType RightIn = StringHash("Right In", true);
+static const UnsignedType LeftOut = StringHash("Left Out", true);
+static const UnsignedType RightOut = StringHash("Right Out", true);
 
 bool AudioIO::CreatePorts()
 {
-  InputPort::New(this, LeftIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
+  /*InputPort::New(this, LeftIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
   InputPort::New(this, RightIn, Port::IS_MONOPHONIC | Port::CAN_FEEDBACK);
 
   OutputPort::New(this, LeftOut, Port::IS_MONOPHONIC);
-  OutputPort::New(this, RightOut, Port::IS_MONOPHONIC);
+  OutputPort::New(this, RightOut, Port::IS_MONOPHONIC);*/
 
   return true;
 }

@@ -47,22 +47,22 @@ AnotherFilter *AnotherFilter::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType In = StringHash("Input");
+static const UnsignedType In = StringHash("Input", true);
 
-static const UnsignedType LowPassOut = StringHash("LowPass Output");
+static const UnsignedType LowPassOut = StringHash("Low Pass Output", true);
 
 /* These should be Control Ports, i.e., autocreated by the properties they are for */
-static const UnsignedType CutoffCV = StringHash("Cutoff CV");	
-static const UnsignedType EmphasisCV = StringHash("Emphasis CV");	
+static const UnsignedType CutoffCV = StringHash("Cutoff CV", true);	
+static const UnsignedType EmphasisCV = StringHash("Emphasis CV", true);	
 
 bool AnotherFilter::CreatePorts()
 {
-  input[0] = InputPort::New(this, In);
-  output[0] = OutputPort::New(this, LowPassOut);
+  input[0] = GetInputPort(In);//InputPort::New(this, In);
+  output[0] = GetOutputPort(LowPassOut);//OutputPort::New(this, LowPassOut);
 
   /* These should be Control Ports, i.e., autocreated by the properties they are for */
-  input[1] = InputPort::New(this, CutoffCV);
-  input[2] = InputPort::New(this, EmphasisCV);
+  input[1] = GetInputPort(CutoffCV);//InputPort::New(this, CutoffCV);
+  input[2] = GetInputPort(EmphasisCV);;//InputPort::New(this, EmphasisCV);
 
   return true;
 }
