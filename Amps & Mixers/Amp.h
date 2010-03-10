@@ -36,7 +36,7 @@ class Amp : Gumbo(Device)
   );
   
 private:
-	FloatProperty *m_Gain, *m_DC;
+	NumberProperty<FloatType> *m_Gain, *m_DC;
 
 protected:
   virtual void Finalize();

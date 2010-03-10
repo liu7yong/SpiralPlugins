@@ -74,10 +74,8 @@ private:
   UnsignedType m_CyclePosInd;
 
   // Common Shared Properties
-  SetProperty *m_Type;
-  FloatProperty *m_Freq;
-
-  UnsignedType    m_TableLength;	
+  NumberProperty<UnsignedType> *m_Type;
+  NumberProperty<FloatType> *m_Freq;
 
 public:
   virtual LFO *Initialize(Patch *Host);

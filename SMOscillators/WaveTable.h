@@ -74,14 +74,14 @@ private:
   InputPort *frequency;
   OutputPort *output;
 
+  // Common Shared Properties
+  NumberProperty<UnsignedType> *m_Type;
+  NumberProperty<SignedType> *m_Octave;
+
+  NumberProperty<FloatType> *m_FineFreq, *m_ModAmount;
+
   // Voice Specific Properties (index)
   UnsignedType m_CyclePosInd, m_NoteInd;
-
-  // Common Shared Properties
-  SetProperty *m_Type;
-  SignedProperty	*m_Octave;
-
-  FloatProperty *m_FineFreq, *m_ModAmount;
 
 public:
   virtual WaveTable *Initialize(Patch *Host);

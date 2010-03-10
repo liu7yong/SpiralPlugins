@@ -36,11 +36,13 @@ Amp *Amp::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-	m_Gain = FloatProperty::New(DefaultLinearFlags, 1.0f, -2.0f, 2.0f, 0.001f, 0.1f);
-	m_DC = FloatProperty::New(DefaultLinearFlags, 0.0f, -2.0f, 2.0f, 0.001f, 0.1f);
+  m_Gain = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
+                                            LinearConstraints<FloatType>::New(true, true, false, -2.0f, 2.0f, 0.001f, 0.1f));
+  m_DC = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
+                                            LinearConstraints<FloatType>::New(true, true, false, -2.0f, 2.0f, 0.001f, 0.1f));
 
-	RegisterSharedProperty(m_Gain, StringHash("Gain"));
-	RegisterSharedProperty(m_DC, StringHash("DC"));
+  RegisterSharedProperty(m_Gain, StringHash("Gain"));
+  RegisterSharedProperty(m_DC, StringHash("DC"));
 	
   return this;
 }
@@ -60,8 +62,8 @@ void Amp::Process(UnsignedType SampleCount)
 {
   FloatType out, gain, dc;
 
-  gain = m_Gain->Value.AsFloat;
-  dc = m_DC->Value.AsFloat;
+  gain = m_Gain->Value();
+  dc = m_DC->Value();
 
   for (UnsignedType n=0; n<SampleCount; n++)
   {

@@ -35,14 +35,14 @@ class AnotherFilter : Gumbo(Device)
     },
   );
  private:
-	// Shared Property Values
-	FloatProperty *Cutoff, *Resonance;
+  InputPort *input[3];
+  OutputPort *output[1];
 
-	// Voice State Values (Index)
-	UnsignedType m_VibraPosInd,m_VibraSpeedInd, m_ResonanceInd, m_CutoffInd;
+  // Shared Property Values
+  NumberProperty<FloatType> *mCutoff, *mResonance;
 
-	InputPort *input[3];
-	OutputPort *output[1];
+  // Voice State Values (Index)
+  UnsignedType m_VibraPosInd,m_VibraSpeedInd, m_ResonanceInd, m_CutoffInd;
 
 public:
  	virtual AnotherFilter *Initialize(Patch *Host);

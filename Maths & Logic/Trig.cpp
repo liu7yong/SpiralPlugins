@@ -39,7 +39,8 @@ Trig* Trig::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_Operator = SignedProperty::New(DefaultLinearFlags,1,0,3, 1, 1);
+  m_Operator = NumberProperty<UnsignedType>::New(Property::WriteOnly,1,
+                                                 LinearConstraints<UnsignedType>::New(true, true, false, 0,3, 1, 1));
   RegisterSharedProperty(m_Operator, StringHash("Operator") /*"Operator", "Operator"*/);
   
   return this;
@@ -56,9 +57,7 @@ bool Trig::CreatePorts()
 
 void Trig::Process(UnsignedType SampleCount)
 { 
-  SignedType op = m_Operator->Value.AsSigned;
-
-  switch (op) 
+  switch (m_Operator->Value())
   {
     case 1 : 
       for (UnsignedType n=0; n<SampleCount; n++)

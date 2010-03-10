@@ -28,11 +28,11 @@ DevicePluginHook(Noise, 7cac72b3687628ec373ef10ae8a2ab4a)
 
 ///////////////////////////////////////////////////////
 enum Type {WHITE=0, PINK, BROWN};
-const NumericPropertyValue NoiseTypes[] = 
+const UnsignedType NoiseTypes[] = 
 {
-	/*{"White Noise",*/ DefaultUnsigned(WHITE)/*}*/,
-	/*{"Pink Noise", */ DefaultUnsigned(PINK)/*}*/,
-	/*{"Pink Noise", */ DefaultUnsigned(BROWN)/*}*/
+	/*{"White Noise",*/ WHITE/*}*/,
+	/*{"Pink Noise", */ PINK/*}*/,
+	/*{"Pink Noise", */ BROWN/*}*/
 };
 
 const NumericPropertyValue defZeroFloat = DefaultFloat(0.0f);
@@ -49,7 +49,8 @@ Noise *Noise::Initialize(Patch *Host)
   Super::Initialize(Host);
 
   /* Shared Properties */
-  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0])));
+  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, WHITE, 
+                                             SetConstraints<UnsignedType>::New(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0])));
 
   /* Voice State Properties */
   mB0 = NewStateProperty(defZeroFloat);
@@ -76,7 +77,7 @@ bool Noise::CreatePorts()
 
 void Noise::Process(UnsignedType SampleCount)
 {
-	switch (BROWN)//(m_Type->Value.AsUnsigned)
+	switch (BROWN)//(m_Type->Value())
 	{
 		case BROWN:
 		default:

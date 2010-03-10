@@ -29,11 +29,14 @@ ExtraNoise *ExtraNoise::Initialize(Patch *Host)
   /* Voice State Properties */
   mState = NewStateProperty(defZeroFloat);
 
-  mMagicA = FloatProperty::New(DefaultLogarithmicFlags,8.0f, 6.0f, 12.0f, 0.00001f, 0.001f);
-  mMagicB = FloatProperty::New(DefaultLinearFlags,0.25f, 0.0f, 1.0f, 0.00001f, 0.001f);
+  mMagicA = NumberProperty<FloatType>::New(Property::WriteOnly, 8.0f, 
+                                           LinearConstraints<FloatType>::New(true, true, true, 6.0f, 12.0f, 0.00001f, 0.001f));
 
-  RegisterSharedProperty(mMagicA, StringHash("MAGIC A")/*"Magic A", "Magic A"*/);
-  RegisterSharedProperty(mMagicB, StringHash("MAGIC B")/*"Magic B", "Magic B"*/);
+  mMagicB = NumberProperty<FloatType>::New(Property::WriteOnly, 0.25f, 
+                                           LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.001f));
+
+  RegisterSharedProperty(mMagicA, StringHash("Magic A", true)/*"Magic A", "Magic A"*/);
+  RegisterSharedProperty(mMagicB, StringHash("Magic B", true)/*"Magic B", "Magic B"*/);
   
   return this;
 }
@@ -84,16 +87,16 @@ void ExtraNoise::Process(UnsignedType SampleCount)
 		FloatType white = 2.0f*randf() - 1.0f;
 
 		FloatType in0, in1;
-		in0 = mMagicA->Min.AsFloat + GetInput(input[0],n)*(mMagicA->Max.AsFloat - mMagicA->Min.AsFloat);
+		in0 = mMagicA->Value() + 6.0f + GetInput(input[0],n)*(12.0f - 6.0f);
 
 		if (NUMBER_IS_INSANE(in0))
 			in0 = 0.0f;
 
-		in1 = mMagicB->Min.AsFloat + GetInput(input[1],n)*(mMagicB->Max.AsFloat - mMagicB->Min.AsFloat);
+		in1 = mMagicB->Value() + GetInput(input[1],n);
 		if (NUMBER_IS_INSANE(in1))
 			in1 = 0.0f;
 
-        FloatType leak = 1.0f-powf(fabsf(state), mMagicA->Value.AsFloat); 
+        FloatType leak = 1.0f-powf(fabsf(state), in0); 
 		
 		state = evil(leak*state, ((in1))*white); 
 

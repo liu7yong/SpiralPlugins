@@ -53,7 +53,7 @@ bool Switch::CreatePorts()
 
 void Switch::Process(UnsignedType SampleCount)
 {	
-	if (!m_Mix->Value.AsBoolean)
+	if (!m_Mix->Value())
 	{
 		for (UnsignedType n=0; n<SampleCount; n++)
 		{

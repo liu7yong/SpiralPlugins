@@ -25,12 +25,7 @@ DevicePluginHook(DiskWriter, 1f5efd4bb21f90cf99ed081a335d913a)
 
 ///////////////////////////////////////////////////////
 
-const NumericPropertyValue BitRates[] = 
-{
-	DefaultUnsigned(16),
-	DefaultUnsigned(24),
-	DefaultUnsigned(32)
-};
+const UnsignedType BitRates[] = { 16, 24, 32 };
 
 void DiskWriter::Finalize()
 {
@@ -44,18 +39,20 @@ DiskWriter *DiskWriter::Initialize(Patch *Host)
   
   m_Wav = WavFile::New();
   
-  m_FileName = StringProperty::New(Property::WriteOnly, "");
+//  m_FileName = StringProperty::New(Property::WriteOnly, "");
   m_Open = ToggleProperty::New(Property::WriteOnly | Property::ForceUpdate, false);
   m_Recording = ToggleProperty::New(Property::WriteOnly | Property::ForceUpdate, false);
-  m_BitsPerSample = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(BitRates, sizeof(BitRates)/sizeof(BitRates[0])));
   m_Stereo = ToggleProperty::New(Property::WriteOnly, true);
 
+  m_BitsPerSample = NumberProperty<UnsignedType>::New(Property::WriteOnly, 0, 
+                                                      SetConstraints<UnsignedType>::New(BitRates, sizeof(BitRates)/sizeof(BitRates[0])));
+
 /* Just So The GUI Can Keep track of Current Time Recorded */
-  m_TimeRecorded = FloatProperty::New(Property::ReadOnly, 0, 0, 0, 0, 0);
+  m_TimeRecorded = NumberProperty<FloatType>::New(Property::ReadOnly, 0, NULL);
 
   RegisterSharedProperty(m_Open, StringHash("OPEN")/*"Open", "Open"*/);
   RegisterSharedProperty(m_Recording, StringHash("RECORDING")/*"Recording", "Recording"*/);
-  RegisterSharedProperty(m_FileName, StringHash("FILENAME") /*"Filename", "Filename"*/);
+//  RegisterSharedProperty(m_FileName, StringHash("FILENAME") /*"Filename", "Filename"*/);
   RegisterSharedProperty(m_BitsPerSample, StringHash("BITS PER SAMPLE")/*"Bits Per Sample", "Bits Per Sample"*/);
   RegisterSharedProperty(m_Stereo, StringHash("STEREO")/*"Stereo", "Stereo"*/);
   RegisterSharedProperty(m_TimeRecorded, StringHash("TIME RECORDED")/*"Time Recorded", "Time Recorded"*/);
@@ -63,8 +60,8 @@ DiskWriter *DiskWriter::Initialize(Patch *Host)
   return this;
 }
 
-static const UnsignedType LeftIn = StringHash("Left Input", true);
-static const UnsignedType RightIn = StringHash("Right Input", true);
+static const UnsignedType LeftIn = StringHash("Left In", true);
+static const UnsignedType RightIn = StringHash("Right In", true);
 static const UnsignedType RecordCV= StringHash("Record CV", true);
 
 bool DiskWriter::CreatePorts()
@@ -78,7 +75,7 @@ bool DiskWriter::CreatePorts()
 
 void DiskWriter::Process(UnsignedType SampleCount)
 {
-	if(m_Recording->Value.AsBoolean && m_Wav->IsOpen())
+	if(m_Recording->Value() && m_Wav->IsOpen())
 	{
 		FloatType LeftBuffer[SampleCount], RightBuffer[SampleCount];
 
@@ -90,7 +87,7 @@ void DiskWriter::Process(UnsignedType SampleCount)
 		}
 
 		m_Wav->Save(LeftBuffer, RightBuffer, SampleCount);
-		m_TimeRecorded->Value.AsFloat = (m_Wav->GetSize()/m_Wav->GetSamplerate());
+		m_TimeRecorded->SetValue(m_Wav->GetSize()/m_Wav->GetSamplerate());
 	}
 }
 

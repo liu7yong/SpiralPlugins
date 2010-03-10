@@ -40,13 +40,13 @@ private:
   UnsignedType m_CyclePosInd, m_NoisevInd;
 
   // Common Shared Properties
-  SetProperty *m_Type;
-  UnsignedProperty *m_Octave;
+  NumberProperty<UnsignedType> *m_Type;
+  NumberProperty<UnsignedType> *m_Octave;
 
-  FloatProperty *m_FineFreq;
-  FloatProperty *m_PulseWidth;
-  FloatProperty *m_SHLen;
-  FloatProperty *m_ModAmount;
+  NumberProperty<FloatType> *m_FineFreq;
+  NumberProperty<FloatType> *m_PulseWidth;
+  NumberProperty<FloatType> *m_SHLen;
+  NumberProperty<FloatType> *m_ModAmount;
 protected:
   virtual void Finalize();
 public:

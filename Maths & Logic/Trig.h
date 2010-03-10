@@ -36,7 +36,7 @@ class Trig : Gumbo(Device)
   );
   
 private:
-  SignedProperty *m_Operator;
+  NumberProperty<UnsignedType> *m_Operator;
 
 protected:
   virtual void Finalize();

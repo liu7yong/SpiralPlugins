@@ -36,10 +36,10 @@ class Counter : Gumbo(Device)
   );
 
 private:  
-	SignedProperty *m_Count;
+  NumberProperty<UnsignedType> *m_Count;
 
-	// Voice State Property Index
-	UnsignedType m_CurrentInd, m_TriggeredInd, m_CurrentLevelInd;
+  // Voice State Property Index
+  UnsignedType m_CurrentInd, m_TriggeredInd, m_CurrentLevelInd;
 	
 protected:
   virtual void Finalize();

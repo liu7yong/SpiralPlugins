@@ -40,7 +40,7 @@ private:
   // Voice Specific Properties (index)
   UnsignedType mState;
   
-  FloatProperty *mMagicA, *mMagicB;
+  NumberProperty<FloatType> *mMagicA, *mMagicB;
   
 public:
   virtual ExtraNoise *Initialize(Patch *Host);

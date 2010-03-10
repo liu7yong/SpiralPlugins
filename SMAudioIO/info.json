@@ -86,6 +86,37 @@
       "Resources": {
         "Icon": "DiskWriter.png"
       }
+    },
+    "485405450d79706f2a8ee6605094cc46":{
+      "Author": "Andrew Johnson",
+      "Version": 1,
+      "API Version": 0.4,
+
+      "AudioDriver": true,
+      "HostPlugin": false,
+
+      "Label": "Vorbis Out",
+      "Info": "Vorbis Out",
+      "Category": "Input/Output",
+
+      "Inputs":{
+        "Left In":{
+          "Index": 0,
+          "Monophonic":true,
+          "Name": "Left In",
+          "Tooltip": "Left In"
+        },
+        "Right In":{
+          "Index": 1,
+          "Monophonic":true,
+          "Name": "Right In",
+          "Tooltip": "Right In"
+        }
+      },
+
+      "Resources": {
+        "Icon": "VorbisOut.png"
+      }
     }
   }
 }

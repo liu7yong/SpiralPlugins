@@ -37,9 +37,9 @@ class DiskWriter : Gumbo(AudioDriver)
 private:
   InputPort *left, *right, *recordcv;
 
-  StringProperty *m_FileName;
-  SetProperty *m_BitsPerSample;
-  FloatProperty *m_TimeRecorded;
+//  StringProperty *m_FileName;
+  NumberProperty<UnsignedType> *m_BitsPerSample;
+  NumberProperty<FloatType> *m_TimeRecorded;
   ToggleProperty *m_Stereo, *m_Recording, *m_Open;
 
   int m_Version;

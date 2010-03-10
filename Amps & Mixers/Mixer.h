@@ -38,10 +38,10 @@ class Mixer : Gumbo(Device)
 private:
 	void EnsureChannelProperties();
 
-	UnsignedProperty *m_NumChannels;
+	NumberProperty<UnsignedType> *m_NumChannels;
 	ToggleProperty *m_Peak;
 
-	ArrayProperty<FloatProperty> *m_Volume;
+	ArrayProperty<NumberProperty<FloatType> > *m_Volume;
 	ArrayProperty<ToggleProperty> *m_VolumePeak;
 
 protected:

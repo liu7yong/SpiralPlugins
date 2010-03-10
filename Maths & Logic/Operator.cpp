@@ -40,10 +40,12 @@ Operator *Operator::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_Operator = SignedProperty::New(DefaultLinearFlags,0,0,3,1,1);
+  m_Operator = NumberProperty<UnsignedType>::New(Property::WriteOnly,0,
+                                                LinearConstraints<UnsignedType>::New(true, true, false, 0, 3, 1, 1));
   RegisterSharedProperty(m_Operator, StringHash("Operator"));
 
-  m_Constant = FloatProperty::New(DefaultLinearFlags,0,0,1,0.01f,0.1f);
+  m_Constant = NumberProperty<FloatType>::New(Property::WriteOnly,0,
+                                               LinearConstraints<FloatType>::New(true, true, false, 0,1,0.01f,0.1f));
   RegisterSharedProperty(m_Constant, StringHash("Constant"));
 
   return this;
@@ -61,9 +63,9 @@ bool Operator::CreatePorts()
 
 void Operator::Process(UnsignedType SampleCount)
 { 
-  FloatType constant = m_Constant->Value.AsFloat;
+  FloatType constant = m_Constant->Value();
 
-  switch (m_Operator->Value.AsSigned) 
+  switch (m_Operator->Value()) 
   {
     default:
     case 0 : 

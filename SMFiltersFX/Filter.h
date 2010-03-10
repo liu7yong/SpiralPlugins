@@ -43,18 +43,16 @@ private:
   InputPort *input[3];
   OutputPort *output;
 
-  //FIXME NOT VOICE SAFE YET
-
-  // Voice specifics
-  FILTER   iir; 
-
   // Voice independant
+  NumberProperty<FloatType> *mCutoff;     // cutoff frequency  
+  NumberProperty<FloatType> *mResonance;      // Resonance > 1.0 < 1000  
+  
+
+  //FIXME NOT VOICE SAFE YET
   FloatType    *coef; 
 
-  FloatProperty *fc;     // cutoff frequency  
-  FloatProperty *Q;      // Resonance > 1.0 < 1000  
+  FILTER   iir; // Voice specifics
 
-  //FIXME - NOT VOICE SAFE
   FloatType   m_LastFC;
   FloatType   m_LastQ;
 

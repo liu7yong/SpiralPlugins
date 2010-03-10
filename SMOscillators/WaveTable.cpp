@@ -86,16 +86,16 @@ void WaveTable::Class::WriteWaves()
   }
 }
 
-const NumericPropertyValue WaveTypes[] = 
+const UnsignedType WaveTypes[] = 
 {
-  /*{"Sine", */DefaultUnsigned(WaveTable::Class::SineWave)/*}*/,
-	/*{"Square", */DefaultUnsigned(WaveTable::Class::SquareWave)/*}*/,
-	/*{"Saw", */DefaultUnsigned(WaveTable::Class::SawWave)/*}*/,
-	/*{"Reverse Saw", */DefaultUnsigned(WaveTable::Class::ReverseSawWave)/*}*/,
-	/*{"Triangle", */DefaultUnsigned(WaveTable::Class::TriangleWave)/*}*/,
-	/*{"Pulse 1", */DefaultUnsigned(WaveTable::Class::Pulse1Wave)/*}*/,
-	/*{"Pulse 2", */DefaultUnsigned(WaveTable::Class::Pulse2Wave)/*}*/,
-	/*{"Inverse Sine", */DefaultUnsigned(WaveTable::Class::InverseSineWave)/*}*/
+  /*{"Sine", */WaveTable::Class::SineWave/*}*/,
+	/*{"Square", */WaveTable::Class::SquareWave/*}*/,
+	/*{"Saw", */WaveTable::Class::SawWave/*}*/,
+	/*{"Reverse Saw", */WaveTable::Class::ReverseSawWave/*}*/,
+	/*{"Triangle", */WaveTable::Class::TriangleWave/*}*/,
+	/*{"Pulse 1", */WaveTable::Class::Pulse1Wave/*}*/,
+	/*{"Pulse 2", */WaveTable::Class::Pulse2Wave/*}*/,
+	/*{"Inverse Sine", */WaveTable::Class::InverseSineWave/*}*/
 };
 
 const NumericPropertyValue defCyclePos = DefaultFloat(0.0f);
@@ -106,19 +106,24 @@ WaveTable *WaveTable::Initialize(Patch *Host)
   Super::Initialize(Host);
 
   /* Shared Properties */
-  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  m_Octave = SignedProperty::New(DefaultLinearFlags,0,-3,3,1,1);
-  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414f, 0.000001f, 0.0001f);
-  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001f, 0.01f);
+  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, WaveTable::Class::SineWave, 
+                                              SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
+  
+  m_Octave = NumberProperty<SignedType>::New(Property::WriteOnly,0,
+                                             LinearConstraints<SignedType>::New(true, true, false, -3,3,1,1));
+  m_FineFreq = NumberProperty<FloatType>::New(Property::WriteOnly, 1, 
+                                              LinearConstraints<FloatType>::New(true, true, false, 0, 1.414f, 0.000001f, 0.0001f));
+  m_ModAmount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
+                                               LinearConstraints<FloatType>::New(true, true, false, 0, 2.0f, 0.001f, 0.01f));
 
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   m_NoteInd = NewStateProperty(defNoteInd);
 
-  RegisterSharedProperty(m_Type, StringHash("WAVE TYPE")/*"Wave Type", "Wave Type"*/);
-  RegisterSharedProperty(m_Octave, StringHash("OCTAVE")/*"Octave", "Octave"*/);
-  RegisterSharedProperty(m_FineFreq, StringHash("FINEFREQ")/*"FineFreq", "FineFreq"*/);
-  RegisterSharedProperty(m_ModAmount, StringHash("MODAMOUNT")/*"ModAmount", "ModAmount"*/);
+  RegisterSharedProperty(m_Type, StringHash("Wave Type", true)/*"Wave Type", "Wave Type"*/);
+  RegisterSharedProperty(m_Octave, StringHash("Octave", true)/*"Octave", "Octave"*/);
+  RegisterSharedProperty(m_FineFreq, StringHash("Fine Frequency", true)/*"FineFreq", "FineFreq"*/);
+  RegisterSharedProperty(m_ModAmount, StringHash("Mod Amount", true)/*"ModAmount", "ModAmount"*/);
   
   return this;
 }
@@ -142,10 +147,10 @@ void WaveTable::Process(UnsignedType SampleCount)
   FloatType Freq=0, fine, mod;
   FloatType Incr, CyclePos;
 
-  type = m_Type->Value.AsUnsigned;
-  octave = m_Octave->Value.AsSigned;
-  fine = m_FineFreq->Value.AsFloat;
-  mod = m_ModAmount->Value.AsFloat;
+  type = m_Type->Value();
+  octave = m_Octave->Value();
+  fine = m_FineFreq->Value();
+  mod = m_ModAmount->Value();
 
   table = ClassObject()->Table(type);
 

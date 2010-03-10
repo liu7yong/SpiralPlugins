@@ -29,11 +29,11 @@ enum {
   NoiseWave=3
 };
 
-const NumericPropertyValue WaveTypes[] = 
+const UnsignedType WaveTypes[] = 
 {
-	/*{"Square", */DefaultUnsigned(SquareWave)/*}*/,
-	/*{"Saw", */DefaultUnsigned(SawWave)/*}*/,
-	/*{"Noise", */DefaultUnsigned(NoiseWave)/*}*/
+	/*{"Square", */SquareWave/*}*/,
+	/*{"Saw", */SawWave/*}*/,
+	/*{"Noise", */NoiseWave/*}*/
 };
 
 void Oscillator::Finalize()
@@ -56,12 +56,18 @@ Oscillator *Oscillator::Initialize(Patch *Host)
   Super::Initialize(Host);
 
   /* Shared Properties */
-  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  m_Octave = UnsignedProperty::New(DefaultLinearFlags,0,0,6,1,1);
-  m_FineFreq = FloatProperty::New(DefaultLinearFlags,1, 0, 1.414f, 0.000001f, 0.0001f);
-  m_PulseWidth = FloatProperty::New(DefaultLinearFlags, 0.5f, 0, 1, 0.01f, 0.1f);
-  m_ModAmount = FloatProperty::New(DefaultLinearFlags, 1.0f, 0, 2.0f, 0.001f, 0.01f);
-  m_SHLen = FloatProperty::New(DefaultLinearFlags, 0.1f, 0, 0.2f, 0.001f, 0.01f);
+  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, SquareWave, 
+                                              SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
+  m_Octave = NumberProperty<UnsignedType>::New(Property::WriteOnly,0,
+                                               LinearConstraints<UnsignedType>::New(true, true, false, 0,6,1,1));
+  m_FineFreq = NumberProperty<FloatType>::New(Property::WriteOnly, 1, 
+                                                 LinearConstraints<FloatType>::New(true, true, false, 0, 1.414f, 0.000001f, 0.0001f));
+  m_PulseWidth = NumberProperty<FloatType>::New(Property::WriteOnly, 0.5f, 
+                                                LinearConstraints<FloatType>::New(true, true, false, 0, 1, 0.01f, 0.1f));
+  m_ModAmount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
+                                               LinearConstraints<FloatType>::New(true, true, false, 0, 2.0f, 0.001f, 0.01f));
+  m_SHLen = NumberProperty<FloatType>::New(Property::WriteOnly, 0.1f, 
+                                           LinearConstraints<FloatType>::New(true, true, false, 0, 0.2f, 0.001f, 0.01f));
 
   RegisterSharedProperty(m_Type, StringHash("Wave Type")/*, "Wave Type"*/);
   RegisterSharedProperty(m_Octave, StringHash("Octave")/*, "Octave"*/);
@@ -95,16 +101,16 @@ void Oscillator::Process(UnsignedType SampleCount)
 	SignedType CyclePos, Noisev;
 	SignedType samplelen, PW, octave;
 
-	octave = m_Octave->Value.AsUnsigned;
-	fine = m_FineFreq->Value.AsFloat;
-	mod = m_ModAmount->Value.AsFloat;
-	pulsewidth = m_PulseWidth->Value.AsFloat;
-	shlen = m_SHLen->Value.AsFloat;
+	octave = m_Octave->Value();
+	fine = m_FineFreq->Value();
+	mod = m_ModAmount->Value();
+	pulsewidth = m_PulseWidth->Value();
+	shlen = m_SHLen->Value();
 
 	CyclePos = StateValue(m_CyclePosInd)->AsSigned;
 	Noisev = StateValue(m_NoisevInd)->AsSigned;
 
-	switch (m_Type->Value.AsUnsigned)
+	switch (m_Type->Value())
 	{
 	case SquareWave:
 		for (UnsignedType n=0; n<SampleCount; n++)

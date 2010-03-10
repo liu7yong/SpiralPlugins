@@ -39,7 +39,9 @@ Counter *Counter::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
   
-  m_Count = SignedProperty::New(DefaultLinearFlags, 4, 0, 10000, 1, 1);
+  m_Count = NumberProperty<UnsignedType>::New(Property::WriteOnly, 4, 
+                                          LinearConstraints<UnsignedType>::New(true, true, false, 0, 10000, 1, 1));
+
   RegisterSharedProperty(m_Count, StringHash("Count")/*, "Count"*/);
 
   m_TriggeredInd = NewStateProperty(defTrigger);
@@ -60,7 +62,7 @@ bool Counter::CreatePorts()
 
 void Counter::Process(UnsignedType SampleCount)
 {	
-	UnsignedType count = m_Count->Value.AsUnsigned;
+	UnsignedType count = m_Count->Value();
 
 	bool Triggered = StateValue(m_TriggeredInd)->AsBoolean;
 	UnsignedType Current = StateValue(m_CurrentInd)->AsUnsigned;

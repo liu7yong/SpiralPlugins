@@ -27,7 +27,7 @@ DevicePluginHook(Mixer, 752ea58ee28b9765618d0b306bcd79b6);
 
 void Mixer::Finalize()
 {
-  m_NumChannels->Value.AsUnsigned = 0;
+  m_NumChannels->SetValue(0);
 
   EnsureChannelProperties();
 
@@ -42,9 +42,11 @@ void Mixer::Finalize()
 
 Mixer *Mixer::Initialize(Patch *Host)
 {
-  m_NumChannels = UnsignedProperty::New(DefaultLinearFlags | Property::ForceUpdate, 4, 2, 256, 1, 1);
+  m_NumChannels = NumberProperty<UnsignedType>::New(Property::WriteOnly | Property::ForceUpdate, 4, 
+                                                      LinearConstraints<UnsignedType>::New(true, true, false, 2, 256, 1, 1));
+
   m_Peak = ToggleProperty::New(Property::ReadOnly, false);
-  m_Volume = ArrayProperty<FloatProperty>::New();
+  m_Volume = ArrayProperty<NumberProperty<FloatType> >::New();
   m_VolumePeak = ArrayProperty<ToggleProperty>::New();
 
   Super::Initialize(Host);
@@ -69,12 +71,12 @@ bool Mixer::CreatePorts()
   /* Which would mean allocating new map & nodes on control thread */
   /* and lazy swapping, as a dependency for this - so queue of */
   /* commands that require thread reply before continuing. */
-	while (InputPorts()->Count() > m_NumChannels->Value.AsUnsigned) 
+	while (InputPorts()->Count() > m_NumChannels->Value()) 
 	{
 		UnReference(InputPorts()->Last());
 	}
 
-	while (InputPorts()->Count() < m_NumChannels->Value.AsUnsigned) 
+	while (InputPorts()->Count() < m_NumChannels->Value()) 
 	{
 	  /* TODO - Given that meta information is going to be variable */
 	  /* There needs to be a way to both map to unique localizeable information */
@@ -149,38 +151,39 @@ void Mixer::Process(UnsignedType SampleCount)
 
 		for (UnsignedType c=0; c<InputPorts()->Count(); c++) 
 		{
-			in = GetInput(((InputPort*)(*InputPorts())[c]), n) * ((*m_Volume)[c])->Value.AsFloat;
+			in = GetInput(((InputPort*)(*InputPorts())[c]), n) * ((*m_Volume)[c])->Value();
 			out += in;
 
 			/* This is going to potentially be wrong for voices - one voice might be peaked, another not */
 			/* But that doesn't matter when dealing with an all for one slider */
 			/* More specifics will need a VoiceMixer */
-			((*m_VolumePeak)[c])->Value.AsBoolean = (in > 1.0);
+			((*m_VolumePeak)[c])->SetValue(in > 1.0);
 		}
 
 		SetOutput(GetOutputPort(Out), n, out);
 
 		/* Again, This is going to potentially be wrong for voices - one voice might be peaked, another not */
 		/* More specifics will need a VoiceMixer */
-		m_Peak->Value.AsBoolean = (out > 1.0);
+		m_Peak->SetValue(out > 1.0);
 	}
 }
 
 void Mixer::EnsureChannelProperties()
 {
-	UnsignedType num = m_NumChannels->Value.AsUnsigned;
+	UnsignedType num = m_NumChannels->Value();
 
 	/* Remove Channel Properties */
 	while(m_Volume->Count() > num) 
 	{
-    UnReference(m_Volume->Values->RemoveLast());
-    UnReference(m_VolumePeak->Values->RemoveLast());
+      UnReference(m_Volume->Values->RemoveLast());
+      UnReference(m_VolumePeak->Values->RemoveLast());
 	}
 
 	/* Add Channel Properties */
 	while (m_Volume->Count() < num) 
 	{
-		m_Volume->Append(FloatProperty::New(DefaultLinearFlags, 1.0f, 0.0f, 2.0f, 0.001f, 0.01f));
-		m_VolumePeak->Append(ToggleProperty::New(Property::ReadOnly, false));
+      m_Volume->Append(NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
+                                                      LinearConstraints<FloatType>::New(true, true, false, 0.0f, 2.0f, 0.001f, 0.01f)));
+      m_VolumePeak->Append(ToggleProperty::New(Property::ReadOnly, false));
 	}
 }

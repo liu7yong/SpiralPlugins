@@ -75,12 +75,12 @@ void LFO::Class::WriteWaves()
 }
 
 ///////////////////////////////////////////////////////
-const NumericPropertyValue WaveTypes[] = 
+const UnsignedType WaveTypes[] = 
 {
-	/*{"Sine", */ DefaultUnsigned(LFO::Class::SineWave)/*}*/,
-	/*{"Triangle", */ DefaultUnsigned(LFO::Class::TriangleWave)/*}*/,
-	/*{"Square", */ DefaultUnsigned(LFO::Class::SquareWave)/*}*/,
-	/*{"Saw", */ DefaultUnsigned(LFO::Class::SawWave)/*}*/
+	/*{"Sine", */ LFO::Class::SineWave/*}*/,
+	/*{"Triangle", */ LFO::Class::TriangleWave/*}*/,
+	/*{"Square", */ LFO::Class::SquareWave/*}*/,
+	/*{"Saw", */ LFO::Class::SawWave/*}*/
 };
 
 const NumericPropertyValue defCyclePos= DefaultFloat(0.0f);
@@ -89,11 +89,11 @@ LFO *LFO::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_TableLength = DEFAULT_TABLE_LEN;
-
   /* Shared Properties */
-  m_Type = SetProperty::New(Property::WriteOnly, 0, PropertySet::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  m_Freq = FloatProperty::New(DefaultLinearFlags,0.1f, 0.0f, 1.0f, 0.001f, 0.1f);
+  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, 0, 
+                                              SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
+  m_Freq = NumberProperty<FloatType>::New(Property::WriteOnly, 0.1f, 
+                                          LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.001f, 0.1f));
 
   RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
   RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
@@ -134,8 +134,8 @@ void LFO::Reset()
 
 void LFO::Process(UnsignedType SampleCount) 
 {
-	UnsignedType type = m_Type->Value.AsUnsigned;
-	FloatType freq =m_Freq->Value.AsFloat;
+	UnsignedType type = m_Type->Value();
+	FloatType freq =m_Freq->Value();
 	FloatType Incr, CyclePos, Pos;
 
 	CyclePos = StateValue(m_CyclePosInd)->AsFloat;
@@ -149,11 +149,11 @@ void LFO::Process(UnsignedType SampleCount)
 		SetOutput (output[0], n, (*ClassObject()->Table(type))[CyclePos]);
 
 		// 'Cosine' Output
-		Pos = AdjustPos (CyclePos + (m_TableLength * 0.25f));
+		Pos = AdjustPos (CyclePos + (DEFAULT_TABLE_LEN * 0.25f));
 		SetOutput (output[1], n, (*ClassObject()->Table(type))[Pos]);
 
 		// Inverted Output
-		Pos = AdjustPos (m_TableLength - CyclePos);
+		Pos = AdjustPos (DEFAULT_TABLE_LEN - CyclePos);
 		SetOutput (output[2], n, (*ClassObject()->Table(type))[Pos]);
 	}
 }

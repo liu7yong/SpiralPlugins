@@ -73,8 +73,10 @@ FormantFilter *FormantFilter::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_Vowel = FloatProperty::New(DefaultLinearFlags,zero, zero, four, 0.0001f, 0.001f);
-  RegisterSharedProperty(m_Vowel, StringHash("VOWEL")/*"Vowel", "Vowel"*/);
+  m_Vowel = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
+                                           LinearConstraints<FloatType>::New(true, true, false, 0.0f, 4.0f, 0.0001f, 0.001f));
+  
+  RegisterSharedProperty(m_Vowel, StringHash("Vowel", true)/*"Vowel", "Vowel"*/);
   
   return this;
 }
@@ -104,7 +106,7 @@ void FormantFilter::Reset()
 
 void FormantFilter::Process(UnsignedType SampleCount)
 {
-	FloatType res,o[5], in=zero, vow=m_Vowel->Value.AsFloat;
+	FloatType res,o[5], in=zero, vow=m_Vowel->Value();
 	
 	//reset memory if disconnected, and skip out (prevents CPU spike)
 	if (! InputExists(input[0])) 

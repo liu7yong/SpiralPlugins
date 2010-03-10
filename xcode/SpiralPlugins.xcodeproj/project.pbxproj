@@ -85,6 +85,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B47324E311468E4F0003A607 /* OggWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = B47324D811468DF10003A607 /* OggWriter.h */; };
+		B47324E411468E4F0003A607 /* OggWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47324D711468DF10003A607 /* OggWriter.cpp */; };
+		B47324F81146A0150003A607 /* vorbisenc.h in Headers */ = {isa = PBXBuildFile; fileRef = B47324F61146A0150003A607 /* vorbisenc.h */; };
+		B47325071146A05A0003A607 /* codec.h in Headers */ = {isa = PBXBuildFile; fileRef = B47325061146A05A0003A607 /* codec.h */; };
+		B473250C1146A0800003A607 /* config_types.h in Headers */ = {isa = PBXBuildFile; fileRef = B47325091146A0800003A607 /* config_types.h */; };
+		B473250D1146A0800003A607 /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = B473250A1146A0800003A607 /* ogg.h */; };
+		B473250E1146A0800003A607 /* os_types.h in Headers */ = {isa = PBXBuildFile; fileRef = B473250B1146A0800003A607 /* os_types.h */; };
+		B47E6D781146ABC800CDB929 /* libogg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B47E6D751146ABC800CDB929 /* libogg.dylib */; };
+		B47E6D791146ABC800CDB929 /* libvorbis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B47E6D761146ABC800CDB929 /* libvorbis.dylib */; };
+		B47E6D7A1146ABC800CDB929 /* libvorbisenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B47E6D771146ABC800CDB929 /* libvorbisenc.dylib */; };
 		B49E17401137679F00DDF954 /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172B1137678800DDF954 /* Spicy.framework */; };
 		B49E17411137679F00DDF954 /* SpiralCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172C1137678800DDF954 /* SpiralCore.framework */; };
 		B49E1742113767A800DDF954 /* Spicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49E172B1137678800DDF954 /* Spicy.framework */; };
@@ -286,6 +296,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B47324D711468DF10003A607 /* OggWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OggWriter.cpp; sourceTree = "<group>"; };
+		B47324D811468DF10003A607 /* OggWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OggWriter.h; sourceTree = "<group>"; };
+		B47324F61146A0150003A607 /* vorbisenc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vorbisenc.h; sourceTree = "<group>"; };
+		B47325061146A05A0003A607 /* codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec.h; sourceTree = "<group>"; };
+		B47325091146A0800003A607 /* config_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config_types.h; sourceTree = "<group>"; };
+		B473250A1146A0800003A607 /* ogg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ogg.h; sourceTree = "<group>"; };
+		B473250B1146A0800003A607 /* os_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_types.h; sourceTree = "<group>"; };
+		B47E6D751146ABC800CDB929 /* libogg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libogg.dylib; path = /opt/local/lib/libogg.dylib; sourceTree = "<absolute>"; };
+		B47E6D761146ABC800CDB929 /* libvorbis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvorbis.dylib; path = /opt/local/lib/libvorbis.dylib; sourceTree = "<absolute>"; };
+		B47E6D771146ABC800CDB929 /* libvorbisenc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvorbisenc.dylib; path = /opt/local/lib/libvorbisenc.dylib; sourceTree = "<absolute>"; };
 		B49E172B1137678800DDF954 /* Spicy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spicy.framework; path = Library/Frameworks/Spicy.framework; sourceTree = SDKROOT; };
 		B49E172C1137678800DDF954 /* SpiralCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpiralCore.framework; path = Library/Frameworks/SpiralCore.framework; sourceTree = SDKROOT; };
 		B4B1411B113DAD9400DCAC2D /* Trig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trig.cpp; sourceTree = "<group>"; };
@@ -384,6 +404,9 @@
 				B49E17411137679F00DDF954 /* SpiralCore.framework in Frameworks */,
 				B4EE2990111A558D00EC7A4E /* libesd.a in Frameworks */,
 				B4EE2C3B111BB46B00EC7A4E /* CoreAudio.framework in Frameworks */,
+				B47E6D781146ABC800CDB929 /* libogg.dylib in Frameworks */,
+				B47E6D791146ABC800CDB929 /* libvorbis.dylib in Frameworks */,
+				B47E6D7A1146ABC800CDB929 /* libvorbisenc.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +455,25 @@
 				B4B14245113EA2B600DCAC2D /* SMAmpsAndMixers.dylib */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B47324F511469F900003A607 /* vorbis */ = {
+			isa = PBXGroup;
+			children = (
+				B47325061146A05A0003A607 /* codec.h */,
+				B47324F61146A0150003A607 /* vorbisenc.h */,
+			);
+			name = vorbis;
+			sourceTree = "<group>";
+		};
+		B47325081146A0620003A607 /* ogg */ = {
+			isa = PBXGroup;
+			children = (
+				B47325091146A0800003A607 /* config_types.h */,
+				B473250A1146A0800003A607 /* ogg.h */,
+				B473250B1146A0800003A607 /* os_types.h */,
+			);
+			name = ogg;
 			sourceTree = "<group>";
 		};
 		B4B1411A113DAD9400DCAC2D /* Maths & Logic */ = {
@@ -487,12 +529,16 @@
 		B4EE2917111A542C00EC7A4E /* SMAudioIO */ = {
 			isa = PBXGroup;
 			children = (
+				B47325081146A0620003A607 /* ogg */,
+				B47324F511469F900003A607 /* vorbis */,
 				B4EE2973111A54CE00EC7A4E /* Frameworks and Libraries */,
 				B4EE296A111A544D00EC7A4E /* Resources */,
 				B4EE2919111A542C00EC7A4E /* AudioIO.h */,
 				B4EE2918111A542C00EC7A4E /* AudioIO.cpp */,
 				B4EE291C111A542C00EC7A4E /* DiskWriter.h */,
 				B4EE291B111A542C00EC7A4E /* DiskWriter.cpp */,
+				B47324D811468DF10003A607 /* OggWriter.h */,
+				B47324D711468DF10003A607 /* OggWriter.cpp */,
 				B4EE2924111A542C00EC7A4E /* esd.h */,
 				B4EE291E111A542C00EC7A4E /* ESDClient.h */,
 				B4EE291D111A542C00EC7A4E /* ESDClient.cpp */,
@@ -563,6 +609,9 @@
 		B4EE2973111A54CE00EC7A4E /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B47E6D751146ABC800CDB929 /* libogg.dylib */,
+				B47E6D761146ABC800CDB929 /* libvorbis.dylib */,
+				B47E6D771146ABC800CDB929 /* libvorbisenc.dylib */,
 				B4EE2926111A542C00EC7A4E /* libesd.a */,
 				B4EE2C38111BB45400EC7A4E /* CoreAudio.framework */,
 			);
@@ -624,10 +673,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B47324E311468E4F0003A607 /* OggWriter.h in Headers */,
 				B4EE2989111A555F00EC7A4E /* AudioIO.h in Headers */,
 				B4EE298A111A555F00EC7A4E /* DiskWriter.h in Headers */,
 				B4EE298B111A555F00EC7A4E /* ESDClient.h in Headers */,
 				B4EE298C111A555F00EC7A4E /* esd.h in Headers */,
+				B47324F81146A0150003A607 /* vorbisenc.h in Headers */,
+				B47325071146A05A0003A607 /* codec.h in Headers */,
+				B473250C1146A0800003A607 /* config_types.h in Headers */,
+				B473250D1146A0800003A607 /* ogg.h in Headers */,
+				B473250E1146A0800003A607 /* os_types.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +852,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B47324E411468E4F0003A607 /* OggWriter.cpp in Sources */,
 				B4EE298D111A557500EC7A4E /* AudioIO.cpp in Sources */,
 				B4EE298E111A557500EC7A4E /* DiskWriter.cpp in Sources */,
 				B4EE298F111A557500EC7A4E /* ESDClient.cpp in Sources */,
@@ -946,6 +1002,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SMMathsAndLogic;
 			};
@@ -963,6 +1023,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SMMathsAndLogic;
 				ZERO_LINK = NO;
@@ -1144,6 +1208,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../SMAudioIO\"",
+					/opt/local/lib,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SMAudioIO;
@@ -1166,6 +1231,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../SMAudioIO\"",
+					/opt/local/lib,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SMAudioIO;

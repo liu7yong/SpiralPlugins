@@ -36,8 +36,8 @@ class Operator : Gumbo(Device)
   );
   
 private:
-  SignedProperty *m_Operator;
-  FloatProperty *m_Constant;
+  NumberProperty<UnsignedType> *m_Operator;
+  NumberProperty<FloatType> *m_Constant;
 
 protected:
   virtual void Finalize();

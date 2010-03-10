@@ -37,18 +37,19 @@ class MoogFilter : Gumbo(Device)
   );
 private:
   /* Instance State */
-  void WipeState();
-
   InputPort *input[3];
   OutputPort *output[3];
 
-  FloatProperty *Cutoff, *Resonance;
+  NumberProperty<FloatType> *mCutoff, *mResonance;
 
   //FIXME - NOT VOICE SAFE
   FloatType fc;
   FloatType f,p,q;
   FloatType b0,b1,b2,b3,b4;
   FloatType t1,t2;
+
+  void WipeState();
+  
 public:
   virtual MoogFilter *Initialize(Patch *Host);
   static inline MoogFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }

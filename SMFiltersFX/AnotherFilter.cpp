@@ -35,11 +35,13 @@ AnotherFilter *AnotherFilter::Initialize(Patch *Host)
 {
   Super::Initialize(Host),
 
-  Cutoff = FloatProperty::New(DefaultLinearFlags,0.0f, 0.0f, 1.0f, 0.0001f, 0.0001f);
-  Resonance = FloatProperty::New(DefaultLinearFlags,0.0f, 0.0f, 1.0f, 0.00001f, 0.00001f);
+  mCutoff = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
+                                          LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.0001f, 0.0001f));
+  mResonance = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
+                                             LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.00001f));
   
-  RegisterSharedProperty(Cutoff, StringHash("Cutoff", true)/*"Cutoff", "Cutoff"*/);
-  RegisterSharedProperty(Resonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
+  RegisterSharedProperty(mCutoff, StringHash("Cutoff", true)/*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(mResonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
   
   /* Voice State Properties */
   m_VibraPosInd = NewStateProperty(zeroFloat);
@@ -73,8 +75,8 @@ void AnotherFilter::Process(UnsignedType SampleCount)
 {
   FloatType cut, res, vibrapos, vibraspeed, resonance, cutoff;
           
-  cut = Cutoff->Value.AsFloat;		
-  res = Resonance->Value.AsFloat;		
+  cut = mCutoff->Value();		
+  res = mResonance->Value();		
 
   vibrapos = StateValue(m_VibraPosInd)->AsFloat;
   vibraspeed = StateValue(m_VibraSpeedInd)->AsFloat;

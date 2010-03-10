@@ -74,6 +74,92 @@
       "Info": "Wave Table",
       "Category":"Oscillators",
 
+      "Properties":{
+        "Wave Type":{
+          "Type": "Unsigned",
+          "Name": "Wave Type",
+          "Tooltip": "Wave Type",
+          
+          "Write Only": true,
+          "Force Update": false,
+          "Default": "Sine Wave",
+          
+          "Constraints":{
+            "Type": "Set",
+            "Values":{
+              "Sine Wave": 0,
+              "Square Wave": 1,
+              "Saw Wave": 2,
+              "Reverse Saw Wave": 3,
+              "Triangle Wave": 4,
+              "Pulse1 Wave": 5,
+              "Pulse2 Wave": 6,
+              "Inverse Sine Wave": 7
+            }
+          }
+        },
+        "Octave":{
+          "Type": "Signed",
+          "Name": "Octave",
+          "Tooltip": "Octave",
+
+          "Write Only": true,
+          "Force Update": false,
+          
+          "Default": 0,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":-3,
+            "Max":3,
+            "Minimum Step":1,
+            "Default Step":1
+          }
+        },
+        "Fine Frequency":{
+          "Type": "Float",
+          "Name": "Fine Frequency",
+          "Tooltip": "Fine Frequency",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 1,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":1.414,
+            "Minimum Step":0.000001,
+            "Default Step":0.0001
+          }
+        },
+        "Mod Amount":{
+          "Type": "Float",
+          "Name": "Mod Amount",
+          "Tooltip": "Mod Amount",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 1,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":2,
+            "Minimum Step":0.001,
+            "Default Step":0.01
+          }
+        }
+      },
+
       "Inputs":{
         "Frequency CV":{
           "Index": 0,

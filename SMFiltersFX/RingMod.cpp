@@ -34,8 +34,9 @@ RingMod *RingMod::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  m_Amount = FloatProperty::New(DefaultLinearFlags,1.0f, 0, 3, 0.0001f, 0.001f);
-  RegisterSharedProperty(m_Amount, StringHash("Amount")/*, "Amount"*/);
+  m_Amount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
+                                            LinearConstraints<FloatType>::New(true, true, false, 0, 3, 0.0001f, 0.001f));
+  RegisterSharedProperty(m_Amount, StringHash("Amount", true)/*, "Amount"*/);
 
   return this;
 }
@@ -51,7 +52,7 @@ bool RingMod::CreatePorts()
 
 void RingMod::Process(UnsignedType SampleCount)
 {
-	FloatType amount = m_Amount->Value.AsFloat;
+	FloatType amount = m_Amount->Value();
 
 	for (UnsignedType n=0; n<SampleCount; n++)
       SetOutput(GetOutputPort(Out),n,GetInput(GetInputPort(In1),n)*GetInput(GetInputPort(In2),n)*amount);

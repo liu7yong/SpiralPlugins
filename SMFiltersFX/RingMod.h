@@ -36,18 +36,18 @@ class RingMod : Gumbo(Device)
     },
   );
 private:
-	FloatProperty *m_Amount;
+	NumberProperty<FloatType> *m_Amount;
 
 protected:
   virtual void Finalize();
 
 public:
- 	virtual RingMod* Initialize(Patch *Host);
+  virtual RingMod* Initialize(Patch *Host);
   static inline RingMod *New(Patch *Host) { return Alloc()->Initialize(Host); }
   
-	bool CreatePorts();
+  bool CreatePorts();
 
-	virtual void Process(UnsignedType SampleCount);
+  virtual void Process(UnsignedType SampleCount);
 };
 
 #endif

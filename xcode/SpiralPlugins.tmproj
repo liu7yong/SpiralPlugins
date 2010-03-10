@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>../Amps &amp; Mixers/info.json</string>
+	<string>../SMFiltersFX/MoogFilter.cpp</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -23,9 +23,11 @@
 									<key>filename</key>
 									<string>../SMAudioIO/info.json</string>
 									<key>lastUsed</key>
-									<date>2010-03-02T19:55:25Z</date>
+									<date>2010-03-06T19:03:13Z</date>
 								</dict>
 							</array>
+							<key>expanded</key>
+							<true/>
 							<key>name</key>
 							<string>Resources</string>
 						</dict>
@@ -33,23 +35,25 @@
 							<key>filename</key>
 							<string>../SMAudioIO/AudioIO.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T19:41:36Z</date>
+							<date>2010-03-06T19:03:41Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMAudioIO/AudioIO.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T19:41:27Z</date>
+							<date>2010-03-06T19:03:22Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMAudioIO/DiskWriter.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:03:48Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMAudioIO/DiskWriter.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:47:05Z</date>
+							<date>2010-03-06T19:04:51Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -59,7 +63,7 @@
 							<key>filename</key>
 							<string>../SMAudioIO/ESDClient.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T19:07:39Z</date>
+							<date>2010-03-06T18:58:17Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -70,12 +74,16 @@
 						<dict>
 							<key>filename</key>
 							<string>../SMAudioIO/JackIO.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T18:58:15Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMAudioIO/JackIO.cpp</string>
 						</dict>
 					</array>
+					<key>expanded</key>
+					<true/>
 					<key>name</key>
 					<string>Input/Output</string>
 				</dict>
@@ -89,55 +97,77 @@
 									<key>filename</key>
 									<string>../SMOscillators/info.json</string>
 									<key>lastUsed</key>
-									<date>2010-03-02T19:56:09Z</date>
+									<date>2010-03-06T14:15:21Z</date>
 								</dict>
 							</array>
+							<key>expanded</key>
+							<true/>
 							<key>name</key>
 							<string>Resources</string>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/ExtraNoise.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:05:00Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/ExtraNoise.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:33:37Z</date>
+							<date>2010-03-06T19:05:17Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/LFO.h</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:31:35Z</date>
+							<date>2010-03-06T19:06:58Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/LFO.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:31:54Z</date>
+							<date>2010-03-06T19:07:14Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/Noise.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:06:23Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/Noise.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T19:55:05Z</date>
+							<date>2010-03-06T19:07:18Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../SMOscillators/Oscillator.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:07:30Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../SMOscillators/Oscillator.cpp</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:07:20Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/WaveTable.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:07:27Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMOscillators/WaveTable.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T19:06:49Z</date>
+							<date>2010-03-06T19:08:04Z</date>
 						</dict>
 					</array>
+					<key>expanded</key>
+					<true/>
 					<key>name</key>
 					<string>Oscillators</string>
 				</dict>
@@ -151,9 +181,11 @@
 									<key>filename</key>
 									<string>../SMFiltersFX/info.json</string>
 									<key>lastUsed</key>
-									<date>2010-03-01T19:44:23Z</date>
+									<date>2010-03-06T15:12:39Z</date>
 								</dict>
 							</array>
+							<key>expanded</key>
+							<true/>
 							<key>name</key>
 							<string>Resources</string>
 						</dict>
@@ -161,57 +193,75 @@
 							<key>filename</key>
 							<string>../SMFiltersFX/AnotherFilter.h</string>
 							<key>lastUsed</key>
-							<date>2010-02-21T05:53:53Z</date>
+							<date>2010-03-06T19:08:10Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/AnotherFilter.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:40:29Z</date>
+							<date>2010-03-06T19:08:51Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/Filter.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T19:59:17Z</date>
+							<date>2010-03-06T19:08:57Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/Filter.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:41:50Z</date>
+							<date>2010-03-06T19:09:51Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/FormantFilter.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:09:56Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/FormantFilter.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:44:00Z</date>
+							<date>2010-03-06T19:36:50Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/MoogFilter.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:10:45Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/MoogFilter.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-02-28T02:41:59Z</date>
+							<date>2010-03-06T19:36:50Z</date>
+							<key>selected</key>
+							<true/>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../SMFiltersFX/RingMod.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:11:47Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../SMFiltersFX/RingMod.cpp</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:12:04Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/SVFilter.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T20:01:11Z</date>
+							<date>2010-03-06T19:12:10Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../SMFiltersFX/SVFilter.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T20:02:24Z</date>
+							<date>2010-03-06T19:12:45Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
@@ -226,6 +276,8 @@
 							<date>2010-02-28T02:29:25Z</date>
 						</dict>
 					</array>
+					<key>expanded</key>
+					<true/>
 					<key>name</key>
 					<string>Filters &amp; FX</string>
 				</dict>
@@ -239,35 +291,61 @@
 									<key>filename</key>
 									<string>../Maths &amp; Logic/info.json</string>
 									<key>lastUsed</key>
-									<date>2010-03-02T23:59:31Z</date>
+									<date>2010-03-06T15:01:27Z</date>
 								</dict>
 							</array>
+							<key>expanded</key>
+							<true/>
 							<key>name</key>
 							<string>Resources</string>
 						</dict>
 						<dict>
 							<key>filename</key>
+							<string>../Maths &amp; Logic/Counter.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:12:50Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../Maths &amp; Logic/Counter.cpp</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:13:09Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
 							<string>../Maths &amp; Logic/Operator.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-03T00:06:01Z</date>
+							<date>2010-03-06T19:13:14Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../Maths &amp; Logic/Operator.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T23:32:24Z</date>
+							<date>2010-03-06T19:13:30Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../Maths &amp; Logic/Switch.h</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:13:36Z</date>
+						</dict>
+						<dict>
+							<key>filename</key>
+							<string>../Maths &amp; Logic/Switch.cpp</string>
+							<key>lastUsed</key>
+							<date>2010-03-06T19:13:50Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../Maths &amp; Logic/Trig.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-02T23:35:26Z</date>
+							<date>2010-03-06T19:13:54Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../Maths &amp; Logic/Trig.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-03T14:06:41Z</date>
+							<date>2010-03-06T19:14:32Z</date>
 						</dict>
 					</array>
 					<key>expanded</key>
@@ -285,9 +363,7 @@
 									<key>filename</key>
 									<string>../Amps &amp; Mixers/info.json</string>
 									<key>lastUsed</key>
-									<date>2010-03-03T15:38:37Z</date>
-									<key>selected</key>
-									<true/>
+									<date>2010-03-06T14:24:57Z</date>
 								</dict>
 							</array>
 							<key>expanded</key>
@@ -299,25 +375,25 @@
 							<key>filename</key>
 							<string>../Amps &amp; Mixers/Amp.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-03T15:37:31Z</date>
+							<date>2010-03-06T19:14:38Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../Amps &amp; Mixers/Amp.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-03T15:32:06Z</date>
+							<date>2010-03-06T19:15:01Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../Amps &amp; Mixers/Mixer.h</string>
 							<key>lastUsed</key>
-							<date>2010-03-03T15:38:37Z</date>
+							<date>2010-03-06T19:15:07Z</date>
 						</dict>
 						<dict>
 							<key>filename</key>
 							<string>../Amps &amp; Mixers/Mixer.cpp</string>
 							<key>lastUsed</key>
-							<date>2010-03-03T15:21:59Z</date>
+							<date>2010-03-06T19:36:47Z</date>
 						</dict>
 					</array>
 					<key>expanded</key>
@@ -341,9 +417,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>25</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -357,7 +433,7 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -371,65 +447,77 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>25</integer>
+				<integer>26</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>24</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>25</integer>
-			</dict>
+			<integer>49</integer>
 		</dict>
 		<key>../Amps &amp; Mixers/Mixer.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>34</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>17</integer>
+			<integer>11</integer>
 		</dict>
 		<key>../Amps &amp; Mixers/info.json</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>29</integer>
 				<key>line</key>
-				<integer>17</integer>
+				<integer>112</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
+			<integer>86</integer>
+		</dict>
+		<key>../Maths &amp; Logic/Counter.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>22</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
 			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>5</integer>
+		</dict>
+		<key>../Maths &amp; Logic/Counter.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>21</integer>
 		</dict>
 		<key>../Maths &amp; Logic/Operator.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>69</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -443,28 +531,40 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>27</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>10</integer>
-			<key>selectFrom</key>
+		</dict>
+		<key>../Maths &amp; Logic/Switch.cpp</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>23</integer>
 			</dict>
-			<key>selectTo</key>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>../Maths &amp; Logic/Switch.h</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>27</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>14</integer>
 		</dict>
 		<key>../Maths &amp; Logic/Trig.cpp</key>
 		<dict>
@@ -473,56 +573,40 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>26</integer>
+				<integer>27</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>10</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>23</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>26</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
 		<key>../Maths &amp; Logic/Trig.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>18</integer>
+			<integer>19</integer>
 		</dict>
 		<key>../Maths &amp; Logic/info.json</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>11</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>93</integer>
+				<integer>284</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>83</integer>
+			<integer>256</integer>
 		</dict>
 		<key>../SMAudioIO/AudioIO.cpp</key>
 		<dict>
@@ -531,7 +615,7 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>170</integer>
+				<integer>93</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -545,42 +629,40 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>65</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>15</integer>
+			<integer>9</integer>
 		</dict>
 		<key>../SMAudioIO/DiskWriter.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>36</integer>
 				<key>line</key>
 				<integer>73</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>49</integer>
-			<key>selectFrom</key>
+			<integer>56</integer>
+		</dict>
+		<key>../SMAudioIO/DiskWriter.h</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>72</integer>
+				<integer>27</integer>
 			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>73</integer>
-			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>11</integer>
 		</dict>
 		<key>../SMAudioIO/ESDClient.cpp</key>
 		<dict>
@@ -601,14 +683,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>30</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>50</integer>
+		</dict>
+		<key>../SMAudioIO/JackIO.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>9</integer>
 		</dict>
 		<key>../SMAudioIO/info.json</key>
 		<dict>
@@ -617,42 +713,26 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>13</integer>
+				<integer>19</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>12</integer>
 		</dict>
 		<key>../SMFiltersFX/AnotherFilter.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>58</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>33</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
+				<integer>57</integer>
 				<key>line</key>
 				<integer>52</integer>
 			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>58</integer>
-			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>../SMFiltersFX/AnotherFilter.h</key>
 		<dict>
@@ -661,7 +741,7 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -675,12 +755,12 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>31</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>73</integer>
+			<integer>2</integer>
 		</dict>
 		<key>../SMFiltersFX/Filter.h</key>
 		<dict>
@@ -689,28 +769,12 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>44</integer>
+				<integer>29</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>5</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>21</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>44</integer>
-			</dict>
+			<integer>15</integer>
 		</dict>
 		<key>../SMFiltersFX/FormantFilter.cpp</key>
 		<dict>
@@ -719,12 +783,26 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>23</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>60</integer>
+			<integer>7</integer>
+		</dict>
+		<key>../SMFiltersFX/FormantFilter.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>5</integer>
 		</dict>
 		<key>../SMFiltersFX/MoogFilter.cpp</key>
 		<dict>
@@ -733,28 +811,54 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>74</integer>
+				<integer>0</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>66</integer>
-			<key>selectFrom</key>
+			<integer>111</integer>
+		</dict>
+		<key>../SMFiltersFX/MoogFilter.h</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>72</integer>
+				<integer>28</integer>
 			</dict>
-			<key>selectTo</key>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>13</integer>
+		</dict>
+		<key>../SMFiltersFX/RingMod.cpp</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>74</integer>
+				<integer>22</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>../SMFiltersFX/RingMod.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>18</integer>
 		</dict>
 		<key>../SMFiltersFX/SVFilter.cpp</key>
 		<dict>
@@ -763,28 +867,12 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>29</integer>
+				<integer>30</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>11</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>29</integer>
-			</dict>
+			<integer>15</integer>
 		</dict>
 		<key>../SMFiltersFX/SVFilter.h</key>
 		<dict>
@@ -793,12 +881,12 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>30</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>11</integer>
 		</dict>
 		<key>../SMFiltersFX/iir_filter.cpp</key>
 		<dict>
@@ -833,14 +921,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>229</integer>
+				<integer>268</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>41</integer>
+			<integer>237</integer>
 		</dict>
 		<key>../SMOscillators/ExtraNoise.cpp</key>
 		<dict>
@@ -849,58 +937,40 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>44</integer>
+				<integer>20</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>16</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>44</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
-		<key>../SMOscillators/LFO.cpp</key>
+		<key>../SMOscillators/ExtraNoise.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>108</integer>
+				<integer>25</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>80</integer>
-			<key>selectFrom</key>
+			<integer>11</integer>
+		</dict>
+		<key>../SMOscillators/LFO.cpp</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>105</integer>
+				<integer>104</integer>
 			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>108</integer>
-			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>85</integer>
 		</dict>
 		<key>../SMOscillators/LFO.h</key>
 		<dict>
@@ -909,62 +979,123 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>28</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>14</integer>
 		</dict>
 		<key>../SMOscillators/Noise.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>30</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>71</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>27</integer>
+			<integer>57</integer>
 		</dict>
-		<key>../SMOscillators/WaveTable.cpp</key>
+		<key>../SMOscillators/Noise.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>41</integer>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>15</integer>
+		</dict>
+		<key>../SMOscillators/Oscillator.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
 				<key>line</key>
 				<integer>22</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
+			<integer>70</integer>
+		</dict>
+		<key>../SMOscillators/Oscillator.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>22</integer>
+		</dict>
+		<key>../SMOscillators/WaveTable.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
 			<integer>12</integer>
+		</dict>
+		<key>../SMOscillators/WaveTable.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>25</integer>
 		</dict>
 		<key>../SMOscillators/info.json</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>99</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>90</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>../SMAudioIO/AudioIO.h</string>
+		<string>../SMAudioIO/DiskWriter.h</string>
 		<string>../SMOscillators/Noise.cpp</string>
+		<string>../SMOscillators/Noise.h</string>
 		<string>../Maths &amp; Logic/Trig.h</string>
 		<string>../Maths &amp; Logic/info.json</string>
+		<string>../Maths &amp; Logic/Counter.h</string>
+		<string>../Maths &amp; Logic/Counter.cpp</string>
+		<string>../SMOscillators/Oscillator.h</string>
 		<string>../Amps &amp; Mixers/info.json</string>
 		<string>../Amps &amp; Mixers/Mixer.h</string>
 		<string>../Amps &amp; Mixers/Mixer.cpp</string>
@@ -976,6 +1107,10 @@
 		<string>../SMFiltersFX/Filter.h</string>
 		<string>../SMAudioIO/AudioIO.cpp</string>
 		<string>../SMOscillators/WaveTable.cpp</string>
+		<string>../SMOscillators/WaveTable.h</string>
+		<string>../SMOscillators/Oscillator.cpp</string>
+		<string>../SMOscillators/ExtraNoise.h</string>
+		<string>../SMAudioIO/JackIO.h</string>
 		<string>../SMAudioIO/ESDClient.h</string>
 		<string>../SMAudioIO/ESDClient.cpp</string>
 		<string>../SMFiltersFX/AnotherFilter.h</string>
@@ -990,6 +1125,12 @@
 		<string>../SMAudioIO/info.json</string>
 		<string>../SMAudioIO/DiskWriter.cpp</string>
 		<string>../SMOscillators/info.json</string>
+		<string>../SMFiltersFX/RingMod.h</string>
+		<string>../SMFiltersFX/MoogFilter.h</string>
+		<string>../SMFiltersFX/FormantFilter.h</string>
+		<string>../SMFiltersFX/RingMod.cpp</string>
+		<string>../Maths &amp; Logic/Switch.cpp</string>
+		<string>../Maths &amp; Logic/Switch.h</string>
 		<string>../SMOscillators/ExtraNoise.cpp</string>
 		<string>../SMOscillators/LFO.h</string>
 		<string>../SMOscillators/LFO.cpp</string>
@@ -998,6 +1139,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 0}, {1025, 778}}</string>
+	<string>{{0, 0}, {1021, 778}}</string>
 </dict>
 </plist>

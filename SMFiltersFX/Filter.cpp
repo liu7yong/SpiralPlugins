@@ -63,10 +63,12 @@ Filter *Filter::Initialize(Patch *Host)
 
   iir = FILTER();
 
-  fc = FloatProperty::New(DefaultLinearFlags, 100.0f, zero, 100.0f, 0.01f,  one);
-  Q = FloatProperty::New(DefaultLinearFlags, one, zero, 10.0f, 0.01f, 0.1f);
-  RegisterSharedProperty(fc, StringHash("CUTOFF") /*"Cutoff", "Cutoff"*/);
-  RegisterSharedProperty(Q, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  mCutoff = NumberProperty<FloatType>::New(Property::WriteOnly, 100.0f, 
+                                           LinearConstraints<FloatType>::New(true, true, false, 0.0f, 100.0f, 0.01f,  1.0f));
+  mResonance = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f,
+                                               LinearConstraints<FloatType>::New(true, true, false, 0.0f, 10.0f, 0.01f, 0.1f));
+  RegisterSharedProperty(mCutoff, StringHash("Cutoff", true) /*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(mResonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
 
   /* These should be internal state properties */
   m_LastFC = zero;
@@ -120,8 +122,8 @@ void Filter::Process(UnsignedType SampleCount)
 	FloatType Resonance;
 	FloatType in, cv1, cv2;
 
-	_fc=fc->Value.AsFloat;
-	_q=Q->Value.AsFloat;
+	_fc=mCutoff->Value();
+	_q=mResonance->Value();
 
 	if (_fc<zero)	return;
 

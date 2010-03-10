@@ -35,15 +35,15 @@ class FormantFilter : Gumbo(Device)
     },
   );
 private:
-  /* Instance State */
-  void WipeMemory();
-
   InputPort *input[2];
   OutputPort *output;
-  FloatProperty *m_Vowel;
+
+  NumberProperty<FloatType> *m_Vowel;
       
   //FIXME - NOT VOICE SAFE
   double memory[5][10];
+
+  void WipeMemory();
 public:
   virtual FormantFilter *Initialize(Patch *Host);
   static inline FormantFilter *New(Patch *Host) { return Alloc()->Initialize(Host); }

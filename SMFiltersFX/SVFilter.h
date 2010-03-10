@@ -39,7 +39,7 @@ class SVFilter : Gumbo(Device)
   );
 private:
   /* Instance State */
-  FloatProperty *Cutoff, *Resonance;
+  NumberProperty<FloatType> *mCutoff, *mResonance;
 
   //FIXME - NOT VOICE SAFE
   FloatType fc; // Cutoff

@@ -44,11 +44,13 @@ SVFilter *SVFilter::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
   
-  Cutoff = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.0001f, 0.001f);
-  Resonance = FloatProperty::New(DefaultLinearFlags, zero, zero, one, 0.00001f, 0.0001f);
+  mCutoff = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
+                                          LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.0001f, 0.001f));
+  mResonance = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
+                                             LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.0001f));
   
-  RegisterSharedProperty(Cutoff, StringHash("CUTOFF")/*"Cutoff", "Cutoff"*/);
-  RegisterSharedProperty(Resonance, StringHash("RESONANCE")/*"Resonance", "Resonance"*/);
+  RegisterSharedProperty(mCutoff, StringHash("Cutoff", true)/*"Cutoff", "Cutoff"*/);
+  RegisterSharedProperty(mResonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
   
   /* These should be internal state properties */
   fc = 1000.0f;
@@ -109,8 +111,8 @@ void SVFilter::Process(UnsignedType SampleCount)
 {
 	FloatType in, cut, res;
 
-	cut = Cutoff->Value.AsFloat;
-	res = Resonance->Value.AsFloat;
+	cut = mCutoff->Value();
+	res = mResonance->Value();
 
     for (UnsignedType n=0; n<SampleCount; n++)
 	{
