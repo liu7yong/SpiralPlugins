@@ -28,12 +28,6 @@ DevicePluginHook(Noise, 7cac72b3687628ec373ef10ae8a2ab4a)
 
 ///////////////////////////////////////////////////////
 enum Type {WHITE=0, PINK, BROWN};
-const UnsignedType NoiseTypes[] = 
-{
-	/*{"White Noise",*/ WHITE/*}*/,
-	/*{"Pink Noise", */ PINK/*}*/,
-	/*{"Pink Noise", */ BROWN/*}*/
-};
 
 const NumericPropertyValue defZeroFloat = DefaultFloat(0.0f);
 
@@ -48,10 +42,6 @@ Noise *Noise::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  /* Shared Properties */
-  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, WHITE, 
-                                             SetConstraints<UnsignedType>::New(NoiseTypes, sizeof(NoiseTypes)/sizeof(NoiseTypes[0])));
-
   /* Voice State Properties */
   mB0 = NewStateProperty(defZeroFloat);
   mB1 = NewStateProperty(defZeroFloat);
@@ -61,9 +51,6 @@ Noise *Noise::Initialize(Patch *Host)
   mB5 = NewStateProperty(defZeroFloat);
   mB6 = NewStateProperty(defZeroFloat);
 
-#if 0
-  RegisterSharedProperty(m_Type, StringHash("NOISE TYPE")/*, "Noise Type", "Noise Type"*/);
-#endif  
   return this;
 }
 
@@ -78,16 +65,16 @@ bool Noise::CreatePorts()
 
 void Noise::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
 {
+  /* Shared Property Instantiation */
   if (aPropertyID == StringHash("Noise Type", true))
     m_Type = NumberProperty<UnsignedType>::New(aProperty);
 }
 
 void Noise::Process(UnsignedType SampleCount)
 {
-	switch (BROWN)//(m_Type->Value())
+	switch (m_Type->Value())
 	{
 		case BROWN:
-		default:
 		{
 			for (UnsignedType n=0; n<SampleCount; n++)
 			{
@@ -106,12 +93,13 @@ void Noise::Process(UnsignedType SampleCount)
 		break;
 
 		case WHITE:
+		default:
 		{
 			for (UnsignedType n=0; n<SampleCount; n++)
 			{
 				SetOutput(output,n, GenerateWhite());
 			}
 		}
-        break;
+    break;
 	}
 }

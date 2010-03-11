@@ -18,17 +18,14 @@
 #include <cmath>
 #include "WaveTable.h"
 
-static const unsigned int NUM_TABLES = 8;
-static const unsigned int DEFAULT_TABLE_LEN = 1024;
-
-static const int IN_FREQ  = 0;
-static const int IN_PW    = 1;
-static const int IN_SHLEN = 2;
-
 //WaveTable Was initially commited by Dave, Sun Jul 28 23:18:17 2002 UTC
 //md5 -s "Dave Griffiths::dave@pawfal.org::1027916297::WaveTable"
 //  => d7a6e545474f4fc1c5f6d2acedc28cd7 (legacy == 17)
 DevicePluginHook(WaveTable, d7a6e545474f4fc1c5f6d2acedc28cd7)
+
+/* Hardcoded Variables - Avoid this */
+static const unsigned int NUM_TABLES = 8;
+static const unsigned int DEFAULT_TABLE_LEN = 1024;
 
 void WaveTable::Class::WriteWaves()
 {
@@ -86,18 +83,6 @@ void WaveTable::Class::WriteWaves()
   }
 }
 
-const UnsignedType WaveTypes[] = 
-{
-  /*{"Sine", */WaveTable::Class::SineWave/*}*/,
-	/*{"Square", */WaveTable::Class::SquareWave/*}*/,
-	/*{"Saw", */WaveTable::Class::SawWave/*}*/,
-	/*{"Reverse Saw", */WaveTable::Class::ReverseSawWave/*}*/,
-	/*{"Triangle", */WaveTable::Class::TriangleWave/*}*/,
-	/*{"Pulse 1", */WaveTable::Class::Pulse1Wave/*}*/,
-	/*{"Pulse 2", */WaveTable::Class::Pulse2Wave/*}*/,
-	/*{"Inverse Sine", */WaveTable::Class::InverseSineWave/*}*/
-};
-
 const NumericPropertyValue defCyclePos = DefaultFloat(0.0f);
 const NumericPropertyValue defNoteInd = DefaultSigned(0);
 
@@ -105,29 +90,10 @@ WaveTable *WaveTable::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  /* Shared Properties */
-#if 0
-  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, WaveTable::Class::SineWave, 
-                                              SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  
-  m_Octave = NumberProperty<SignedType>::New(Property::WriteOnly,0,
-                                             LinearConstraints<SignedType>::New(true, true, false, -3,3,1,1));
-  m_FineFreq = NumberProperty<FloatType>::New(Property::WriteOnly, 1, 
-                                              LinearConstraints<FloatType>::New(true, true, false, 0, 1.414f, 0.000001f, 0.0001f));
-  m_ModAmount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
-                                               LinearConstraints<FloatType>::New(true, true, false, 0, 2.0f, 0.001f, 0.01f));
-
-#endif
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   m_NoteInd = NewStateProperty(defNoteInd);
 
-#if 0
-  RegisterSharedProperty(m_Type, StringHash("Wave Type", true)/*"Wave Type", "Wave Type"*/);
-  RegisterSharedProperty(m_Octave, StringHash("Octave", true)/*"Octave", "Octave"*/);
-  RegisterSharedProperty(m_FineFreq, StringHash("Fine Frequency", true)/*"FineFreq", "FineFreq"*/);
-  RegisterSharedProperty(m_ModAmount, StringHash("Mod Amount", true)/*"ModAmount", "ModAmount"*/);
-#endif  
   return this;
 }
 
@@ -144,6 +110,7 @@ bool WaveTable::CreatePorts()
 
 void WaveTable::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
 {
+  /* Shared Property Instantiation */
   if (aPropertyID == StringHash("Wave Type", true))
   {
     m_Type =  NumberProperty<UnsignedType>::New(aProperty);

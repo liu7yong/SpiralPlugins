@@ -12,6 +12,48 @@
       "Info": "LFO",
       "Category":"Oscillators",
 
+      "Properties":{
+        "Wave Type":{
+          "Type": "Unsigned",
+          "Name": "Wave Type",
+          "Tooltip": "Wave Type",
+          
+          "Write Only": true,
+          "Force Update": false,
+          "Default": 0,
+        	
+          "Constraints":{
+            "Type": "Set",
+            "Values":{
+              "Sine Wave": 0,
+              "Triangle Wave": 1,
+              "Square Wave": 2,
+              "Saw Wave": 3
+            }
+          }
+        },
+        "Frequency":{
+          "Type": "Float",
+          "Name": "Frequency",
+          "Tooltip": "Frequency",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 0.1,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":1,
+            "Minimum Step":0.001,
+            "Default Step":0.1
+          }
+        }
+      },
+
       "Outputs":{
         "Output":{
           "Index": 0,
@@ -48,6 +90,27 @@
       "Label": "Noise",
       "Info": "Noise Generator",
       "Category":"Oscillators",
+
+      "Properties":{
+        "Noise Type":{
+          "Type": "Unsigned",
+          "Name": "Noise Type",
+          "Tooltip": "Noise Type",
+          
+          "Write Only": true,
+          "Force Update": false,
+          "Default": 0,
+        	
+          "Constraints":{
+            "Type": "Set",
+            "Values":{
+              "White Noise": 0,
+              "Pink Noise": 1,
+              "Brown Noise": 2
+            }
+          }
+        }
+      },
       
       "Outputs":{
         "Output":{
@@ -192,6 +255,48 @@
       "Info": "Configurable Noise Generator",
       "Category":"Oscillators",
 
+      "Properties":{
+        "Magic A":{
+          "Type": "Float",
+          "Name": "Magic A",
+          "Tooltip": "Magic A",
+
+          "Write Only": true,
+          "Force Update": false,
+          
+          "Default": 8,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":true,
+            "Min":6,
+            "Max":12,
+            "Minimum Step": 0.00001,
+            "Default Step":0.001
+          }
+        },
+        "Magic B":{
+          "Type": "Float",
+          "Name": "Magic B",
+          "Tooltip": "Magic B",
+
+          "Write Only": true,
+          "Force Update": false,
+          
+          "Default": 0.25,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":true,
+            "Min":0,
+            "Max":1,
+            "Minimum Step": 0.00001,
+            "Default Step":0.001
+          }
+        }
+      },
       "Inputs":{
         "Magic A CV":{
           "Index": 0,
@@ -228,6 +333,127 @@
       "Label": "Oscillator",
       "Info": "Oscillator",
       "Category":"Oscillators",
+
+      "Properties":{
+        "Wave Type":{
+          "Type": "Unsigned",
+          "Name": "Wave Type",
+          "Tooltip": "Wave Type",
+          
+          "Write Only": true,
+          "Force Update": false,
+          "Default": 1,
+          
+          "Constraints":{
+            "Type": "Set",
+            "Values":{
+              "Square Wave": 1,
+              "Saw Wave": 2,
+              "Noise Wave": 3
+            }
+          }
+        },
+        "Octave":{
+          "Type": "Unsigned",
+          "Name": "Octave",
+          "Tooltip": "Octave",
+
+          "Write Only": true,
+          "Force Update": false,
+          
+          "Default": 0,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":6,
+            "Minimum Step":1,
+            "Default Step":1
+          }
+        },
+        "Fine Tune":{
+          "Type": "Float",
+          "Name": "Fine Tune",
+          "Tooltip": "Fine Tune",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 1,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":1.414,
+            "Minimum Step":0.000001,
+            "Default Step":0.0001
+          }
+        },
+        "Pulse Width":{
+          "Type": "Float",
+          "Name": "Pulse Width",
+          "Tooltip": "Pulse Width",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 0.5,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":1,
+            "Minimum Step":0.01,
+            "Default Step":0.1
+          }
+        },
+        "Mod Amount":{
+          "Type": "Float",
+          "Name": "Mod Amount",
+          "Tooltip": "Mod Amount",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 1,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":2,
+            "Minimum Step":0.001,
+            "Default Step":0.01
+          }
+        },        
+        "Sample & Hold Length":{
+          "Type": "Float",
+          "Name": "Sample & Hold Length",
+          "Tooltip": "Sample & Hold Length",
+
+          "Write Only": true,
+          "Force Update": false,
+
+          "Default": 0.1,
+          "Constraints":{
+            "Type":"Linear",
+            "Clamp Lower":true,
+            "Clamp Upper":true,
+            "Logarithmic":false,
+            "Min":0,
+            "Max":0.2,
+            "Minimum Step":0.001,
+            "Default Step":0.01
+          }
+        }        
+      },
 
       "Inputs":{
         "Frequency CV":{

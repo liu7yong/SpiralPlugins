@@ -24,6 +24,7 @@
 //  =>  09f642cbfdbb5022d229b3a44c343ce0 (legacy == 7C)
 DevicePluginHook(LFO, 09f642cbfdbb5022d229b3a44c343ce0)
 
+/* Hardcoded Variables - Avoid this */
 static const UnsignedType NUM_TABLES = 6;
 static const UnsignedType DEFAULT_TABLE_LEN = 1024;
 
@@ -75,30 +76,12 @@ void LFO::Class::WriteWaves()
 }
 
 ///////////////////////////////////////////////////////
-const UnsignedType WaveTypes[] = 
-{
-	/*{"Sine", */ LFO::Class::SineWave/*}*/,
-	/*{"Triangle", */ LFO::Class::TriangleWave/*}*/,
-	/*{"Square", */ LFO::Class::SquareWave/*}*/,
-	/*{"Saw", */ LFO::Class::SawWave/*}*/
-};
-
 const NumericPropertyValue defCyclePos= DefaultFloat(0.0f);
 
 LFO *LFO::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  /* Shared Properties */
-  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, 0, 
-                                              SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  m_Freq = NumberProperty<FloatType>::New(Property::WriteOnly, 0.1f, 
-                                          LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.001f, 0.1f));
-
-#if 0
-  RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
-  RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
-#endif
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   
@@ -120,6 +103,7 @@ bool LFO::CreatePorts()
 
 void LFO::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
 {
+  /* Shared Property Instantiation */
   if (aPropertyID == StringHash("Wave Type", true))
   {
     m_Type =  NumberProperty<UnsignedType>::New(aProperty);
@@ -132,6 +116,7 @@ void LFO::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
     return;
   }
 }
+
 FloatType LFO::AdjustPos (FloatType pos) 
 {
 	if (pos > DEFAULT_TABLE_LEN)

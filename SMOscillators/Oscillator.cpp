@@ -29,13 +29,6 @@ enum {
   NoiseWave=3
 };
 
-const UnsignedType WaveTypes[] = 
-{
-	/*{"Square", */SquareWave/*}*/,
-	/*{"Saw", */SawWave/*}*/,
-	/*{"Noise", */NoiseWave/*}*/
-};
-
 void Oscillator::Finalize()
 {
   UnReference(m_Type);
@@ -55,28 +48,6 @@ Oscillator *Oscillator::Initialize(Patch *Host)
 {
   Super::Initialize(Host);
 
-  /* Shared Properties */
-  m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, SquareWave, 
-                                              SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
-  m_Octave = NumberProperty<UnsignedType>::New(Property::WriteOnly,0,
-                                               LinearConstraints<UnsignedType>::New(true, true, false, 0,6,1,1));
-  m_FineFreq = NumberProperty<FloatType>::New(Property::WriteOnly, 1, 
-                                                 LinearConstraints<FloatType>::New(true, true, false, 0, 1.414f, 0.000001f, 0.0001f));
-  m_PulseWidth = NumberProperty<FloatType>::New(Property::WriteOnly, 0.5f, 
-                                                LinearConstraints<FloatType>::New(true, true, false, 0, 1, 0.01f, 0.1f));
-  m_ModAmount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
-                                               LinearConstraints<FloatType>::New(true, true, false, 0, 2.0f, 0.001f, 0.01f));
-  m_SHLen = NumberProperty<FloatType>::New(Property::WriteOnly, 0.1f, 
-                                           LinearConstraints<FloatType>::New(true, true, false, 0, 0.2f, 0.001f, 0.01f));
-
-#if 0
-  RegisterSharedProperty(m_Type, StringHash("Wave Type")/*, "Wave Type"*/);
-  RegisterSharedProperty(m_Octave, StringHash("Octave")/*, "Octave"*/);
-  RegisterSharedProperty(m_FineFreq, StringHash("Fine Tune")/*, "Fine Tune Frequency"*/);
-  RegisterSharedProperty(m_PulseWidth, StringHash("Pulse Width")/*, "Pulse Width"*/);
-  RegisterSharedProperty(m_ModAmount, StringHash("ModAmount")/*, "ModAmount"*/);
-  RegisterSharedProperty(m_SHLen, StringHash("Sample & Hold Length")/*, "Sample & Hold Length"*/);
-#endif
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   m_NoisevInd = NewStateProperty(defNoisev);
@@ -97,39 +68,40 @@ bool Oscillator::CreatePorts()
 
 void Oscillator::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
 {
+  /* Shared Property Instantiation */
   if (aPropertyID == StringHash("Wave Type", true))
   {
-    m_Type =  NumberProperty<UnsignedType>::New(aProperty);
+    m_Type = NumberProperty<UnsignedType>::New(aProperty);
     return;
   }
 
   if (aPropertyID == StringHash("Octave", true))
   {
-    m_Octave =  NumberProperty<UnsignedType>::New(aProperty);
+    m_Octave = NumberProperty<UnsignedType>::New(aProperty);
     return;
   }
 
   if (aPropertyID == StringHash("Fine Tune", true))
   {
-    m_FineFreq =  NumberProperty<FloatType>::New(aProperty);
+    m_FineFreq = NumberProperty<FloatType>::New(aProperty);
     return;
   }
 
   if (aPropertyID == StringHash("Pulse Width", true))
   {
-    m_PulseWidth =  NumberProperty<FloatType>::New(aProperty);
+    m_PulseWidth = NumberProperty<FloatType>::New(aProperty);
     return;
   }
 
   if (aPropertyID == StringHash("Mod Amount", true))
   {
-    m_ModAmount =  NumberProperty<FloatType>::New(aProperty);
+    m_ModAmount = NumberProperty<FloatType>::New(aProperty);
     return;
   }
 
   if (aPropertyID == StringHash("Sample & Hold Length", true))
   {
-    m_ModAmount =  NumberProperty<FloatType>::New(aProperty);
+    m_SHLen = NumberProperty<FloatType>::New(aProperty);
     return;
   }
 }

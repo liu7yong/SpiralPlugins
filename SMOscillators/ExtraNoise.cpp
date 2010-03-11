@@ -29,16 +29,6 @@ ExtraNoise *ExtraNoise::Initialize(Patch *Host)
   /* Voice State Properties */
   mState = NewStateProperty(defZeroFloat);
 
-  mMagicA = NumberProperty<FloatType>::New(Property::WriteOnly, 8.0f, 
-                                           LinearConstraints<FloatType>::New(true, true, true, 6.0f, 12.0f, 0.00001f, 0.001f));
-
-  mMagicB = NumberProperty<FloatType>::New(Property::WriteOnly, 0.25f, 
-                                           LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.001f));
-
-#if 0
-  RegisterSharedProperty(mMagicA, StringHash("Magic A", true)/*"Magic A", "Magic A"*/);
-  RegisterSharedProperty(mMagicB, StringHash("Magic B", true)/*"Magic B", "Magic B"*/);
-#endif  
   return this;
 }
 
@@ -48,16 +38,17 @@ static const UnsignedType Out = StringHash("Output", true);
 
 bool ExtraNoise::CreatePorts()
 {
-  input[0] = GetInputPort(MagicACV);//InputPort::New(this, MagicACV);
-  input[1] = GetInputPort(MagicBCV);//InputPort::New(this, MagicBCV);
-
-  output = GetOutputPort(Out);//OutputPort::New(this, Out);
-	
+  input[0] = GetInputPort(MagicACV);
+  input[1] = GetInputPort(MagicBCV);
+  
+  output = GetOutputPort(Out);
+  
   return true;
 }
 
 void ExtraNoise::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
 {
+  /* Shared Property Instantiation */
   if (aPropertyID == StringHash("Magic A", true))
   {
     mMagicA = NumberProperty<FloatType>::New(aProperty);
@@ -97,6 +88,7 @@ void ExtraNoise::Process(UnsignedType SampleCount)
 {
 	#define state StateValue(mState)->AsFloat
 	
+	/* This has been broken several times - fixme */
 	for (UnsignedType n=0; n<SampleCount; n++)
 	{
 		FloatType white = 2.0f*randf() - 1.0f;
