@@ -35,12 +35,12 @@ ExtraNoise *ExtraNoise::Initialize(Patch *Host)
   mMagicB = NumberProperty<FloatType>::New(Property::WriteOnly, 0.25f, 
                                            LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.001f));
 
+#if 0
   RegisterSharedProperty(mMagicA, StringHash("Magic A", true)/*"Magic A", "Magic A"*/);
   RegisterSharedProperty(mMagicB, StringHash("Magic B", true)/*"Magic B", "Magic B"*/);
-  
+#endif  
   return this;
 }
-
 
 static const UnsignedType MagicACV = StringHash("Magic A CV", true);
 static const UnsignedType MagicBCV = StringHash("Magic B CV", true);
@@ -54,6 +54,21 @@ bool ExtraNoise::CreatePorts()
   output = GetOutputPort(Out);//OutputPort::New(this, Out);
 	
   return true;
+}
+
+void ExtraNoise::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
+{
+  if (aPropertyID == StringHash("Magic A", true))
+  {
+    mMagicA = NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Magic B", true))
+  {
+    mMagicB = NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
 }
 
 static inline FloatType randf (void) { return (FloatType)rand() / (FloatType)RAND_MAX; }

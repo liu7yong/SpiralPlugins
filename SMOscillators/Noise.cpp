@@ -61,8 +61,9 @@ Noise *Noise::Initialize(Patch *Host)
   mB5 = NewStateProperty(defZeroFloat);
   mB6 = NewStateProperty(defZeroFloat);
 
+#if 0
   RegisterSharedProperty(m_Type, StringHash("NOISE TYPE")/*, "Noise Type", "Noise Type"*/);
-  
+#endif  
   return this;
 }
 
@@ -73,6 +74,12 @@ bool Noise::CreatePorts()
   output = GetOutputPort(Out);
 
   return true;
+}
+
+void Noise::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
+{
+  if (aPropertyID == StringHash("Noise Type", true))
+    m_Type = NumberProperty<UnsignedType>::New(aProperty);
 }
 
 void Noise::Process(UnsignedType SampleCount)

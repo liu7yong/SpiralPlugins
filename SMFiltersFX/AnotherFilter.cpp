@@ -40,9 +40,10 @@ AnotherFilter *AnotherFilter::Initialize(Patch *Host)
   mResonance = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
                                              LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.00001f));
   
+#if 0
   RegisterSharedProperty(mCutoff, StringHash("Cutoff", true)/*"Cutoff", "Cutoff"*/);
   RegisterSharedProperty(mResonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
-  
+#endif  
   /* Voice State Properties */
   m_VibraPosInd = NewStateProperty(zeroFloat);
   m_VibraSpeedInd = NewStateProperty(zeroFloat);

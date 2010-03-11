@@ -95,9 +95,10 @@ LFO *LFO::Initialize(Patch *Host)
   m_Freq = NumberProperty<FloatType>::New(Property::WriteOnly, 0.1f, 
                                           LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.001f, 0.1f));
 
+#if 0
   RegisterSharedProperty(m_Type, StringHash("WAVE TABLE")/*"Wave Type", "Wave Type"*/);
   RegisterSharedProperty(m_Freq, StringHash("FREQUENCY")/*"Frequency", "Frequency"*/);
-
+#endif
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   
@@ -117,6 +118,20 @@ bool LFO::CreatePorts()
   return true;
 }
 
+void LFO::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
+{
+  if (aPropertyID == StringHash("Wave Type", true))
+  {
+    m_Type =  NumberProperty<UnsignedType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Frequency", true))
+  {
+    m_Freq =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
+}
 FloatType LFO::AdjustPos (FloatType pos) 
 {
 	if (pos > DEFAULT_TABLE_LEN)

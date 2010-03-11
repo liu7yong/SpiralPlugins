@@ -82,7 +82,7 @@
           
           "Write Only": true,
           "Force Update": false,
-          "Default": "Sine Wave",
+          "Default": 0,
           
           "Constraints":{
             "Type": "Set",
@@ -118,10 +118,10 @@
             "Default Step":1
           }
         },
-        "Fine Frequency":{
+        "Fine Tune":{
           "Type": "Float",
-          "Name": "Fine Frequency",
-          "Tooltip": "Fine Frequency",
+          "Name": "Fine Tune",
+          "Tooltip": "Fine Tune",
 
           "Write Only": true,
           "Force Update": false,

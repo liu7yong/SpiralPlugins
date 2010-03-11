@@ -36,8 +36,10 @@ RingMod *RingMod::Initialize(Patch *Host)
 
   m_Amount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
                                             LinearConstraints<FloatType>::New(true, true, false, 0, 3, 0.0001f, 0.001f));
+#if 0
   RegisterSharedProperty(m_Amount, StringHash("Amount", true)/*, "Amount"*/);
-
+#endif
+  
   return this;
 }
 

@@ -41,7 +41,10 @@ Trig* Trig::Initialize(Patch *Host)
 
   m_Operator = NumberProperty<UnsignedType>::New(Property::WriteOnly,1,
                                                  LinearConstraints<UnsignedType>::New(true, true, false, 0,3, 1, 1));
-  RegisterSharedProperty(m_Operator, StringHash("Operator") /*"Operator", "Operator"*/);
+
+#if 0
+ RegisterSharedProperty(m_Operator, StringHash("Operator") /*"Operator", "Operator"*/);
+#endif  
   
   return this;
 }

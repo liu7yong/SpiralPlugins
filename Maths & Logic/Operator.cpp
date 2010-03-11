@@ -42,12 +42,12 @@ Operator *Operator::Initialize(Patch *Host)
 
   m_Operator = NumberProperty<UnsignedType>::New(Property::WriteOnly,0,
                                                 LinearConstraints<UnsignedType>::New(true, true, false, 0, 3, 1, 1));
-  RegisterSharedProperty(m_Operator, StringHash("Operator"));
-
   m_Constant = NumberProperty<FloatType>::New(Property::WriteOnly,0,
                                                LinearConstraints<FloatType>::New(true, true, false, 0,1,0.01f,0.1f));
+#if 0
+  RegisterSharedProperty(m_Operator, StringHash("Operator"));
   RegisterSharedProperty(m_Constant, StringHash("Constant"));
-
+#endif
   return this;
 }
 

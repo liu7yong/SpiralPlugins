@@ -50,13 +50,14 @@ DiskWriter *DiskWriter::Initialize(Patch *Host)
 /* Just So The GUI Can Keep track of Current Time Recorded */
   m_TimeRecorded = NumberProperty<FloatType>::New(Property::ReadOnly, 0, NULL);
 
+#if 0
   RegisterSharedProperty(m_Open, StringHash("OPEN")/*"Open", "Open"*/);
   RegisterSharedProperty(m_Recording, StringHash("RECORDING")/*"Recording", "Recording"*/);
 //  RegisterSharedProperty(m_FileName, StringHash("FILENAME") /*"Filename", "Filename"*/);
   RegisterSharedProperty(m_BitsPerSample, StringHash("BITS PER SAMPLE")/*"Bits Per Sample", "Bits Per Sample"*/);
   RegisterSharedProperty(m_Stereo, StringHash("STEREO")/*"Stereo", "Stereo"*/);
   RegisterSharedProperty(m_TimeRecorded, StringHash("TIME RECORDED")/*"Time Recorded", "Time Recorded"*/);
-
+#endif
   return this;
 }
 

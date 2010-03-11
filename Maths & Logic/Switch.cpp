@@ -35,8 +35,9 @@ Switch *Switch::Initialize(Patch *Host)
   Super::Initialize(Host);
 
   m_Mix = ToggleProperty::New(Property::WriteOnly,false);
+#if 0
   RegisterSharedProperty(m_Mix, StringHash("Mix")/*, "Mix"*/);
-
+#endif
   return this;
 }
 

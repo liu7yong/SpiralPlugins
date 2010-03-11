@@ -42,8 +42,10 @@ Counter *Counter::Initialize(Patch *Host)
   m_Count = NumberProperty<UnsignedType>::New(Property::WriteOnly, 4, 
                                           LinearConstraints<UnsignedType>::New(true, true, false, 0, 10000, 1, 1));
 
+#if 0
   RegisterSharedProperty(m_Count, StringHash("Count")/*, "Count"*/);
-
+#endif
+  
   m_TriggeredInd = NewStateProperty(defTrigger);
   m_CurrentInd = NewStateProperty(defCurrent);
   m_CurrentLevelInd = NewStateProperty(defCurrentLevel);

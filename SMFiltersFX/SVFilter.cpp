@@ -49,8 +49,10 @@ SVFilter *SVFilter::Initialize(Patch *Host)
   mResonance = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
                                              LinearConstraints<FloatType>::New(true, true, false, 0.0f, 1.0f, 0.00001f, 0.0001f));
   
+#if 0
   RegisterSharedProperty(mCutoff, StringHash("Cutoff", true)/*"Cutoff", "Cutoff"*/);
   RegisterSharedProperty(mResonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
+#endif
   
   /* These should be internal state properties */
   fc = 1000.0f;

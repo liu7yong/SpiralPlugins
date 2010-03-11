@@ -51,11 +51,12 @@ Mixer *Mixer::Initialize(Patch *Host)
 
   Super::Initialize(Host);
 
+#if 0
   RegisterSharedProperty(m_NumChannels, StringHash("Channel Count")/*, "Channels"*/);
   RegisterSharedProperty(m_Peak, StringHash("Peak")/*, "Peak"*/);
   RegisterSharedProperty(m_Volume, StringHash("Channel Volume"));
   RegisterSharedProperty(m_VolumePeak, StringHash("Channel Peak"));
-  
+#endif  
   return this;
 }
 

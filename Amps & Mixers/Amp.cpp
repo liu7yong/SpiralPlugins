@@ -41,9 +41,11 @@ Amp *Amp::Initialize(Patch *Host)
   m_DC = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
                                             LinearConstraints<FloatType>::New(true, true, false, -2.0f, 2.0f, 0.001f, 0.1f));
 
+#if 0
   RegisterSharedProperty(m_Gain, StringHash("Gain"));
   RegisterSharedProperty(m_DC, StringHash("DC"));
-	
+#endif
+  
   return this;
 }
 

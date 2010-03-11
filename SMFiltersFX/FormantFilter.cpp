@@ -75,9 +75,10 @@ FormantFilter *FormantFilter::Initialize(Patch *Host)
 
   m_Vowel = NumberProperty<FloatType>::New(Property::WriteOnly, 0.0f, 
                                            LinearConstraints<FloatType>::New(true, true, false, 0.0f, 4.0f, 0.0001f, 0.001f));
-  
+ 
+#if 0
   RegisterSharedProperty(m_Vowel, StringHash("Vowel", true)/*"Vowel", "Vowel"*/);
-  
+#endif  
   return this;
 }
 

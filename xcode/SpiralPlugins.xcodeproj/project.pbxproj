@@ -509,8 +509,8 @@
 				B4B1422F113EA24300DCAC2D /* Resources */,
 				B4B14301113EB90200DCAC2D /* Amp.h */,
 				B4B14300113EB90200DCAC2D /* Amp.cpp */,
-				B4B1422C113EA23700DCAC2D /* Mixer.cpp */,
 				B4B1422D113EA23700DCAC2D /* Mixer.h */,
+				B4B1422C113EA23700DCAC2D /* Mixer.cpp */,
 			);
 			indentWidth = 2;
 			name = "Amps & Mixers";

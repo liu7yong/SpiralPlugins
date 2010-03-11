@@ -80,7 +80,9 @@ private:
 public:
   virtual LFO *Initialize(Patch *Host);
   static inline LFO *New(Patch *Host) { return Alloc()->Initialize(Host); }
+
   bool CreatePorts();
+  void CreateProperty(UnsignedType aPropertyID, Property *aProperty);
 
   virtual void Process(UnsignedType SampleCount);
   virtual void Reset();

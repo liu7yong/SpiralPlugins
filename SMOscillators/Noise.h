@@ -113,6 +113,7 @@ public:
   static inline Noise *New(Patch *Host) { return Alloc()->Initialize(Host); }
 
   bool CreatePorts();
+  void CreateProperty(UnsignedType aPropertyID, Property *aProperty);
 
   virtual void 	Process(UnsignedType SampleCount);
 };

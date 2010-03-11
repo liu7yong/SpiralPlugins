@@ -69,13 +69,14 @@ Oscillator *Oscillator::Initialize(Patch *Host)
   m_SHLen = NumberProperty<FloatType>::New(Property::WriteOnly, 0.1f, 
                                            LinearConstraints<FloatType>::New(true, true, false, 0, 0.2f, 0.001f, 0.01f));
 
+#if 0
   RegisterSharedProperty(m_Type, StringHash("Wave Type")/*, "Wave Type"*/);
   RegisterSharedProperty(m_Octave, StringHash("Octave")/*, "Octave"*/);
   RegisterSharedProperty(m_FineFreq, StringHash("Fine Tune")/*, "Fine Tune Frequency"*/);
   RegisterSharedProperty(m_PulseWidth, StringHash("Pulse Width")/*, "Pulse Width"*/);
   RegisterSharedProperty(m_ModAmount, StringHash("ModAmount")/*, "ModAmount"*/);
   RegisterSharedProperty(m_SHLen, StringHash("Sample & Hold Length")/*, "Sample & Hold Length"*/);
-
+#endif
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   m_NoisevInd = NewStateProperty(defNoisev);
@@ -92,6 +93,45 @@ static const UnsignedType Out = StringHash("Output", true);
 bool Oscillator::CreatePorts() 
 {
   return true;
+}
+
+void Oscillator::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
+{
+  if (aPropertyID == StringHash("Wave Type", true))
+  {
+    m_Type =  NumberProperty<UnsignedType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Octave", true))
+  {
+    m_Octave =  NumberProperty<UnsignedType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Fine Tune", true))
+  {
+    m_FineFreq =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Pulse Width", true))
+  {
+    m_PulseWidth =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Mod Amount", true))
+  {
+    m_ModAmount =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Sample & Hold Length", true))
+  {
+    m_ModAmount =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
 }
 
 void Oscillator::Process(UnsignedType SampleCount)

@@ -67,9 +67,10 @@ Filter *Filter::Initialize(Patch *Host)
                                            LinearConstraints<FloatType>::New(true, true, false, 0.0f, 100.0f, 0.01f,  1.0f));
   mResonance = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f,
                                                LinearConstraints<FloatType>::New(true, true, false, 0.0f, 10.0f, 0.01f, 0.1f));
+#if 0
   RegisterSharedProperty(mCutoff, StringHash("Cutoff", true) /*"Cutoff", "Cutoff"*/);
   RegisterSharedProperty(mResonance, StringHash("Resonance", true)/*"Resonance", "Resonance"*/);
-
+#endif
   /* These should be internal state properties */
   m_LastFC = zero;
   m_LastQ = one;

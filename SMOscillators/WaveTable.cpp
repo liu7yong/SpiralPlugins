@@ -106,6 +106,7 @@ WaveTable *WaveTable::Initialize(Patch *Host)
   Super::Initialize(Host);
 
   /* Shared Properties */
+#if 0
   m_Type = NumberProperty<UnsignedType>::New(Property::WriteOnly, WaveTable::Class::SineWave, 
                                               SetConstraints<UnsignedType>::New(WaveTypes, sizeof(WaveTypes)/sizeof(WaveTypes[0])));
   
@@ -116,15 +117,17 @@ WaveTable *WaveTable::Initialize(Patch *Host)
   m_ModAmount = NumberProperty<FloatType>::New(Property::WriteOnly, 1.0f, 
                                                LinearConstraints<FloatType>::New(true, true, false, 0, 2.0f, 0.001f, 0.01f));
 
+#endif
   /* Voice State Properties */
   m_CyclePosInd = NewStateProperty(defCyclePos);
   m_NoteInd = NewStateProperty(defNoteInd);
 
+#if 0
   RegisterSharedProperty(m_Type, StringHash("Wave Type", true)/*"Wave Type", "Wave Type"*/);
   RegisterSharedProperty(m_Octave, StringHash("Octave", true)/*"Octave", "Octave"*/);
   RegisterSharedProperty(m_FineFreq, StringHash("Fine Frequency", true)/*"FineFreq", "FineFreq"*/);
   RegisterSharedProperty(m_ModAmount, StringHash("Mod Amount", true)/*"ModAmount", "ModAmount"*/);
-  
+#endif  
   return this;
 }
 
@@ -137,6 +140,33 @@ bool WaveTable::CreatePorts()
   output = GetOutputPort(Out);
 	
   return true;
+}
+
+void WaveTable::CreateProperty(UnsignedType aPropertyID, Property *aProperty)
+{
+  if (aPropertyID == StringHash("Wave Type", true))
+  {
+    m_Type =  NumberProperty<UnsignedType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Octave", true))
+  {
+    m_Octave =  NumberProperty<SignedType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Fine Tune", true))
+  {
+    m_FineFreq =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
+
+  if (aPropertyID == StringHash("Mod Amount", true))
+  {
+    m_ModAmount =  NumberProperty<FloatType>::New(aProperty);
+    return;
+  }
 }
 
 void WaveTable::Process(UnsignedType SampleCount)
